@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Bibton</string>
+    <string name="flexible_tranfering">Flexible Transferring \n\ Method</string>
+    <string name="skip">Next</string>
+    <string name="flexible">Flexible</string>
+    <string name="transferring">Transferring</string>
+    <string name="method">Method</string>
+    <string name="goToProfitableExchangeFragment">goToProfitableExchangeFragment</string>
+    <string name="profitable">Profitable</string>
+    <string name="exchange">Exchange</string>
+    <string name="rate">Rate</string>
+    <string name="modern">Modern</string>
+    <string name="user">User</string>
+    <string name="inter">Interface</string>
+
+</resources>
