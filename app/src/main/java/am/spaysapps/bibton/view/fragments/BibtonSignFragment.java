@@ -1,9 +1,9 @@
 package am.spaysapps.bibton.view.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +18,7 @@ public class BibtonSignFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         main_view = inflater.inflate(R.layout.bibton_sign_fragment, container, false);
-        Constants.CURRENT_PAGE=1;
+      //  Constants.CURRENT_PAGE=1;
         return main_view;
 
     }
