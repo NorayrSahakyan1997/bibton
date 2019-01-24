@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import am.spaysapps.bibton.view.fragments.CountrySearchFragment;
-import am.spaysapps.bibton.view.fragments.PhoneNumberFragment;
+import am.spaysapps.bibton.view.fragments.phoneNumberFragment.PhoneNumberFragment;
 import am.spaysapps.bibton.view.fragments.SuperSystemFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -34,6 +34,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private int current_fragment_number;
     private FrameLayout frameLayout;
     private ImageButton skip_button;
+    private PhoneNumberFragment phoneNumberFragment;
 
 
     @Override
@@ -48,13 +49,15 @@ public class WelcomeActivity extends AppCompatActivity {
     public void init() {
         frameLayout = (FrameLayout) findViewById(R.id.frameLayoutWelcome);
         skip_button = (ImageButton) findViewById(R.id.skip_button);
+        phoneNumberFragment= new PhoneNumberFragment();
         handler = new Handler();
     }
 
 
     public void setFragments() {
         fragmentManager = getSupportFragmentManager();
-        currentFragment = new BibtonSignFragment();
+      //  currentFragment = new BibtonSignFragment();
+        currentFragment = new PhoneNumberFragment();
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.frameLayoutWelcome, currentFragment);
         fragmentTransaction.commit();
