@@ -12,5 +12,14 @@
     <string name="modern">Modern</string>
     <string name="user">User</string>
     <string name="inter">Interface</string>
+    <string name="superr">Super</string>
+    <string name="system">System</string>
+    <string name="payment">Payment</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="_00_00_00">00-00-00</string>
 
+    <string name="network_error_message">No internet connection</string>
+    <string name="default_error_message">Sorry something went wrong. Please try again later.</string>
+    <string name="network_error">No internet connection</string>
+    <string name="server_error">Sorry something went wrong.\nPlease try again later.</string>
 </resources>

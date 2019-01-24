@@ -15,7 +15,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 
-import am.spaysapps.bibton.utils.Constants;
 
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -34,20 +33,20 @@ public class FlexibleTransferingFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         main_view = inflater.inflate(R.layout.flexible_transfer_fragment, container, false);
-        //Constants.CURRENT_PAGE = 2;
         init();
         loteAniamtion();
+
+
         return main_view;
 
     }
 
-    public void init() {
 
+
+    public void init() {
         button_skip = main_view.findViewById(R.id.skip_button);
         constraintLayout_next = (ConstraintLayout) main_view.findViewById(R.id.constraint_next_flexible);
         slideUpAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.down_to_up);
-
-
     }
 
 

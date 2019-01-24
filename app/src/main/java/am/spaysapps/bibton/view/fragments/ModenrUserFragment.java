@@ -1,7 +1,6 @@
 package am.spaysapps.bibton.view.fragments;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +15,9 @@ import android.view.animation.AnimationUtils;
 import com.airbnb.lottie.LottieAnimationView;
 
 import am.spaysapps.bibton.R;
-import am.spaysapps.bibton.utils.Constants;
 
 
-public class ModerUserFragment extends Fragment {
+public class ModenrUserFragment extends Fragment {
     private View mainVew;
     private ConstraintLayout constraintLayout_next;
     private Animation slideUpAnimation;
@@ -34,11 +32,8 @@ public class ModerUserFragment extends Fragment {
     }
 
     private void init(){
-
         constraintLayout_next = (ConstraintLayout) mainVew.findViewById(R.id.constraint_next_modern_user);
         slideUpAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.down_to_up);
-
-
     }
 
     public void loteAniamtion() {

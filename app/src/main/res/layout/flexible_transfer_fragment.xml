@@ -16,53 +16,39 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.07" />
 
-    <!--<pl.droidsonroids.gif.GifImageView-->
-    <!--android:layout_width="316dp"-->
-    <!--android:layout_height="187dp"-->
 
-    <!--android:src="@drawable/coins_ransfering"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toTopOf="parent"-->
-    <!--app:layout_constraintVertical_bias="0.4"-->
-
-    <!--/>-->
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_animation_flexible"
         android:layout_width="316dp"
         android:layout_height="182dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.4"
-        android:layout_marginEnd="60dp"
-        android:layout_marginStart="60dp"
         app:lottie_fileName="coins_transfer.json" />
 
     <ImageView
         android:layout_width="300dp"
         android:layout_height="1dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/group_lines"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
-        app:layout_constraintVertical_bias="0.66"
-        />
-
+        android:background="@drawable/group_lines"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.66" />
 
 
     <TextView
         android:id="@+id/text_flexible"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_marginStart="50dp"
         android:fontFamily="@font/noto_sans_regular"
         android:text="@string/flexible"
         android:textColor="@color/colorWhite"
@@ -71,15 +57,13 @@
         app:layout_constraintEnd_toStartOf="@id/text_transferring"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"
-        android:layout_marginStart="50dp"
-        />
+        app:layout_constraintVertical_bias="0.75" />
 
     <TextView
         android:id="@+id/text_transferring"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_marginEnd="50dp"
         android:fontFamily="@font/noto_sans_bold"
         android:text="@string/transferring"
         android:textColor="@color/colorWhite"
@@ -88,9 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/text_flexible"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"
-        android:layout_marginEnd="50dp"
-        />
+        app:layout_constraintVertical_bias="0.75" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -103,10 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8"
-
-
-        />
+        app:layout_constraintVertical_bias="0.8" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_next_flexible"
@@ -114,23 +93,21 @@
         android:layout_height="wrap_content"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95">
+
         <ImageButton
             android:id="@+id/skip_button"
             android:layout_width="300dp"
             android:layout_height="60dp"
-            android:onClick="goToProfitableExchangeFragment"
-
             android:background="@drawable/button_skip"
+            android:onClick="goToProfitableExchangeFragment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -15,7 +15,7 @@ import android.view.animation.AnimationUtils;
 import com.airbnb.lottie.LottieAnimationView;
 
 import am.spaysapps.bibton.R;
-import am.spaysapps.bibton.utils.Constants;
+import am.spaysapps.bibton.shared.utils.Constants;
 
 
 public class ProfitableExchangeFragment extends Fragment {
@@ -31,11 +31,7 @@ public class ProfitableExchangeFragment extends Fragment {
         main_view = inflater.inflate(R.layout.profitable_exchange_fragment, container, false);
         constraintLayout_next = (ConstraintLayout) main_view.findViewById(R.id.constraint_next_profitable);
         slideUpAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.down_to_up);
-
-        //Constants.CURRENT_PAGE = 3;
         loteAniamtion();
-
-
         return main_view;
     }
 
@@ -45,13 +41,12 @@ public class ProfitableExchangeFragment extends Fragment {
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-            }
 
+            }
             @Override
             public void onAnimationEnd(Animator animation) {
                 constraintLayout_next.startAnimation(slideUpAnimation);
                 constraintLayout_next.setVisibility(View.VISIBLE);
-
             }
 
             @Override

@@ -4,6 +4,8 @@ package am.spaysapps.bibton.view.activities;
 import android.os.Bundle;
 import android.os.Handler;
 
+import am.spaysapps.bibton.view.fragments.CountrySearchFragment;
+import am.spaysapps.bibton.view.fragments.PhoneNumberFragment;
 import am.spaysapps.bibton.view.fragments.SuperSystemFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,10 +17,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import am.spaysapps.bibton.R;
-import am.spaysapps.bibton.utils.Constants;
 import am.spaysapps.bibton.view.fragments.BibtonSignFragment;
 import am.spaysapps.bibton.view.fragments.FlexibleTransferingFragment;
-import am.spaysapps.bibton.view.fragments.ModerUserFragment;
+import am.spaysapps.bibton.view.fragments.ModenrUserFragment;
 import am.spaysapps.bibton.view.fragments.ProfitableExchangeFragment;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -56,15 +57,14 @@ public class WelcomeActivity extends AppCompatActivity {
         currentFragment = new BibtonSignFragment();
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.frameLayoutWelcome, currentFragment);
-        //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        //Constants.CURRENT_PAGE = 1;
     }
 
 
     private FragmentTransaction transaction;
+
     public void replaceFragment(Fragment fragment, boolean backAnim) {
-         transaction = getSupportFragmentManager().beginTransaction();
+        transaction = getSupportFragmentManager().beginTransaction();
 
         if (backAnim) {
             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
@@ -87,16 +87,24 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void goToModerUserFragment(View view) {
-        replaceFragment(new ModerUserFragment(), false);
+        replaceFragment(new ModenrUserFragment(), false);
     }
-    public void goToSuperSystemFragment(View view){
-        replaceFragment(new SuperSystemFragment(),false);
+
+    public void goToSuperSystemFragment(View view) {
+        replaceFragment(new SuperSystemFragment(), false);
+    }
+
+    public void goToPhoneNumberFragment(View view) {
+        replaceFragment(new PhoneNumberFragment(), false);
+    }
+    public void openCountrySearchFragment(View view){
+        replaceFragment(new CountrySearchFragment(),true);
     }
 
 
     @Override
     public void onBackPressed() {
-
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         super.onBackPressed();
     }
 }
