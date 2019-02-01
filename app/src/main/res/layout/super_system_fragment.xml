@@ -43,42 +43,36 @@
 
     <TextView
         android:id="@+id/text_super"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="50dp"
         android:fontFamily="@font/noto_sans_regular"
         android:text="@string/superr"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/transferring_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/lottie_animation_super_system"
-        app:layout_constraintEnd_toStartOf="@id/text_system"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/lottie_animation_super_system"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.344"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.749" />
+        app:layout_constraintVertical_bias="0.75" />
 
     <TextView
         android:id="@+id/text_system"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:fontFamily="@font/noto_sans_regular"
         android:text="@string/system"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/transferring_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/text_flexible"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.75"
-        android:layout_marginEnd="100dp"
 
 
-      />
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -100,7 +94,7 @@
         android:id="@+id/constraint_super_system"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,8 +102,8 @@
         app:layout_constraintVertical_bias="0.95">
 
         <ImageButton
-            android:id="@+id/skip_button"
-            android:layout_width="300dp"
+            android:id="@+id/goToPhoneNumberFragment"
+            android:layout_width="@dimen/next_button_size"
             android:layout_height="60dp"
             android:background="@drawable/button_skip"
             android:onClick="goToPhoneNumberFragment"

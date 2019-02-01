@@ -1,42 +1,53 @@
 package am.spaysapps.bibton.view.fragments;
 
 import android.animation.Animator;
+import android.content.Context;
 import android.os.Bundle;
+import am.spaysapps.bibton.shared.utils.ChangeFragments;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-
+import android.widget.ImageButton;
 import com.airbnb.lottie.LottieAnimationView;
-
 import am.spaysapps.bibton.R;
 
 
-public class ModenrUserFragment extends Fragment {
+public class ModernUserFragment extends Fragment implements View.OnClickListener {
     private View mainVew;
-    private ConstraintLayout constraintLayout_next;
-    private Animation slideUpAnimation;
+    private ImageButton goToSuperSystemFragment;
+    private Context context;
+    private ChangeFragments changeFragments;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mainVew = inflater.inflate(R.layout.modern_user_fragment, container, false);
         init();
-        loteAniamtion();
+        setAnimation();
+        goToSuperSystemFragment();
         return mainVew;
     }
 
-    private void init(){
-        constraintLayout_next = (ConstraintLayout) mainVew.findViewById(R.id.constraint_next_modern_user);
-        slideUpAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.down_to_up);
+    @Override
+    public void onAttach(@NonNull Context context) {
+        this.context = context;
+        super.onAttach(context);
     }
 
-    public void loteAniamtion() {
+    private void init() {
+
+        goToSuperSystemFragment = mainVew.findViewById(R.id.goToSuperSystemFragment);
+        changeFragments = new ChangeFragments(context, mainVew, this);
+    }
+
+    private void goToSuperSystemFragment() {
+        goToSuperSystemFragment.setOnClickListener(v -> changeFragments.replaceFragment(new SuperSystemFragment(), false));
+    }
+
+    private void setAnimation() {
         LottieAnimationView lottieAnimationView = mainVew.findViewById(R.id.lottie_animation_modern_user);
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
@@ -45,8 +56,8 @@ public class ModenrUserFragment extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                constraintLayout_next.startAnimation(slideUpAnimation);
-                constraintLayout_next.setVisibility(View.VISIBLE);            }
+
+            }
 
             @Override
             public void onAnimationCancel(Animator animation) {
@@ -57,5 +68,10 @@ public class ModenrUserFragment extends Fragment {
             }
         });
         lottieAnimationView.playAnimation();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

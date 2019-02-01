@@ -1,10 +1,14 @@
 package am.spaysapps.bibton.view.activities;
 
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.os.Handler;
 
-import am.spaysapps.bibton.view.fragments.CountrySearchFragment;
+import am.spaysapps.bibton.view.fragments.BibtonSignFragment;
+import am.spaysapps.bibton.view.fragments.FlexibleTransferringFragment;
+import am.spaysapps.bibton.view.fragments.inputCodeFragment.InputPhoneCodeFragment;
+import am.spaysapps.bibton.view.fragments.countrySearchFragment.CountrySearchFragment;
 import am.spaysapps.bibton.view.fragments.phoneNumberFragment.PhoneNumberFragment;
 import am.spaysapps.bibton.view.fragments.SuperSystemFragment;
 import androidx.fragment.app.Fragment;
@@ -16,10 +20,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import am.spaysapps.bibton.R;
-import am.spaysapps.bibton.view.fragments.BibtonSignFragment;
-import am.spaysapps.bibton.view.fragments.FlexibleTransferingFragment;
-import am.spaysapps.bibton.view.fragments.ModenrUserFragment;
+import am.spaysapps.bibton.view.fragments.ModernUserFragment;
 import am.spaysapps.bibton.view.fragments.ProfitableExchangeFragment;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -42,21 +46,22 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        init();
+        //init();
         setFragments();
+        //loteAnimation();
     }
 
     public void init() {
         frameLayout = (FrameLayout) findViewById(R.id.frameLayoutWelcome);
-        skip_button = (ImageButton) findViewById(R.id.skip_button);
-        phoneNumberFragment= new PhoneNumberFragment();
+        // skip_button = (ImageButton) findViewById(R.id.skip_button);
+        phoneNumberFragment = new PhoneNumberFragment();
         handler = new Handler();
     }
 
 
     public void setFragments() {
         fragmentManager = getSupportFragmentManager();
-      //  currentFragment = new BibtonSignFragment();
+         //currentFragment = new BibtonSignFragment();
         currentFragment = new PhoneNumberFragment();
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.frameLayoutWelcome, currentFragment);
@@ -77,37 +82,48 @@ public class WelcomeActivity extends AppCompatActivity {
         transaction.remove(currentFragment);
         currentFragment = fragment;
         transaction.replace(R.id.frameLayoutWelcome, currentFragment);
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 
-    public void goToProfitableExchangeFragment(View view) {
-        replaceFragment(new ProfitableExchangeFragment(), false);
+
+    public void loteAnimation() {
+        LottieAnimationView lottieAnimationView = (LottieAnimationView) findViewById(R.id.lottie_animation_splash);
+        lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                lottieAnimationView.setVisibility(View.INVISIBLE);
+                replaceFragment(new FlexibleTransferringFragment(), false);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
+        lottieAnimationView.playAnimation();
     }
 
-    public void goToFlexibleExchangeFragment(View view) {
-        replaceFragment(new FlexibleTransferingFragment(), false);
-    }
-
-    public void goToModerUserFragment(View view) {
-        replaceFragment(new ModenrUserFragment(), false);
-    }
-
-    public void goToSuperSystemFragment(View view) {
-        replaceFragment(new SuperSystemFragment(), false);
-    }
-
-    public void goToPhoneNumberFragment(View view) {
-        replaceFragment(new PhoneNumberFragment(), false);
-    }
-    public void openCountrySearchFragment(View view){
-        replaceFragment(new CountrySearchFragment(),true);
-    }
 
 
     @Override
     public void onBackPressed() {
-        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-        super.onBackPressed();
+
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getFragmentManager().popBackStack();
+        }
+
     }
 }

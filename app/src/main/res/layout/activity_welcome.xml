@@ -10,15 +10,26 @@
     android:fitsSystemWindows="false"
     android:id="@+id/welcome_activity_parent_layout"
     tools:context=".view.activities.WelcomeActivity">
-<FrameLayout
-    android:id="@+id/frameLayoutWelcome"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    >
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_splash"
+        android:layout_width="107dp"
+        android:layout_height="147dp"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_fileName="splash_screen_anim.json" />
+    <FrameLayout
+        android:id="@+id/frameLayoutWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

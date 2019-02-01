@@ -1,47 +1,80 @@
 package am.spaysapps.bibton.view.fragments.phoneNumberFragment;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.List;
-
 import javax.inject.Inject;
-
 import am.spaysapps.bibton.Bibton;
 import am.spaysapps.bibton.R;
-import am.spaysapps.bibton.model.countryModel.CountryModel;
 import am.spaysapps.bibton.presenter.PhoneNumberPresenter;
+import am.spaysapps.bibton.shared.utils.ChangeFragments;
+import am.spaysapps.bibton.shared.utils.Constants;
+import am.spaysapps.bibton.view.fragments.countrySearchFragment.CountrySearchFragment;
+import am.spaysapps.bibton.view.fragments.inputCodeFragment.InputPhoneCodeFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class PhoneNumberFragment extends Fragment implements IPhoneNumberFragment {
+public class PhoneNumberFragment extends Fragment implements IPhoneNumberFragment, View.OnClickListener {
+
 
     @Inject
     PhoneNumberPresenter mPresenter;
     private View mainView;
-    private ArrayAdapter<String> adapter_phone_numbers;
+    private TextView country_code_text_view;
+    private ImageButton goToInputCode;
+    private ChangeFragments changeFragments;
+    private Context context;
+    private EditText edit_text_phone_number;
+    private String country_selected_code;
+    //private String uniqueId;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.phone_number_fragment, container, false);
         Bibton.getInstance().getAuthorizationComponent().inject(this);
-        mPresenter.onViewCreated(this);
-        mPresenter.getBalanceList();
 
-
-
+        init();
+        goToInputCodeFragment();
+        goToCountrySearchFragment();
+        getCountrySelectedCode();
 
         return mainView;
     }
 
+    private void init() {
+        mPresenter.onViewCreated(this);
+        mPresenter.getCountryCode();
+        country_code_text_view = mainView.findViewById(R.id.country_code_text_view);
+        goToInputCode = mainView.findViewById(R.id.goToInputCode);
+        changeFragments = new ChangeFragments(context, mainView, this);
+        goToInputCode.setOnClickListener(this);
+        edit_text_phone_number = mainView.findViewById(R.id.edit_text_phone_number);
 
+    }
+
+    private void getCountrySelectedCode() {
+        country_selected_code = Constants.COUNTRY_CODE;
+       // country_selected_short_name = Constants.COUNTRY_SHORT_NAME;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        this.context = context;
+        super.onAttach(context);
+    }
+
+    private void goToCountrySearchFragment() {
+        country_code_text_view.setOnClickListener(v -> changeFragments.replaceFragment(new CountrySearchFragment(), false));
+    }
 
     @Override
     public void onDestroyView() {
@@ -50,9 +83,42 @@ public class PhoneNumberFragment extends Fragment implements IPhoneNumberFragmen
         mPresenter.stopSubscriptions();
     }
 
-    @Override
-    public void showBalanceList(List<CountryModel> list) {
+    private String phone_Number;
 
+    private void goToInputCodeFragment() {
+        goToInputCode.setOnClickListener(v -> {
+
+            phone_Number=edit_text_phone_number.getText().toString();
+            mPresenter.responseValidationPhoneNumber(Constants.COUNTRY_SHORT_NAME, phone_Number);
+
+        });
+    }
+
+    @Override
+    public void showCountryCode(String countryCode) {
+        if (country_selected_code != null) {
+            country_code_text_view.setText(country_selected_code);
+        } else {
+            country_code_text_view.setText(countryCode);
+        }
+    }
+    @Override
+    public void checkPhoneNumberValidation(Boolean message) {
+        //private String country_selected_short_name;
+        boolean phoneValid = message;
+        if(phoneValid){
+                changeFragments.replaceFragment(new InputPhoneCodeFragment(),false);
+
+            }
+            else{
+                Toast.makeText(context,"Check phone number",Toast.LENGTH_SHORT).show();
+            }
+    }
+
+    @Override
+    public void showUniqueID(String uniqueId) {
+
+        //uniqueId=uniqueId;
     }
 
     @Override
@@ -67,6 +133,11 @@ public class PhoneNumberFragment extends Fragment implements IPhoneNumberFragmen
 
     @Override
     public void showNetworkError() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }

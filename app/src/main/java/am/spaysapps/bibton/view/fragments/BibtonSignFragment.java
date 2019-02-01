@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import com.airbnb.lottie.LottieAnimationView;
 
 import am.spaysapps.bibton.R;
-import am.spaysapps.bibton.shared.utils.Constants;
 
 public class BibtonSignFragment extends Fragment {
     private View main_view;
@@ -21,11 +20,11 @@ public class BibtonSignFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         main_view = inflater.inflate(R.layout.bibton_sign_fragment, container, false);
-        loteAniamtion();
+        setAnimation();
         return main_view;
 
     }
-    public void loteAniamtion() {
+    private void setAnimation() {
         LottieAnimationView lottieAnimationView = main_view.findViewById(R.id.lottie_animation_splash);
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
@@ -34,8 +33,7 @@ public class BibtonSignFragment extends Fragment {
             }
             @Override
             public void onAnimationEnd(Animator animation) {
-//                constraintLayout_next.startAnimation(slideUpAnimation);
-//                constraintLayout_next.setVisibility(View.VISIBLE);
+
             }
 
             @Override

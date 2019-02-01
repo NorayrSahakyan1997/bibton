@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="phoneNumberShadow">#19FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="pass_code_inactive">#800289BE</color>
+    <color name="pass_code_active">#26B99A</color>
+
 </resources>

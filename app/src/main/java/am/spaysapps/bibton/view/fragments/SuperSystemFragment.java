@@ -1,41 +1,56 @@
 package am.spaysapps.bibton.view.fragments;
 
 import android.animation.Animator;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+
+import android.widget.ImageButton;
 
 import com.airbnb.lottie.LottieAnimationView;
 
 import am.spaysapps.bibton.R;
+import am.spaysapps.bibton.shared.utils.ChangeFragments;
+import am.spaysapps.bibton.view.fragments.phoneNumberFragment.PhoneNumberFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
-public class SuperSystemFragment extends Fragment {
+public class SuperSystemFragment extends Fragment implements View.OnClickListener {
     private View mainView;
-    private ConstraintLayout constraintLayout_next;
-    private Animation slideUpAnimation;
+    private Context context;
+    private ImageButton goToPhoneNumberFragment;
+    private ChangeFragments changeFragments;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mainView=inflater.inflate(R.layout.super_system_fragment,container,false);
+        mainView = inflater.inflate(R.layout.super_system_fragment, container, false);
         init();
-        loteAniamtion();
+        setAnimation();
+        goToPhoneNumberFragment();
         return mainView;
     }
-    private void init(){
-        constraintLayout_next = (ConstraintLayout) mainView.findViewById(R.id.constraint_super_system);
-        slideUpAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.down_to_up);
+
+    private void init() {
+        goToPhoneNumberFragment = mainView.findViewById(R.id.goToPhoneNumberFragment);
+        changeFragments = new ChangeFragments(context, mainView, this);
     }
 
-    public void loteAniamtion() {
+    private void goToPhoneNumberFragment() {
+        goToPhoneNumberFragment.setOnClickListener(v -> changeFragments.replaceFragment(new PhoneNumberFragment(), false));
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        this.context = context;
+        super.onAttach(context);
+    }
+
+    private void setAnimation() {
         LottieAnimationView lottieAnimationView = mainView.findViewById(R.id.lottie_animation_super_system);
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
@@ -44,8 +59,8 @@ public class SuperSystemFragment extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                constraintLayout_next.startAnimation(slideUpAnimation);
-                constraintLayout_next.setVisibility(View.VISIBLE);            }
+
+            }
 
             @Override
             public void onAnimationCancel(Animator animation) {
@@ -56,5 +71,10 @@ public class SuperSystemFragment extends Fragment {
             }
         });
         lottieAnimationView.playAnimation();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

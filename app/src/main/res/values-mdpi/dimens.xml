@@ -30,10 +30,27 @@
     <item name="image_size_bigger" format="float" type="dimen">700</item>
 
     <dimen name="cover_photo_height">250dp</dimen>
+    <dimen name="country_name_size">15sp</dimen>
+
 
     <dimen name="main_categories_photo_height">100dp</dimen>
     <dimen name="menu_item_margin20">10dp</dimen>
     <dimen name="menu_item_margin10">5dp</dimen>
     <dimen name="transferring_text_size">20dp</dimen>
+    <dimen name="edit_text_search">310dp</dimen>
+    <dimen name="next_button_size">280dp</dimen>
+    <dimen name="margin_top_text_phone">30dp</dimen>
+    <dimen name="margin_top_phone_code">25dp</dimen>
+
+    <dimen name="vertical_bias_input_code">110dp</dimen>
+
+    <dimen name="margin_bottom_delet_button">5dp</dimen>
+
+
+
+
+
+
+
 
 </resources>

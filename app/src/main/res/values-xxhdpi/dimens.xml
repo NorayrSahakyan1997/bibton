@@ -36,4 +36,18 @@
     <dimen name="menu_item_margin10">5dp</dimen>
     <dimen name="transferring_text_size">26dp</dimen>
 
+    <dimen name="edit_text_search">350dp</dimen>
+    <dimen name="country_name_size">18sp</dimen>
+    <dimen name="next_button_size">300dp</dimen>
+    <dimen name="margin_top_text_phone">40dp</dimen>
+    <dimen name="margin_top_phone_code">50dp</dimen>
+    <dimen name="vertical_bias_input_code">150dp</dimen>
+
+
+
+
+
+
+
+
 </resources>

@@ -40,7 +40,7 @@ public class ResponseModel<T> implements Parcelable {
         }
     };
 
-    public Boolean getSuccess() {
+    public Boolean isSuccess() {
         return success;
     }
 

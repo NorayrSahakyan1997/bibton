@@ -1,71 +1,71 @@
 package am.spaysapps.bibton.view.fragments;
 
 import android.animation.Animator;
+import android.content.Context;
 import android.os.Bundle;
 
+import am.spaysapps.bibton.shared.utils.ChangeFragments;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
-
-
-
 import com.airbnb.lottie.LottieAnimationView;
-
 import am.spaysapps.bibton.R;
 
-public class FlexibleTransferingFragment extends Fragment {
-    private View main_view;
-    private ImageButton button_skip;
-    private ConstraintLayout constraintLayout_next;
-    private Animation slideUpAnimation;
+public class FlexibleTransferringFragment extends Fragment implements View.OnClickListener {
 
+    private View main_view;
+    private ImageButton gotToProfitableExchangeFragment;
+    private ChangeFragments changeFragments;
+    private Context context;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         main_view = inflater.inflate(R.layout.flexible_transfer_fragment, container, false);
         init();
-        loteAniamtion();
-
-
+        setAnimation();
+        gotToProfitableExchangeFragment();
         return main_view;
-
     }
 
 
+    private void init() {
 
-    public void init() {
-        button_skip = main_view.findViewById(R.id.skip_button);
-        constraintLayout_next = (ConstraintLayout) main_view.findViewById(R.id.constraint_next_flexible);
-        slideUpAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.down_to_up);
+        gotToProfitableExchangeFragment = main_view.findViewById(R.id.gotToProfitableExchangeFragment);
+        changeFragments = new ChangeFragments(context, main_view, this);
     }
 
+    private void gotToProfitableExchangeFragment() {
+        gotToProfitableExchangeFragment.setOnClickListener(v -> changeFragments.replaceFragment(new ProfitableExchangeFragment(), false));
+    }
 
-    public void loteAniamtion() {
+    @Override
+    public void onAttach(@NonNull Context context) {
+        this.context = context;
+        super.onAttach(context);
+    }
+
+    private void setAnimation() {
         LottieAnimationView lottieAnimationView = main_view.findViewById(R.id.lottie_animation_flexible);
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
+
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                constraintLayout_next.startAnimation(slideUpAnimation);
-                constraintLayout_next.setVisibility(View.VISIBLE);
+
             }
 
             @Override
             public void onAnimationCancel(Animator animation) {
             }
+
 
             @Override
             public void onAnimationRepeat(Animator animation) {
@@ -75,4 +75,8 @@ public class FlexibleTransferingFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
