@@ -1,6 +1,5 @@
 package am.spaysapps.bibton.presenter;
 
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -44,10 +43,10 @@ public class PhoneNumberPresenter extends BasePresenter<IPhoneNumberFragment> {
         addDisposable(disposable);
     }
 
-    public void checkValidation(ResponseModel <SignUp> responseModel) {
+    private void checkValidation(ResponseModel <SignUp> responseModel) {
           mView.checkPhoneNumberValidation(responseModel.isSuccess());
-
           mView.showUniqueID(responseModel.getData().getUnique_id());
+          Constants.IS_REGISTERED=responseModel.getData().isIs_registred();
     }
 
 

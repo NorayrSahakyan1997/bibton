@@ -2,7 +2,7 @@ package am.spaysapps.bibton.model.singUpModel;
 
 public class SignUp {
     private String unique_id;
-    private boolean is_registered;
+    private boolean is_registred;
 
     public String getUnique_id() {
         return unique_id;
@@ -12,6 +12,7 @@ public class SignUp {
         this.unique_id = unique_id;
     }
 
-
-
+    public boolean isIs_registred() {
+        return is_registred;
+    }
 }

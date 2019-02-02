@@ -45,6 +45,8 @@
     <dimen name="vertical_bias_input_code">110dp</dimen>
 
     <dimen name="margin_bottom_delet_button">5dp</dimen>
+    <dimen name="underline_width">34dp</dimen>
+
 
 
 

@@ -3,6 +3,7 @@ package am.spaysapps.bibton.shared.data.api;
 import am.spaysapps.bibton.model.ResponseModel;
 import am.spaysapps.bibton.model.checkPassCode.CheckPassCodeModel;
 import am.spaysapps.bibton.model.countryModel.CountryParentModel;
+import am.spaysapps.bibton.model.createAccountModel.CreateAccountModel;
 import am.spaysapps.bibton.model.phoneNumberCodeModel.CountryCode;
 import am.spaysapps.bibton.model.singUpModel.SignUp;
 import io.reactivex.Flowable;
@@ -30,6 +31,11 @@ public interface IAuthorizationService {
     @FormUrlEncoded
     @POST("api/login")
     Flowable<ResponseModel<SignUp>> checkPhoneNumberValidation(@Field("shortname") String shortName, @Field("phone_number") String phoneNumber);
+
+    @FormUrlEncoded
+    @POST("api/login/third-step")
+    Flowable<ResponseModel<CreateAccountModel>> createAccount(@Field("unique_id") String unique_id, @Field("code") String code, @Field("passcode") String passCode);
+
 
 
 

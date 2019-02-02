@@ -19,4 +19,5 @@ public interface IAuthorizationComponent {
     void inject(InputPhoneCodeFragment inputPhoneCodeFragment);
 
     void inject (CreatePassCodeFragment createPassCodeFragment);
+
 }

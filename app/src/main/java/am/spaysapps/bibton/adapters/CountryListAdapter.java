@@ -16,6 +16,7 @@ import java.util.List;
 import am.spaysapps.bibton.R;
 import am.spaysapps.bibton.model.countryModel.CountryModel;
 import am.spaysapps.bibton.shared.utils.ChangeFragments;
+import am.spaysapps.bibton.shared.utils.CloseKeyBoard;
 import am.spaysapps.bibton.shared.utils.Constants;
 import am.spaysapps.bibton.view.fragments.phoneNumberFragment.PhoneNumberFragment;
 import androidx.annotation.NonNull;
@@ -54,6 +55,7 @@ public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         CountryListAdapter.ViewHolder viewHolder = (CountryListAdapter.ViewHolder) holder;
+//        viewHolder.country_names.setText(countryArray.get(position));
         viewHolder.country_names.setText(countryArray.get(position).getName());
         viewHolder.country_code.setText(countryArray.get(position).getPhone_code() + "");
         Picasso.get()
@@ -102,7 +104,6 @@ public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         @Override
         public void onClick(View v) {
-
             Fragment newFragment = new PhoneNumberFragment();
             FragmentTransaction transaction = ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frameLayoutWelcome, newFragment);

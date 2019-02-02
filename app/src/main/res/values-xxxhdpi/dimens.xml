@@ -41,6 +41,8 @@
     <dimen name="margin_top_text_phone">65dp</dimen>
     <dimen name="margin_top_phone_code">50dp</dimen>
     <dimen name="vertical_bias_input_code">180dp</dimen>
+    <dimen name="underline_width">60dp</dimen>
+
 
 
 

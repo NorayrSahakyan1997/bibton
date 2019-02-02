@@ -25,5 +25,9 @@
     <string name="searchCountry">Search country</string>
     <string name="enterSixDigitCode">Enter the 6-digit code \n We\'ve sent it to +374-00-00-00</string>
     <string name="createPassCode">Create a passcode for your \n Bibton account </string>
+    <string name="forget">Forget?</string>
+    <string name="warning">Warning</string>
+    <string name="writeNewPassword">Please write a new passcode</string>
+    <string name="ok">Ok</string>
 
 </resources>

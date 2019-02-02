@@ -19,6 +19,7 @@ public final class Constants {
     public static String COUNTRY_SHORT_NAME;
     public static String COUNTRY_CODE;
     public static String UNIQUE_ID;
+    public static boolean IS_REGISTERED;
 
 
 }

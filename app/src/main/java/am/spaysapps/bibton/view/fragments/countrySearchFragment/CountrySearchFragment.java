@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import am.spaysapps.bibton.Bibton;
@@ -20,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CountrySearchFragment extends Fragment implements ICountrySearchFragment {
     private View mainView;
     private RecyclerView recycler_view_country_flags;
-
+    private SearchView search_view_countries;
     @Inject
     CountrySearchPresenter mPresenter;
 
@@ -40,6 +42,20 @@ public class CountrySearchFragment extends Fragment implements ICountrySearchFra
         recycler_view_country_flags = mainView.findViewById(R.id.recycler_view_country_flags);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recycler_view_country_flags.setLayoutManager(layoutManager);
+        search_view_countries = mainView.findViewById(R.id.search_view_countries);
+        search_view_countries.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchItemsFromCountryList(search_view_countries.getQuery().toString());
+
+                return false;
+            }
+        });
     }
 
 
@@ -67,9 +83,30 @@ public class CountrySearchFragment extends Fragment implements ICountrySearchFra
 
     }
 
+    private List<CountryModel> outputCountries;
+
     @Override
     public void showCountryList(List<CountryModel> list) {
-        CountryListAdapter countryListAdapter = new CountryListAdapter(getContext(), list);
+        outputCountries = new ArrayList<>();
+        outputCountries = list;
+        CountryListAdapter countryListAdapter = new CountryListAdapter(getContext(), outputCountries);
+        recycler_view_country_flags.setAdapter(countryListAdapter);
+    }
+
+
+    private void searchItemsFromCountryList(String query) {
+        List<CountryModel> filteredList = new ArrayList<>();
+
+        if (search_view_countries != null) {
+            for (CountryModel item : outputCountries) {
+                if (item.getName().toLowerCase().startsWith(query.toLowerCase())) {
+                    filteredList.add(item);
+                }
+            }
+
+        } else
+            filteredList = outputCountries;
+        CountryListAdapter countryListAdapter = new CountryListAdapter(getContext(), filteredList);
         recycler_view_country_flags.setAdapter(countryListAdapter);
     }
 

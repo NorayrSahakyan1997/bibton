@@ -1,9 +1,7 @@
 package am.spaysapps.bibton.presenter;
 
 import android.widget.Toast;
-
 import javax.inject.Inject;
-
 import am.spaysapps.bibton.model.ResponseModel;
 import am.spaysapps.bibton.model.checkPassCode.CheckPassCodeModel;
 import am.spaysapps.bibton.model.singUpModel.SignUp;
@@ -34,10 +32,8 @@ public class InputCodePresenter extends BasePresenter<IInputCodeFragment> {
         if (response.isSuccess()) {
             mView.showPassCode(response.getData().getUnique_id());
             Toast.makeText(mContext, response.getData().getUnique_id(), Toast.LENGTH_SHORT).show();
-
         } else
             Toast.makeText(mContext, "false", Toast.LENGTH_SHORT).show();
-
     }
 
 
@@ -48,7 +44,6 @@ public class InputCodePresenter extends BasePresenter<IInputCodeFragment> {
     }
 
     private void checkUserPassCode(ResponseModel<CheckPassCodeModel> responseModel) {
-        Toast.makeText(mContext,responseModel.isSuccess()+"",Toast.LENGTH_SHORT).show();
-//        mView.isValidPassCode(responseModel.isSuccess());
+        mView.isValidPassCode(responseModel.isSuccess());
     }
 }
