@@ -70,6 +70,7 @@
         android:paddingRight="8dp"
         android:singleLine="true"
         android:textColor="@color/white"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/keyboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -298,18 +299,7 @@
         </TableRow>
 
 
-        <!--<TableRow>-->
 
-        <!--<TextView style="@style/keyboard_number_button"-->
-
-        <!--/>-->
-
-        <!--<TextView style="@style/keyboard_number_button" />-->
-
-        <!--<TextView-->
-        <!--android:layout_width="20dp"-->
-        <!--android:background="@drawable/delete_number_icon" />-->
-        <!--</TableRow>-->
 
     </TableLayout>
 

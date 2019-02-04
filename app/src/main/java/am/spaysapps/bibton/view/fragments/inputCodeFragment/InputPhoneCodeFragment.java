@@ -10,7 +10,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
+
 import am.spaysapps.bibton.Bibton;
 import am.spaysapps.bibton.R;
 import am.spaysapps.bibton.presenter.InputCodePresenter;
@@ -37,12 +42,12 @@ public class InputPhoneCodeFragment extends Fragment implements IInputCodeFragme
     private ImageView highLight_5;
     private ImageView highLight_6;
 
-//    private TextView pass_code_1;
-//    private TextView pass_code_2;
-//    private TextView pass_code_3;
-//    private TextView pass_code_4;
-//    private TextView pass_code_5;
-//    private TextView pass_code_6;
+    private TextView pass_code_1;
+    private TextView pass_code_2;
+    private TextView pass_code_3;
+    private TextView pass_code_4;
+    private TextView pass_code_5;
+    private TextView pass_code_6;
 
     @Nullable
     @Override
@@ -125,12 +130,105 @@ public class InputPhoneCodeFragment extends Fragment implements IInputCodeFragme
         highLight_5 = main_View.findViewById(R.id.highlight_5);
         highLight_6 = main_View.findViewById(R.id.highlight_6);
 
-//        pass_code_1 = main_View.findViewById(R.id.pass_code_1);
-//        pass_code_2 = main_View.findViewById(R.id.pass_code_2);
-//        pass_code_3 = main_View.findViewById(R.id.pass_code_3);
-//        pass_code_4 = main_View.findViewById(R.id.pass_code_4);
-//        pass_code_5 = main_View.findViewById(R.id.pass_code_5);
-//        pass_code_6 = main_View.findViewById(R.id.pass_code_6);
+        pass_code_1 = main_View.findViewById(R.id.pass_code_1);
+        pass_code_2 = main_View.findViewById(R.id.pass_code_2);
+        pass_code_3 = main_View.findViewById(R.id.pass_code_3);
+        pass_code_4 = main_View.findViewById(R.id.pass_code_4);
+        pass_code_5 = main_View.findViewById(R.id.pass_code_5);
+        pass_code_6 = main_View.findViewById(R.id.pass_code_6);
+    }
+
+
+    private List<CharSequence> pass_code_Chars = new ArrayList<>();
+
+
+    @Override
+    public void onClick(View v) {
+        Editable editable = mPasswordField.getText();
+        int charCount = editable.length();
+        if (v.getTag() != null && "number_button".equals(v.getTag())) {
+
+            if (charCount < 6) {
+                changeHiglighColorsTextView(charCount + 1);
+                mPasswordField.append(((TextView) v).getText());
+                String pass_Code = mPasswordField.getText().toString().trim();
+                CharSequence code_char = (((TextView) v).getText());
+                pass_code_Chars.add(charCount, code_char);
+                setPassCodesCorrectPlace(charCount, pass_code_Chars);
+                if (charCount == 5) {
+                    mPresenter.checkUserPassCodeResponse(Constants.UNIQUE_ID, pass_Code);
+                }
+            }
+
+            return;
+        }
+        switch (v.getId()) {
+            case R.id.t9_key_backspace: {
+                if (charCount != 0) {
+                    changeHiglighColorsTextView(charCount - 1);
+                    editable.delete(charCount - 1, charCount);
+                    removePassCode(charCount);
+                }
+            }
+            break;
+        }
+    }
+
+    private void setPassCodesCorrectPlace(int placeId, List<CharSequence> codes) {
+        if (placeId == 0) {
+            pass_code_1.setText(codes.get(0));
+        }
+        if (placeId == 1) {
+            pass_code_2.setText(codes.get(1));
+        }
+        if (placeId == 2) {
+            pass_code_3.setText(codes.get(2));
+        }
+        if (placeId == 3) {
+            pass_code_4.setText(codes.get(3));
+        }
+        if (placeId == 4) {
+            pass_code_5.setText(codes.get(4));
+        }
+        if (placeId == 5) {
+            pass_code_6.setText(codes.get(5));
+        }
+    }
+
+    private void removePassCode(int id) {
+        if (id == 6) {
+            pass_code_6.setText("");
+        }
+        if (id == 5) {
+            pass_code_6.setText("");
+            pass_code_5.setText("");
+        }
+        if (id == 4) {
+            pass_code_6.setText("");
+            pass_code_5.setText("");
+            pass_code_4.setText("");
+        }
+        if (id == 3) {
+            pass_code_6.setText("");
+            pass_code_5.setText("");
+            pass_code_4.setText("");
+            pass_code_3.setText("");
+        }
+        if (id == 2) {
+            pass_code_6.setText("");
+            pass_code_5.setText("");
+            pass_code_4.setText("");
+            pass_code_3.setText("");
+            pass_code_2.setText("");
+        }
+        if (id == 1) {
+            pass_code_6.setText("");
+            pass_code_5.setText("");
+            pass_code_4.setText("");
+            pass_code_3.setText("");
+            pass_code_2.setText("");
+            pass_code_1.setText("");
+        }
     }
 
     private void changeHiglighColorsTextView(int highlightState) {
@@ -142,6 +240,7 @@ public class InputPhoneCodeFragment extends Fragment implements IInputCodeFragme
             highLight_5.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_inactive));
             highLight_6.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_inactive));
 
+
         }
         if (highlightState == 1) {
             highLight_1.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_active));
@@ -150,6 +249,7 @@ public class InputPhoneCodeFragment extends Fragment implements IInputCodeFragme
             highLight_4.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_inactive));
             highLight_5.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_inactive));
             highLight_6.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_inactive));
+
 
         }
         if (highlightState == 2) {
@@ -160,6 +260,7 @@ public class InputPhoneCodeFragment extends Fragment implements IInputCodeFragme
             highLight_5.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_inactive));
             highLight_6.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_inactive));
 
+
         }
         if (highlightState == 3) {
             highLight_1.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_active));
@@ -169,6 +270,7 @@ public class InputPhoneCodeFragment extends Fragment implements IInputCodeFragme
             highLight_5.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_inactive));
             highLight_6.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_inactive));
 
+
         }
         if (highlightState == 4) {
             highLight_1.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_active));
@@ -177,6 +279,7 @@ public class InputPhoneCodeFragment extends Fragment implements IInputCodeFragme
             highLight_4.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_active));
             highLight_5.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_inactive));
             highLight_6.setBackground(getResources().getDrawable(R.drawable.shape_pass_code_oval_inactive));
+
 
         }
         if (highlightState == 5) {
@@ -198,60 +301,4 @@ public class InputPhoneCodeFragment extends Fragment implements IInputCodeFragme
 //
         }
     }
-
-    @Override
-    public void onClick(View v) {
-        Editable editable = mPasswordField.getText();
-        int charCount = editable.length();
-        if (v.getTag() != null && "number_button".equals(v.getTag())) {
-
-            if (charCount < 6) {
-                changeHiglighColorsTextView(charCount + 1);
-                //setPassCodesCorrectPlace(charCount - 1, pass_COdes);
-                mPasswordField.append(((TextView) v).getText());
-                if (charCount == 5) {
-
-                    String pass_Code = editable.toString();
-                    mPresenter.checkUserPassCodeResponse(Constants.UNIQUE_ID, pass_Code);
-                }
-            }
-
-            return;
-        }
-        switch (v.getId()) {
-            case R.id.t9_key_backspace: {
-                if (charCount != -1) {
-
-                   // pass_COdes.remove(charCount);
-                   // setPassCodesCorrectPlace(charCount, pass_COdes);
-                    changeHiglighColorsTextView(charCount - 1);
-                    editable.delete(charCount - 1, charCount);
-
-
-                }
-            }
-            break;
-        }
-    }
-
-//    private void setPassCodesCorrectPlace(int placeId, List<String> codes) {
-//        if (placeId == 0) {
-//            pass_code_1.setText(codes.get(0));
-//        }
-//        if (placeId == 1) {
-//            pass_code_2.setText(codes.get(1));
-//        }
-//        if (placeId == 2) {
-//            pass_code_3.setText(codes.get(2));
-//        }
-//        if (placeId == 3) {
-//            pass_code_4.setText(codes.get(3));
-//        }
-//        if (placeId == 4) {
-//            pass_code_5.setText(codes.get(4));
-//        }
-//        if (placeId == 5) {
-//            pass_code_6.setText(codes.get(5));
-//        }
-//    }
 }

@@ -1,6 +1,5 @@
 package am.spaysapps.bibton.view.fragments.createPassCodeFragment;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,11 +14,11 @@ import am.spaysapps.bibton.presenter.CreatePassCodePresenter;
 import am.spaysapps.bibton.shared.utils.ChangeFragments;
 import am.spaysapps.bibton.shared.utils.CheckActivenessOvalIcons;
 import am.spaysapps.bibton.shared.utils.Constants;
+import am.spaysapps.bibton.view.fragments.ForgetPassCodeFragment;
 import am.spaysapps.bibton.view.fragments.YouAreDoneFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 public class CreatePassCodeFragment extends Fragment implements ICreatePassCode, View.OnClickListener {
 
     private View mainView;
@@ -42,7 +41,7 @@ public class CreatePassCodeFragment extends Fragment implements ICreatePassCode,
 
         initViews();
         checkIfUserWasRegistered();
-        openForgetPassWordDialog();
+        goToForgetPassCodeFragment();
         return mainView;
     }
 
@@ -118,29 +117,12 @@ public class CreatePassCodeFragment extends Fragment implements ICreatePassCode,
 
     }
 
-    private void openForgetPassWordDialog() {
-        forget_text_view.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle(getResources().getString(R.string.warning))
-                    .setMessage(getResources().getString(R.string.writeNewPassword))
-                    .setCancelable(false)
-                    .setNegativeButton(getResources().getString(R.string.ok),
-                            (dialog, id) -> {
-                                dialog.cancel();
-                                forget_text_view.setVisibility(View.INVISIBLE);
-                            });
-            AlertDialog alert = builder.create();
-            alert.show();
-        });
 
-
-    }
 
     @Override
     public void getUserToken(String token) {
         if (token != null) {
             changeFragments.replaceFragment(new YouAreDoneFragment(), false);
-            Toast.makeText(context, token, Toast.LENGTH_SHORT).show();
 
         } else {
             Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -162,4 +144,12 @@ public class CreatePassCodeFragment extends Fragment implements ICreatePassCode,
     public void showNetworkError() {
 
     }
+    private void goToForgetPassCodeFragment(){
+        forget_text_view.setOnClickListener(v -> changeFragments.replaceFragment(new ForgetPassCodeFragment(),false));
+
+    }
+
+
+
+
 }

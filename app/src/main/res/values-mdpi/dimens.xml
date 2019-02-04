@@ -17,7 +17,7 @@
     <dimen name="text_size_smaller">6sp</dimen>
     <dimen name="text_size_small">10sp</dimen>
     <dimen name="text_size_normal">14sp</dimen>
-    <dimen name="text_size_big">18sp</dimen>
+    <dimen name="text_size_big">17sp</dimen>
     <dimen name="text_size_bigger">23sp</dimen>
     <dimen name="text_size_biggest">28sp</dimen>
     <dimen name="text_size_large">53sp</dimen>
@@ -45,7 +45,8 @@
     <dimen name="vertical_bias_input_code">110dp</dimen>
 
     <dimen name="margin_bottom_delet_button">5dp</dimen>
-    <dimen name="underline_width">34dp</dimen>
+    <dimen name="underline_width">30dp</dimen>
+    <dimen name="margin_top_frame_layout">60dp</dimen>
 
 
 

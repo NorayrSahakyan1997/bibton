@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import am.spaysapps.bibton.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 @SuppressLint("Registered")

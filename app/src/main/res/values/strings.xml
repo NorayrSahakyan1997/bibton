@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Bibton</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="flexible_tranfering">Flexible Transferring \n\ Method</string>
     <string name="skip">Next</string>
     <string name="flexible">Flexible</string>
@@ -29,5 +32,22 @@
     <string name="warning">Warning</string>
     <string name="writeNewPassword">Please write a new passcode</string>
     <string name="ok">Ok</string>
+
+    <string-array name="menu_names_array">
+        <item>Summery</item>
+        <item>Payments</item>
+        <item>Exchange</item>
+        <item>Rates</item>
+        <item>Settings</item>
+        <item>Help</item>
+    </string-array>
+  <integer-array name="menu_icons">
+      <item>@drawable/summary_icons</item>
+      <item>@drawable/payments_icon</item>
+      <item>@drawable/exchange_icon</item>
+      <item>@drawable/statement_icon</item>
+      <item>@drawable/settings_icon</item>
+      <item>@drawable/help_icon</item>
+  </integer-array>
 
 </resources>

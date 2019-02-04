@@ -2,9 +2,11 @@ package am.spaysapps.bibton.view.activities;
 
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import am.spaysapps.bibton.view.activities.homeActivity.HomeActivity;
 import am.spaysapps.bibton.view.fragments.BibtonSignFragment;
 import am.spaysapps.bibton.view.fragments.FlexibleTransferringFragment;
 import am.spaysapps.bibton.view.fragments.inputCodeFragment.InputPhoneCodeFragment;
@@ -46,14 +48,16 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        //init();
+        init();
+        //enterWelcomeActivity();
+
         setFragments();
-        //loteAnimation();
+        loteAnimation();
+
     }
 
     public void init() {
         frameLayout = (FrameLayout) findViewById(R.id.frameLayoutWelcome);
-        // skip_button = (ImageButton) findViewById(R.id.skip_button);
         phoneNumberFragment = new PhoneNumberFragment();
         handler = new Handler();
     }
@@ -61,8 +65,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void setFragments() {
         fragmentManager = getSupportFragmentManager();
-         //currentFragment = new BibtonSignFragment();
-        currentFragment = new PhoneNumberFragment();
+        currentFragment = new BibtonSignFragment();
+        //currentFragment = new PhoneNumberFragment();
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.frameLayoutWelcome, currentFragment);
         fragmentTransaction.commit();
@@ -85,7 +89,11 @@ public class WelcomeActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    public void enterWelcomeActivity(){
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
 
+        startActivity(intent);
+    }
     public void loteAnimation() {
         LottieAnimationView lottieAnimationView = (LottieAnimationView) findViewById(R.id.lottie_animation_splash);
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {

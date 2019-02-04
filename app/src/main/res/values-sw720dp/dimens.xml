@@ -39,7 +39,9 @@
     <dimen name="next_button_size">380dp</dimen>
     <dimen name="margin_top_text_phone">65dp</dimen>
     <dimen name="vertical_bias_input_code">200dp</dimen>
-    <dimen name="underline_width">280dp</dimen>
+    <dimen name="underline_width">600dp</dimen>
+    <dimen name="margin_top_frame_layout">140dp</dimen>
+
 
 
 

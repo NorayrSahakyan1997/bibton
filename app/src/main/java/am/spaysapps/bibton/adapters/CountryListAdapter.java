@@ -31,6 +31,8 @@ public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private List<CountryModel> countryArray;
     private LayoutInflater layoutInflater;
     private String selected_Country_Code;
+    private View view;
+
 
 
     public CountryListAdapter(Context context, List<CountryModel> countryArray) {
@@ -40,8 +42,6 @@ public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
     }
-
-    private View view;
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -55,7 +55,6 @@ public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         CountryListAdapter.ViewHolder viewHolder = (CountryListAdapter.ViewHolder) holder;
-//        viewHolder.country_names.setText(countryArray.get(position));
         viewHolder.country_names.setText(countryArray.get(position).getName());
         viewHolder.country_code.setText(countryArray.get(position).getPhone_code() + "");
         Picasso.get()
