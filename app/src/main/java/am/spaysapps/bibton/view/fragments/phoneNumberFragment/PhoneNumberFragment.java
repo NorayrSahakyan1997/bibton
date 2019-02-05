@@ -1,5 +1,6 @@
 package am.spaysapps.bibton.view.fragments.phoneNumberFragment;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 import java.util.Objects;
 
@@ -53,6 +56,37 @@ public class PhoneNumberFragment extends Fragment implements IPhoneNumberFragmen
         getCountrySelectedCode();
 
         return mainView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        setAnimation();
+
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    private void setAnimation() {
+        LottieAnimationView lottieAnimationView = mainView.findViewById(R.id.lottie_animation_splash);
+        lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
+        lottieAnimationView.playAnimation();
     }
 
     private void init() {

@@ -32,6 +32,14 @@
     <string name="warning">Warning</string>
     <string name="writeNewPassword">Please write a new passcode</string>
     <string name="ok">Ok</string>
+    <string name="service">Services</string>
+    <string name="pts">0 Pts</string>
+    <string name="details">Details</string>
+    <string name="wallet">Wallet</string>
+    <string name="balance">Balance :</string>
+    <string name="exChange">ExChange </string>
+    <string name="topUp">Top Up</string>
+    <string name="youDoNotHaveTransactions">You do not have transactions yet!</string>
 
     <string-array name="menu_names_array">
         <item>Summery</item>
@@ -41,13 +49,20 @@
         <item>Settings</item>
         <item>Help</item>
     </string-array>
-  <integer-array name="menu_icons">
-      <item>@drawable/summary_icons</item>
-      <item>@drawable/payments_icon</item>
-      <item>@drawable/exchange_icon</item>
-      <item>@drawable/statement_icon</item>
-      <item>@drawable/settings_icon</item>
-      <item>@drawable/help_icon</item>
-  </integer-array>
+    <string-array name="service_names">
+        <item>NFC</item>
+        <item>QR</item>
+        <item>Utility</item>
+        <item>Rates</item>
+        <item>Bibton</item>
+    </string-array>
+  <!--<integer-array name="menu_icons">-->
+      <!--<item>@drawable/summary_icons</item>-->
+      <!--<item>@drawable/payments_icon</item>-->
+      <!--<item>@drawable/exchange_icon</item>-->
+      <!--<item>@drawable/statement_icon</item>-->
+      <!--<item>@drawable/settings_icon</item>-->
+      <!--<item>@drawable/help_icon</item>-->
+  <!--</integer-array>-->
 
 </resources>

@@ -8,14 +8,14 @@
 
     <ImageView
         android:id="@+id/menu_item_icon"
-        android:layout_width="17dp"
-        android:layout_height="20dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
-        android:background="@drawable/summary_icons"/>
+        />
 
     <TextView
         android:id="@+id/menu_item_text_view"

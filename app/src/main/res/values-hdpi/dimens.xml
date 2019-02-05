@@ -16,8 +16,8 @@
     <dimen name="text_size_smallest">5sp</dimen>
     <dimen name="text_size_smaller">7sp</dimen>
     <dimen name="text_size_small">9sp</dimen>
-    <dimen name="text_size_normal">12sp</dimen>
-    <dimen name="text_size_big">17sp</dimen>
+    <dimen name="text_size_normal">11sp</dimen>
+    <dimen name="text_size_big">16sp</dimen>
     <dimen name="text_size_bigger">24sp</dimen>
     <dimen name="text_size_biggest">29sp</dimen>
     <dimen name="text_size_large">56sp</dimen>
@@ -43,7 +43,8 @@
     <dimen name="margin_top_phone_code">18dp</dimen>
     <dimen name="vertical_bias_input_code">100dp</dimen>
     <dimen name="underline_width">25dp</dimen>
-    <dimen name="margin_top_frame_layout">60dp</dimen>
+    <dimen name="margin_top_frame_layout">40dp</dimen>
+
 
 
 

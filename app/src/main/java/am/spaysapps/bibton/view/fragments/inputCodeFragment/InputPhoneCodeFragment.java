@@ -1,5 +1,6 @@
 package am.spaysapps.bibton.view.fragments.inputCodeFragment;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +63,38 @@ public class InputPhoneCodeFragment extends Fragment implements IInputCodeFragme
 
     }
 
-
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        setAnimation();
+
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    private void setAnimation() {
+        LottieAnimationView lottieAnimationView = main_View.findViewById(R.id.lottie_animation_splash);
+        lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
+        lottieAnimationView.playAnimation();
+    }
+
+        @Override
     public void showUniqueId(String uniqueId) {
 
     }

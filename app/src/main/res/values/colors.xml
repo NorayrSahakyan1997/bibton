@@ -8,5 +8,7 @@
     <color name="colorBlack">#000000</color>
     <color name="pass_code_inactive">#800289BE</color>
     <color name="pass_code_active">#26B99A</color>
+    <color name="rectangle_background_light">#29000000</color>
+    <color name="devider_color">#28989898</color>
 
 </resources>

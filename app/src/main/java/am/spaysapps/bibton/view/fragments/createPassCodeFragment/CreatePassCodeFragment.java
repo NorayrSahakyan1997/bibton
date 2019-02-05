@@ -1,5 +1,6 @@
 package am.spaysapps.bibton.view.fragments.createPassCodeFragment;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
+
 import javax.inject.Inject;
+
 import am.spaysapps.bibton.Bibton;
 import am.spaysapps.bibton.R;
 import am.spaysapps.bibton.presenter.CreatePassCodePresenter;
@@ -19,6 +24,7 @@ import am.spaysapps.bibton.view.fragments.YouAreDoneFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 public class CreatePassCodeFragment extends Fragment implements ICreatePassCode, View.OnClickListener {
 
     private View mainView;
@@ -42,7 +48,38 @@ public class CreatePassCodeFragment extends Fragment implements ICreatePassCode,
         initViews();
         checkIfUserWasRegistered();
         goToForgetPassCodeFragment();
+
         return mainView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        setAnimation();
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    private void setAnimation() {
+        LottieAnimationView lottieAnimationView = mainView.findViewById(R.id.lottie_animation_splash);
+        lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
+        lottieAnimationView.playAnimation();
     }
 
     @Override
@@ -118,7 +155,6 @@ public class CreatePassCodeFragment extends Fragment implements ICreatePassCode,
     }
 
 
-
     @Override
     public void getUserToken(String token) {
         if (token != null) {
@@ -144,12 +180,11 @@ public class CreatePassCodeFragment extends Fragment implements ICreatePassCode,
     public void showNetworkError() {
 
     }
-    private void goToForgetPassCodeFragment(){
-        forget_text_view.setOnClickListener(v -> changeFragments.replaceFragment(new ForgetPassCodeFragment(),false));
+
+    private void goToForgetPassCodeFragment() {
+        forget_text_view.setOnClickListener(v -> changeFragments.replaceFragment(new ForgetPassCodeFragment(), false));
 
     }
-
-
 
 
 }

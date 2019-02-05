@@ -32,9 +32,8 @@ public class WelcomeActivity extends AppCompatActivity {
     private Handler handler;
     private int waitTime = 2000;
 
-    FrameLayout frameLayout_welcome;
+    private FrameLayout frameLayout_welcome;
     private Fragment currentFragment = null;
-
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
     private int current_fragment_number;
@@ -48,11 +47,11 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        init();
-        //enterWelcomeActivity();
+       // loteAnimation();
+        //init();
+         enterHomeActivity();
 
-        setFragments();
-        loteAnimation();
+        //setFragments();
 
     }
 
@@ -89,11 +88,12 @@ public class WelcomeActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public void enterWelcomeActivity(){
+    public void enterHomeActivity() {
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
 
         startActivity(intent);
     }
+
     public void loteAnimation() {
         LottieAnimationView lottieAnimationView = (LottieAnimationView) findViewById(R.id.lottie_animation_splash);
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
@@ -118,7 +118,6 @@ public class WelcomeActivity extends AppCompatActivity {
         });
         lottieAnimationView.playAnimation();
     }
-
 
 
     @Override

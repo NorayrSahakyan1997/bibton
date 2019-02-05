@@ -1,7 +1,6 @@
 package am.spaysapps.bibton.adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -9,33 +8,45 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import am.spaysapps.bibton.R;
-import am.spaysapps.bibton.model.countryModel.CountryModel;
-import am.spaysapps.bibton.shared.utils.Constants;
-import am.spaysapps.bibton.view.fragments.phoneNumberFragment.PhoneNumberFragment;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class NavigationViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements RecyclerView.OnItemTouchListener {
+
     private Context context;
+    private View view;
+
+
     private List<String> navigation_view_names;
     private LayoutInflater layoutInflater;
-    private View view;
-    private List<Drawable> navigation_view_icons;
+    private List<String> menu_names;
+
+    private int[] navigation_view_icons;
 
 
-    public NavigationViewAdapter(Context context, List<String> navigation_view_names,List<Drawable> navigation_view_icons) {
+    public NavigationViewAdapter(Context context) {
         this.context = context;
-        this.navigation_view_names = navigation_view_names;
-        this.navigation_view_icons=navigation_view_icons;
         layoutInflater = LayoutInflater.from(context);
+        setMenuNames();
+        setMenuIcons();
+    }
+
+    private void setMenuNames() {
+        menu_names = new ArrayList<>();
+        menu_names = Arrays.asList(context.getResources().getStringArray(R.array.menu_names_array));
+
+    }
+
+    private void setMenuIcons() {
+
+        navigation_view_icons = new int[]{R.drawable.summery_icon, R.drawable.exchange_icon, R.drawable.payment_icon, R.drawable.statement_icon, R.drawable.settings_icon, R.drawable.help_icon};
+
+
     }
 
     @NonNull
@@ -77,17 +88,15 @@ public class NavigationViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         NavigationViewAdapter.ViewHolder viewHolder = (NavigationViewAdapter.ViewHolder) holder;
-        viewHolder.nav_view_names.setText(navigation_view_names.get(position));
-        viewHolder.nav_view_images.setBackground(navigation_view_icons.get(position));
-//        Picasso.get()
-//                .load(countryArray.get(position).getFlag())
-//                //.error(R.drawable.user_placeholder_error)
-//                .into(viewHolder.country_flags);
+        viewHolder.nav_view_names.setText(menu_names.get(position));
+        viewHolder.nav_view_images.setBackgroundResource(navigation_view_icons[position]);
+
+
     }
 
     @Override
     public int getItemCount() {
-        return navigation_view_names.size();
+        return menu_names.size();
     }
 
     @Override
