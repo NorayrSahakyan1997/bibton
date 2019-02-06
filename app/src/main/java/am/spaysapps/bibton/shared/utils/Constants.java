@@ -13,7 +13,7 @@ public final class Constants {
     public static int CURRENT_PAGE = 0;
     public static int COINS_TRANSFERRING_DURABILITY = 3000;
 
-    public static final String TOKEN = "Token";
+    public static  String TOKEN  ;
     public static String PHONE_NUMBER;
 
     public static String COUNTRY_SHORT_NAME;

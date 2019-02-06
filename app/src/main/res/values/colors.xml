@@ -10,5 +10,6 @@
     <color name="pass_code_active">#26B99A</color>
     <color name="rectangle_background_light">#29000000</color>
     <color name="devider_color">#28989898</color>
+    <color name="wallet_background_color">#9CFFFEFE</color>
 
 </resources>

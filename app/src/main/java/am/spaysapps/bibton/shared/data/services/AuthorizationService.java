@@ -4,6 +4,7 @@ import am.spaysapps.bibton.model.ResponseModel;
 import am.spaysapps.bibton.model.checkPassCode.CheckPassCodeModel;
 import am.spaysapps.bibton.model.countryModel.CountryParentModel;
 import am.spaysapps.bibton.model.createAccountModel.CreateAccountModel;
+import am.spaysapps.bibton.model.forgetPassCodeModel.ForgetPassCodeModel;
 import am.spaysapps.bibton.model.phoneNumberCodeModel.CountryCode;
 import am.spaysapps.bibton.model.singUpModel.SignUp;
 import am.spaysapps.bibton.shared.data.api.IAuthorizationService;
@@ -40,6 +41,10 @@ public class AuthorizationService extends BaseService {
     }
     public Flowable<ResponseModel<CreateAccountModel>> createAccount(String unique_id, String code, String passcode){
         return request(mService.createAccount(unique_id,code,passcode));
+    }
+
+    public Flowable<ResponseModel<ForgetPassCodeModel>> forgetPass(String unique_id,String passCode){
+        return request(mService.forgetPassCode(unique_id,passCode));
     }
 
 }

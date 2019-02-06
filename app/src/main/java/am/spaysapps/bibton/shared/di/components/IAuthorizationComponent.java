@@ -3,10 +3,11 @@ package am.spaysapps.bibton.shared.di.components;
 import am.spaysapps.bibton.shared.di.components.root.IAppComponent;
 import am.spaysapps.bibton.shared.di.modules.AuthorizationModule;
 import am.spaysapps.bibton.shared.di.scopes.AuthorizationScope;
-import am.spaysapps.bibton.view.fragments.countrySearchFragment.CountrySearchFragment;
-import am.spaysapps.bibton.view.fragments.createPassCodeFragment.CreatePassCodeFragment;
-import am.spaysapps.bibton.view.fragments.inputCodeFragment.InputPhoneCodeFragment;
-import am.spaysapps.bibton.view.fragments.phoneNumberFragment.PhoneNumberFragment;
+import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.forgetPassCodeFragment.ForgetPassCodeFragment;
+import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.countrySearchFragment.CountrySearchFragment;
+import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.createPassCodeFragment.CreatePassCodeFragment;
+import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.inputCodeFragment.InputPhoneCodeFragment;
+import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.phoneNumberFragment.PhoneNumberFragment;
 import dagger.Component;
 
 @AuthorizationScope
@@ -19,5 +20,8 @@ public interface IAuthorizationComponent {
     void inject(InputPhoneCodeFragment inputPhoneCodeFragment);
 
     void inject (CreatePassCodeFragment createPassCodeFragment);
+
+    void inject (ForgetPassCodeFragment forgetPassCodeFragment);
+
 
 }

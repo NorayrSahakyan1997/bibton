@@ -15,8 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activities.homeActivity.HomeActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activities.homeActivity.HomeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activities.splashscreenactivities.SplashScreenActivity"
             android:screenOrientation="portrait"
@@ -28,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activities.WelcomeActivity"
+            android:name=".view.activities.welcomeActivity.WelcomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="adjustPan" />

@@ -8,7 +8,7 @@ import am.spaysapps.bibton.model.countryModel.CountryParentModel;
 import am.spaysapps.bibton.presenter.root.BasePresenter;
 import am.spaysapps.bibton.shared.data.services.AuthorizationService;
 import am.spaysapps.bibton.shared.di.scopes.AuthorizationScope;
-import am.spaysapps.bibton.view.fragments.countrySearchFragment.ICountrySearchFragment;
+import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.countrySearchFragment.ICountrySearchFragment;
 import io.reactivex.disposables.Disposable;
 
 @AuthorizationScope

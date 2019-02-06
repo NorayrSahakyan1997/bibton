@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -15,10 +14,8 @@ import java.util.List;
 
 import am.spaysapps.bibton.R;
 import am.spaysapps.bibton.model.countryModel.CountryModel;
-import am.spaysapps.bibton.shared.utils.ChangeFragments;
-import am.spaysapps.bibton.shared.utils.CloseKeyBoard;
 import am.spaysapps.bibton.shared.utils.Constants;
-import am.spaysapps.bibton.view.fragments.phoneNumberFragment.PhoneNumberFragment;
+import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.phoneNumberFragment.PhoneNumberFragment;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;

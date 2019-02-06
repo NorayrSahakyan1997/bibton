@@ -7,7 +7,7 @@ import am.spaysapps.bibton.model.createAccountModel.CreateAccountModel;
 import am.spaysapps.bibton.presenter.root.BasePresenter;
 import am.spaysapps.bibton.shared.data.services.AuthorizationService;
 import am.spaysapps.bibton.shared.di.scopes.AuthorizationScope;
-import am.spaysapps.bibton.view.fragments.createPassCodeFragment.ICreatePassCode;
+import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.createPassCodeFragment.ICreatePassCode;
 import io.reactivex.disposables.Disposable;
 
 @AuthorizationScope

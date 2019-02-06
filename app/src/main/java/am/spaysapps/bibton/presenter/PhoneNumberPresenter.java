@@ -10,7 +10,7 @@ import am.spaysapps.bibton.presenter.root.BasePresenter;
 import am.spaysapps.bibton.shared.data.services.AuthorizationService;
 import am.spaysapps.bibton.shared.di.scopes.AuthorizationScope;
 import am.spaysapps.bibton.shared.utils.Constants;
-import am.spaysapps.bibton.view.fragments.phoneNumberFragment.IPhoneNumberFragment;
+import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.phoneNumberFragment.IPhoneNumberFragment;
 import io.reactivex.disposables.Disposable;
 
 @AuthorizationScope

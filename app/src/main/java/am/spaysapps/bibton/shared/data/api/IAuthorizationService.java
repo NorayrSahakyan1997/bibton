@@ -4,8 +4,10 @@ import am.spaysapps.bibton.model.ResponseModel;
 import am.spaysapps.bibton.model.checkPassCode.CheckPassCodeModel;
 import am.spaysapps.bibton.model.countryModel.CountryParentModel;
 import am.spaysapps.bibton.model.createAccountModel.CreateAccountModel;
+import am.spaysapps.bibton.model.forgetPassCodeModel.ForgetPassCodeModel;
 import am.spaysapps.bibton.model.phoneNumberCodeModel.CountryCode;
 import am.spaysapps.bibton.model.singUpModel.SignUp;
+import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.forgetPassCodeFragment.ForgetPassCodeFragment;
 import io.reactivex.Flowable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -35,6 +37,10 @@ public interface IAuthorizationService {
     @FormUrlEncoded
     @POST("api/login/third-step")
     Flowable<ResponseModel<CreateAccountModel>> createAccount(@Field("unique_id") String unique_id, @Field("code") String code, @Field("passcode") String passCode);
+
+    @FormUrlEncoded
+    @POST("api/recover/new-passcode")
+    Flowable<ResponseModel<ForgetPassCodeModel>> forgetPassCode(@Field("unique_id") String unique_id, @Field("passcode") String passCode);
 
 
 

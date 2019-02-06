@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
     android:id="@+id/welcome_activity_parent_layout"
-    tools:context=".view.activities.WelcomeActivity">
+    tools:context=".view.activities.welcomeActivity.WelcomeActivity">
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_animation_splash"
         android:layout_width="107dp"

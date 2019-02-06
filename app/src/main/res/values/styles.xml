@@ -42,6 +42,7 @@
         <!--<item name="android:background">@drawable/keyboard_button_bg</item>-->
         <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
     </style>
+
     <style name="keyboard_icons">
         <item name="android:layout_width">50dp</item>
         <item name="android:layout_height">50dp</item>
@@ -59,4 +60,6 @@
     <style name="keyboard_number_button" parent="keyboard_button">
         <item name="android:tag">number_button</item>
     </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
