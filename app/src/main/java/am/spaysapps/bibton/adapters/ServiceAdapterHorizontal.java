@@ -6,20 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.airbnb.lottie.L;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import am.spaysapps.bibton.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ServiceAdapterHorizontal extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    private View view;
     private LayoutInflater layoutInflater;
     private List<String> service_names;
     private int[] service_icons;
@@ -44,9 +39,8 @@ public class ServiceAdapterHorizontal extends RecyclerView.Adapter<RecyclerView.
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        view = layoutInflater.inflate(R.layout.service_horizontal_item_row, parent, false);
-        RecyclerView.ViewHolder viewHolder = new ServiceAdapterHorizontal.ViewHolder(view);
-        return viewHolder;
+        View view = layoutInflater.inflate(R.layout.service_horizontal_item_row, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -78,11 +72,7 @@ public class ServiceAdapterHorizontal extends RecyclerView.Adapter<RecyclerView.
 
         @Override
         public void onClick(View v) {
-//            Fragment newFragment = new PhoneNumberFragment();
-//            FragmentTransaction transaction = ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction();
-//            transaction.replace(R.id.frameLayoutWelcome, newFragment);
-//
-//            transaction.commit();
+
         }
 
     }

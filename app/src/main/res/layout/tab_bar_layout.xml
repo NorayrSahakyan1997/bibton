@@ -6,11 +6,11 @@
     android:background="@drawable/shadow_tab_bar">
 
     <ImageView
-        android:onClick="open_home_fragment"
         android:id="@+id/home_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:background="@drawable/home_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="open_home_fragment"
+        android:src="@drawable/ic_home_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
@@ -18,11 +18,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:onClick="open_statement_fragment"
         android:id="@+id/statement_icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:background="@drawable/statement_icon_tab"
+        android:background="@drawable/ic_statement_icon"
+        android:onClick="open_statement_fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.3"
@@ -30,11 +30,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:onClick="open_payment_fragment"
         android:id="@+id/payment_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:background="@drawable/payment_icon_tab"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:background="@drawable/ic_payment_icon_tab"
+        android:onClick="open_payment_fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -42,11 +42,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:onClick="open_card_fragment"
         android:id="@+id/card_icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:background="@drawable/card_icon_tab"
+        android:background="@drawable/ic_card_icon_tab"
+        android:onClick="open_card_fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.7"
@@ -54,11 +54,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:onClick="open_more_fragment"
         android:id="@+id/more_icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:background="@drawable/more_icon"
+        android:background="@drawable/ic_more_icon"
+        android:onClick="open_more_fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"

@@ -12,7 +12,6 @@
         android:id="@+id/navigation_view_home"
         android:layout_width="200dp"
         android:layout_height="match_parent"
-
         android:layout_gravity="end"
         android:background="@drawable/drawer_layout_shape">
 
@@ -72,7 +71,6 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/margin_top_frame_layout"
             android:layout_marginBottom="40dp"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,8 +90,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constrait_wallet"
+        android:onClick="close_wallet_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
         android:background="@color/wallet_background_color"
         android:visibility="invisible">
 
@@ -186,6 +187,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_regular"
                 android:onClick="close_wallet_layout"
+
                 android:text="@string/cancel"
                 android:textColor="@color/pass_code_active"
                 android:textSize="@dimen/text_size_big"
@@ -196,6 +198,31 @@
                 app:layout_constraintVertical_bias="0.95" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_balance"
+        android:onClick="close_balance_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@color/wallet_background_color"
+        android:visibility="invisible">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_balance"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="220dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="1"
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

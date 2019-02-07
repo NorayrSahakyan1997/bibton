@@ -1,10 +1,6 @@
 package am.spaysapps.bibton.shared.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import am.spaysapps.bibton.model.countryModel.CountryModel;
-import am.spaysapps.bibton.model.countryModel.CountryParentModel;
+;
 
 public final class Constants {
     private Constants() {
