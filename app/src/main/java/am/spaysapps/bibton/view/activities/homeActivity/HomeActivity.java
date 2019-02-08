@@ -4,7 +4,6 @@ import am.spaysapps.bibton.R;
 import am.spaysapps.bibton.adapters.BalanceHomeAdapter;
 import am.spaysapps.bibton.adapters.NavigationViewAdapter;
 import am.spaysapps.bibton.shared.utils.ChangeFragments;
-import am.spaysapps.bibton.view.activities.ExchangeActivity;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.BibtonCardFragment;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.MoreFragment;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.PaymentFragment;
@@ -21,7 +20,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -31,7 +29,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +52,6 @@ public class HomeActivity extends AppCompatActivity {
 
         init();
         setFragment();
-        pendingTransaction();
 
 
     }
@@ -140,24 +136,20 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+
     public void drawer(View view) {
         drawer_layout_home.openDrawer(GravityCompat.END);
     }
 
-    private void pendingTransaction() {
-        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-    }
+
 
     @Override
     public void onBackPressed() {
-
     }
 
     public void open_wallet_layout(View view) {
         setWalletLayout();
-
     }
-
 
     public void close_wallet_layout(View view) {
         Animation animation_up_to_down = AnimationUtils.loadAnimation(getApplication(), R.anim.up_to_down);
@@ -183,4 +175,10 @@ public class HomeActivity extends AppCompatActivity {
         Intent goToExchangeFragment = new Intent(this, ExchangeActivity.class);
         startActivity(goToExchangeFragment);
     }
+    public void open_details_ectivity(View view) {
+        Intent go_To_Details_Activity = new Intent(this, DetailsActivity.class);
+        startActivity(go_To_Details_Activity);
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+    }
+
 }

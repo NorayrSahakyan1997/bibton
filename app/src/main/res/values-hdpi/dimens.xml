@@ -45,6 +45,19 @@
     <dimen name="underline_width">25dp</dimen>
     <dimen name="margin_top_frame_layout">40dp</dimen>
 
+    <dimen name="margin_top_text_exchange">20dp</dimen>
+    <dimen name="margin_top_scroll_exchange">50dp</dimen>
+    <dimen name="margin_top_exchange">20dp</dimen>
+    <dimen name="details_activity_heigh">250dp</dimen>
+    <dimen name="details_activity_oval_width">130dp</dimen>
+    <dimen name="margin_top_exchange_last_item">50dp</dimen>
+    <dimen name="height_devider_details">80dp</dimen>
+
+    <dimen name="oval_size_details">40dp</dimen>
+    <dimen name="oval_layout_size">60dp</dimen>
+
+
+
 
 
 

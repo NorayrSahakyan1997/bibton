@@ -43,6 +43,15 @@
     <dimen name="margin_top_frame_layout">140dp</dimen>
 
 
+    <dimen name="margin_top_text_exchange">120dp</dimen>
+    <dimen name="margin_top_scroll_exchange">150dp</dimen>
+    <dimen name="margin_top_exchange">60dp</dimen>
+    <dimen name="details_activity_heigh">530dp</dimen>
+    <dimen name="details_activity_oval_width">300dp</dimen>
+    <dimen name="oval_size_details">80dp</dimen>
+    <dimen name="oval_layout_size">100dp</dimen>
+
+
 
 
 

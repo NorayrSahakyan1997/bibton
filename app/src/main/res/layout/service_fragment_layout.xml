@@ -117,6 +117,7 @@
 
 
         <TextView
+            android:onClick="open_details_ectivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_regular"
