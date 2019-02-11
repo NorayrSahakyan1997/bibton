@@ -54,9 +54,9 @@ public class NetModule {
             // Customize the request
             Request request = original.newBuilder()
                     .header("Content-Type", "application/json")
-                    .header("Authorization", "" + shared.getStringSharedPreferences(Constants.TOKEN))
+                  //  .header("Authorization", "Bearer " + shared.getStringSharedPreferences(Constants.TOKEN))
+                    .header("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlMjk5NzcxZTgyMzI2YTEzZDdiMGVkMjcyMTZhOTcxNDhkNWViNDgyMDBmMmFlYjg0YzBjMmQxZjg5MjEzMTFkOTBhMGU4NDI1MjYxNmQ0In0.eyJhdWQiOiI1IiwianRpIjoiYWUyOTk3NzFlODIzMjZhMTNkN2IwZWQyNzIxNmE5NzE0OGQ1ZWI0ODIwMGYyYWViODRjMGMyZDFmODkyMTMxMWQ5MGEwZTg0MjUyNjE2ZDQiLCJpYXQiOjE1NDkzNzQ0OTAsIm5iZiI6MTU0OTM3NDQ5MCwiZXhwIjoxNTgwOTEwNDkwLCJzdWIiOiI5NSIsInNjb3BlcyI6W119.N2jwTD-LLEMOEZO3PAWueZ4AFKOW0eHfTiD4uP4UgpmE5tTvSBbV6yFGoH-DOgy4HtkvPiL-1-3xEj-EHmaRGlJnaCW6RGQtV72xhTmGWzhtGxKSiP81fp9Woc0OYRxbfW7DMnVCS5F4x03gYsT0laYzeKes-9SaXOf77XK3aYLes5dYnlxM1lTXADWA9dmK_WKoFjWnvmaweoJjaW_LX9IN53wqo6Ae2OyA6G3Yk7sPliPolES801fU69F3aJD_ROuniJv17tWDwnjfUAcjZ7emZKvNhgup19AyIFF-NR6ZP2Xetx_Lv9GnMz4Kga20XmUJkdU8CYAiYRx2gICdJ-Y6XR33g9hDISbJdRvLE0qjYbyVNptbYwBK-AbvalcBKrDrfABmgC9_GqGksq4jtpd02zMKt2jLx5W4_pCeHkTyl4iSfjXKV5ewmY3cibsJ6MHvVLteUj5sbf-rFOFr3llpTAANPskLRSkcC-YRD1WnHCrvaUGdKn5ziF7LB9tTynUpOrOAN5Gi8Le0IX9gNz9afuqUQbWi6x6DHspMFhTyeYwHNr-fOvlAmg3vdI446Pk8ZI_jslg-_kzbxao8K7KzAaqQ4BrY8pYPdWZzQW4Yf7JZCsNK-C6scIyxaKPA9O20FI1iUKPbvCCe6u5eyDvEYe_1zkUCottoE67Qb5Y")
                     .header("OsType", "1")
-                    .removeHeader("Pragma")
                     .header("Cache-Control", (NetworkStatusUtils.isNetworkAvailable(application)) ?
                             "public, max-age=" + mMaxStale : "public, max-stale=" + mMaxStale)
                     .build();

@@ -11,12 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class StatementFragment extends Fragment {
-    private View mainView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mainView=inflater.inflate(R.layout.statement_fragmen_layout,container,false);
+        View mainView = inflater.inflate(R.layout.statement_fragmen_layout, container, false);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

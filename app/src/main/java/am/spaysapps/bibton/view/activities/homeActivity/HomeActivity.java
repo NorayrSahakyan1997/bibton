@@ -2,12 +2,13 @@ package am.spaysapps.bibton.view.activities.homeActivity;
 
 import am.spaysapps.bibton.R;
 import am.spaysapps.bibton.adapters.BalanceHomeAdapter;
-import am.spaysapps.bibton.adapters.NavigationViewAdapter;
+import am.spaysapps.bibton.adapters.NavigationMenuAdapter;
+import am.spaysapps.bibton.shared.utils.ChangeColorsTabBar;
 import am.spaysapps.bibton.shared.utils.ChangeFragments;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.BibtonCardFragment;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.MoreFragment;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.PaymentFragment;
-import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.ServiceFragment;
+import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.homeFragment.HomeFragment;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.StatementFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,15 +21,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,18 +40,21 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment currentFragment;
     private ChangeFragments changeFragments;
     private View mainView;
-    private ImageView home_icon;
     private Context context;
     private List<String> country_names;
     private ConstraintLayout constraint_balance;
+    private ImageView home_icon;
 
+    private ImageView transfers_icon;
+    private ImageView analytics_icon;
+    private ImageView more_icon;
+    private ImageView card_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         setCountryNamesList();
-
         init();
         setFragment();
 
@@ -60,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         drawer_layout_home = findViewById(R.id.drawer_layout_home);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout_home, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        NavigationViewAdapter navigationViewAdapter = new NavigationViewAdapter(this);
+        NavigationMenuAdapter navigationViewAdapter = new NavigationMenuAdapter(this);
         drawer_layout_home.addDrawerListener(toggle);
         RecyclerView recycler_view_navigation = findViewById(R.id.recycler_view_navigation);
         recycler_view_navigation.setLayoutManager(layoutManager);
@@ -72,22 +77,15 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView_balance_list.setLayoutManager(recycler_Manager);
         recyclerView_balance_list.setAdapter(balanceHomeAdapter);
         wallet_layout = findViewById(R.id.constrait_wallet);
-        currentFragment = new ServiceFragment();
+        currentFragment = new HomeFragment();
         home_icon = findViewById(R.id.home_icon);
-        ImageView payment_icon = findViewById(R.id.payment_icon);
-        ImageView statement_icon = findViewById(R.id.statement_icon);
-        ImageView more_icon = findViewById(R.id.more_icon);
-        ImageView card_icon = findViewById(R.id.card_icon);
+        transfers_icon = findViewById(R.id.transfers_icon);
+        analytics_icon = findViewById(R.id.analytics_icon);
+        more_icon = findViewById(R.id.more_icon);
+        card_icon = findViewById(R.id.card_icon);
         constraint_balance = findViewById(R.id.constraint_balance);
         changeFragments = new ChangeFragments(context, mainView, currentFragment);
 
-    }
-
-    private void setCountryNamesList() {
-        country_names = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            country_names.add("AMD");
-        }
     }
 
 
@@ -98,27 +96,38 @@ public class HomeActivity extends AppCompatActivity {
         mainView = parent;
         return super.onCreateView(parent, name, context, attrs);
     }
-
-    public void open_payment_fragment(View view) {
-        changeFragments.replaceFragment(new PaymentFragment(), false);
-        home_icon.getDrawable().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_ATOP);
-    }
-
-    public void open_statement_fragment(View view) {
-        changeFragments.replaceFragment(new StatementFragment(), false);
-
-    }
-
     public void open_home_fragment(View view) {
-        changeFragments.replaceFragment(new ServiceFragment(), true);
+        changeFragments.replaceFragment(new HomeFragment(), true);
+        ChangeColorsTabBar.changeColorsOfTabs(this,home_icon,analytics_icon,transfers_icon,card_icon,more_icon,0);
+
+    }
+    public void open_analytics_fragment(View view) {
+        changeFragments.replaceFragment(new PaymentFragment(), false);
+        ChangeColorsTabBar.changeColorsOfTabs(this,home_icon,analytics_icon,transfers_icon,card_icon,more_icon,1);
+
+
+    }
+    public void open_transfers_fragment(View view) {
+        changeFragments.replaceFragment(new StatementFragment(), false);
+        ChangeColorsTabBar.changeColorsOfTabs(this,home_icon,analytics_icon,transfers_icon,card_icon,more_icon,2);
+
+
+
     }
 
     public void open_card_fragment(View view) {
         changeFragments.replaceFragment(new BibtonCardFragment(), true);
+        ChangeColorsTabBar.changeColorsOfTabs(this,home_icon,analytics_icon,transfers_icon,card_icon,more_icon,3);
+
     }
+
+
+
 
     public void open_more_fragment(View view) {
         changeFragments.replaceFragment(new MoreFragment(), true);
+        ChangeColorsTabBar.changeColorsOfTabs(this,home_icon,analytics_icon,card_icon,transfers_icon,more_icon,4);
+
     }
 
 
@@ -136,11 +145,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-
     public void drawer(View view) {
         drawer_layout_home.openDrawer(GravityCompat.END);
     }
-
 
 
     @Override
@@ -175,10 +182,17 @@ public class HomeActivity extends AppCompatActivity {
         Intent goToExchangeFragment = new Intent(this, ExchangeActivity.class);
         startActivity(goToExchangeFragment);
     }
+
     public void open_details_ectivity(View view) {
         Intent go_To_Details_Activity = new Intent(this, DetailsActivity.class);
         startActivity(go_To_Details_Activity);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
     }
 
+    private void setCountryNamesList() {
+        country_names = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            country_names.add("AMD");
+        }
+    }
 }

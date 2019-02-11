@@ -91,6 +91,7 @@ public class CountrySearchFragment extends Fragment implements ICountrySearchFra
         outputCountries = list;
         CountryListAdapter countryListAdapter = new CountryListAdapter(getContext(), outputCountries);
         recycler_view_country_flags.setAdapter(countryListAdapter);
+
     }
 
 

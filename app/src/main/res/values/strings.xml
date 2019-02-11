@@ -48,6 +48,24 @@
     <string name="rates">Rates</string>
     <string name="local">Local</string>
     <string name="swift">Swift</string>
+    <string name="donotforget">Don`t forget to enter this reference:</string>
+    <string name="beneficiary">Beneficiary</string>
+    <string name="bibtonLTD">Bibton LTD</string>
+    <string name="iban">IBAN</string>
+    <string name="am47">AM47 ARDSHIN 3080 1214 0888 68</string>
+    <string name="bic">BIC</string>
+    <string name="ardshin">ARDSHINAM2L</string>
+    <string name="beneficiaryAddress">Beneficiary address</string>
+    <string name="ardshinBank">Ardshin Bank</string>
+    <string name="bibtonLTDLevel">Bibton LTD, Level 00, Armenia, Yerevan, Arshakunyats 19</string>
+    <string name="intermediary">Intermediary or sender`s bank may charge you for international payments</string>
+    <string name="transferusually">Transfers usually take 1 to 3 working days to appear on your Spays account.</string>
+    <string name="onlySiwft">Only SWIFT transfers are accepted</string>
+    <string name="home">Home</string>
+    <string name="analytics">Analytics</string>
+    <string name="transfers">Transfers</string>
+    <string name="cards">Cards</string>
+    <string name="more">More</string>
 
     <string-array name="menu_names_array">
         <item>Summery</item>

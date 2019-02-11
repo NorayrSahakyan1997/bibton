@@ -16,7 +16,7 @@ import am.spaysapps.bibton.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class NavigationViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements RecyclerView.OnItemTouchListener {
+public class NavigationMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements RecyclerView.OnItemTouchListener {
 
     private Context context;
     private View view;
@@ -29,7 +29,7 @@ public class NavigationViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private int[] navigation_view_icons;
 
 
-    public NavigationViewAdapter(Context context) {
+    public NavigationMenuAdapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         setMenuNames();
@@ -44,7 +44,7 @@ public class NavigationViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private void setMenuIcons() {
 
-        navigation_view_icons = new int[]{R.drawable.summery_icon, R.drawable.exchange_icon, R.drawable.payment_icon, R.drawable.statement_icon, R.drawable.settings_icon, R.drawable.help_icon};
+        navigation_view_icons = new int[]{R.drawable.summery_icon, R.drawable.payment_icon, R.drawable.exchange_icon, R.drawable.statement_icon, R.drawable.settings_icon, R.drawable.help_icon};
 
 
     }
@@ -53,7 +53,7 @@ public class NavigationViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         view = layoutInflater.inflate(R.layout.menu_item_row, parent, false);
-        RecyclerView.ViewHolder viewHolder = new NavigationViewAdapter.ViewHolder(view);
+        RecyclerView.ViewHolder viewHolder = new NavigationMenuAdapter.ViewHolder(view);
 
         return viewHolder;
     }
@@ -87,7 +87,7 @@ public class NavigationViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        NavigationViewAdapter.ViewHolder viewHolder = (NavigationViewAdapter.ViewHolder) holder;
+        NavigationMenuAdapter.ViewHolder viewHolder = (NavigationMenuAdapter.ViewHolder) holder;
         viewHolder.nav_view_names.setText(menu_names.get(position));
         viewHolder.nav_view_images.setBackgroundResource(navigation_view_icons[position]);
 

@@ -53,6 +53,8 @@
     <dimen name="height_devider_details">110dp</dimen>
     <dimen name="oval_size_details">60dp</dimen>
     <dimen name="oval_layout_size">80dp</dimen>
+    <dimen name="text_size_width">240dp</dimen>
+
 
 
 

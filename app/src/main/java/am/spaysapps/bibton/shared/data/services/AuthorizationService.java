@@ -1,10 +1,12 @@
 package am.spaysapps.bibton.shared.data.services;
 
 import am.spaysapps.bibton.model.ResponseModel;
+import am.spaysapps.bibton.model.TransactionRequestModel;
 import am.spaysapps.bibton.model.checkPassCode.CheckPassCodeModel;
 import am.spaysapps.bibton.model.countryModel.CountryParentModel;
 import am.spaysapps.bibton.model.createAccountModel.CreateAccountModel;
 import am.spaysapps.bibton.model.forgetPassCodeModel.ForgetPassCodeModel;
+import am.spaysapps.bibton.model.getTransactionList.TransactionParentModel;
 import am.spaysapps.bibton.model.phoneNumberCodeModel.CountryCode;
 import am.spaysapps.bibton.model.singUpModel.SignUp;
 import am.spaysapps.bibton.shared.data.api.IAuthorizationService;
@@ -33,18 +35,22 @@ public class AuthorizationService extends BaseService {
 
 
     public Flowable<ResponseModel<CheckPassCodeModel>> checkPassCode(String unique_id, String code) {
-        return request(mService.checkPassCode(unique_id,code));
+        return request(mService.checkPassCode(unique_id, code));
     }
 
     public Flowable<ResponseModel<SignUp>> checkValidationPhoneNumber(String shortName, String phoneNumber) {
-        return request(mService.checkPhoneNumberValidation(shortName,phoneNumber));
-    }
-    public Flowable<ResponseModel<CreateAccountModel>> createAccount(String unique_id, String code, String passcode){
-        return request(mService.createAccount(unique_id,code,passcode));
+        return request(mService.checkPhoneNumberValidation(shortName, phoneNumber));
     }
 
-    public Flowable<ResponseModel<ForgetPassCodeModel>> forgetPass(String unique_id,String passCode){
-        return request(mService.forgetPassCode(unique_id,passCode));
+    public Flowable<ResponseModel<CreateAccountModel>> createAccount(String unique_id, String code, String passcode) {
+        return request(mService.createAccount(unique_id, code, passcode));
     }
 
+    public Flowable<ResponseModel<ForgetPassCodeModel>> forgetPass(String unique_id, String passCode) {
+        return request(mService.forgetPassCode(unique_id, passCode));
+    }
+
+    public Flowable<ResponseModel<TransactionParentModel>> getTransaction(TransactionRequestModel transactionRequestModel) {
+        return request(mService.getTransactionList(transactionRequestModel));
+    }
 }

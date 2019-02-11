@@ -11,12 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class MoreFragment extends Fragment {
-    private View mainView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mainView=inflater.inflate(R.layout.more_fragment_layout,container,false);
-        return mainView;
+        return inflater.inflate(R.layout.more_fragment_layout, container, false);
     }
 }

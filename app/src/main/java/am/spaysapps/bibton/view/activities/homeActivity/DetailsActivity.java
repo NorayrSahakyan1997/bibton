@@ -7,7 +7,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 
 public class DetailsActivity extends AppCompatActivity {
     private ConstraintLayout constraint_details;
@@ -26,8 +25,18 @@ public class DetailsActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
     }
 
-    public void maxmize_constraint(View view) {
-        layoutParams = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 600);
-        constraint_details.setLayoutParams(layoutParams);
-    }
+//    public void maxmize_constraint(View view) {
+//        ValueAnimator anim = ValueAnimator.ofInt(constraint_details.getMeasuredHeight(), 50);
+//        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+//                int val = (Integer) valueAnimator.getAnimatedValue();
+//                ViewGroup.LayoutParams layoutParams = constraint_details.getLayoutParams();
+//                layoutParams.height = val;
+//                constraint_details.setLayoutParams(layoutParams);
+//            }
+//        });
+//        anim.setDuration(500);
+//        anim.start();
+//    }
 }
