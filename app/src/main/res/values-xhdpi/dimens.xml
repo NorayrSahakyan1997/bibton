@@ -50,10 +50,14 @@
     <dimen name="margin_top_exchange">25dp</dimen>
     <dimen name="details_activity_heigh">350dp</dimen>
     <dimen name="details_activity_oval_width">140dp</dimen>
-    <dimen name="height_devider_details">110dp</dimen>
-    <dimen name="oval_size_details">60dp</dimen>
+    <dimen name="height_devider_details">80dp</dimen>
+    <dimen name="oval_size_details">50dp</dimen>
     <dimen name="oval_layout_size">80dp</dimen>
     <dimen name="text_size_width">240dp</dimen>
+    <dimen name="statement_wallet_card_background_size">170dp</dimen>
+    <dimen name="statement_from_to_constraint">150dp</dimen>
+
+
 
 
 

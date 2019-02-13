@@ -1,7 +1,8 @@
 package am.spaysapps.bibton.shared.data.services;
 
 import am.spaysapps.bibton.model.ResponseModel;
-import am.spaysapps.bibton.model.TransactionRequestModel;
+import am.spaysapps.bibton.model.getTransactionList.TransactionFilterRequestModel;
+import am.spaysapps.bibton.model.getTransactionList.TransactionRequestModel;
 import am.spaysapps.bibton.model.checkPassCode.CheckPassCodeModel;
 import am.spaysapps.bibton.model.countryModel.CountryParentModel;
 import am.spaysapps.bibton.model.createAccountModel.CreateAccountModel;
@@ -9,6 +10,7 @@ import am.spaysapps.bibton.model.forgetPassCodeModel.ForgetPassCodeModel;
 import am.spaysapps.bibton.model.getTransactionList.TransactionParentModel;
 import am.spaysapps.bibton.model.phoneNumberCodeModel.CountryCode;
 import am.spaysapps.bibton.model.singUpModel.SignUp;
+import am.spaysapps.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import am.spaysapps.bibton.shared.data.api.IAuthorizationService;
 import am.spaysapps.bibton.shared.data.services.root.BaseService;
 import io.reactivex.Flowable;
@@ -53,4 +55,12 @@ public class AuthorizationService extends BaseService {
     public Flowable<ResponseModel<TransactionParentModel>> getTransaction(TransactionRequestModel transactionRequestModel) {
         return request(mService.getTransactionList(transactionRequestModel));
     }
+
+    public Flowable<ResponseModel<WalletCurrencyParentResponse>> getCurrency() {
+        return request(mService.getCurrencyList());
+    }
+    public Flowable<ResponseModel<TransactionParentModel>> getTransactionFiltered(TransactionFilterRequestModel transactionFilterRequestModel) {
+        return request(mService.getFilteredListTransaction(transactionFilterRequestModel));
+    }
+
 }

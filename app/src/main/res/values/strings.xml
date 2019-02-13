@@ -66,7 +66,9 @@
     <string name="transfers">Transfers</string>
     <string name="cards">Cards</string>
     <string name="more">More</string>
-
+    <string name="gbpmain">GBP: Main</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
     <string-array name="menu_names_array">
         <item>Summery</item>
         <item>Payments</item>
@@ -80,7 +82,7 @@
         <item>QR</item>
         <item>Utility</item>
         <item>Rates</item>
-        <item>Bibton</item>
+        <item>My Bibton</item>
     </string-array>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">

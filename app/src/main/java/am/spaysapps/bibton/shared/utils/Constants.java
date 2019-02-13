@@ -1,6 +1,9 @@
 package am.spaysapps.bibton.shared.utils;
 
-;
+import java.util.ArrayList;
+import java.util.List;
+
+;import am.spaysapps.bibton.model.getTransactionList.TransactionResponse;
 
 public final class Constants {
     private Constants() {
@@ -17,5 +20,8 @@ public final class Constants {
     public static String UNIQUE_ID;
     public static boolean IS_REGISTERED;
 
+    public static List<TransactionResponse> TRANSACTION_LIST= new ArrayList<>();
+    public static boolean IS_WALLET=true;
+    public static int CURRENCY_ID=1;
 
 }

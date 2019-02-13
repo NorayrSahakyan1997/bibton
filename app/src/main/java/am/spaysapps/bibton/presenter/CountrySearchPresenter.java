@@ -28,14 +28,7 @@ public class CountrySearchPresenter extends BasePresenter<ICountrySearchFragment
         addDisposable(disposable);
     }
 
-//    private void getUserInfoSuccess(ResponseModel<SignUp> response) {
-//
-//        if (response.isSuccess()) {
-//            Toast.makeText(mContext, "true", Toast.LENGTH_SHORT).show();
-//
-//        } else
-//            Toast.makeText(mContext, "false", Toast.LENGTH_SHORT).show();
-//    }
+
 
     private void response(ResponseModel<CountryParentModel> responseModel) {
         if (responseModel.isSuccess() && responseModel.getData() != null) {

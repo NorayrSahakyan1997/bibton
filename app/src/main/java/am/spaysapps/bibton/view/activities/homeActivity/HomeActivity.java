@@ -1,7 +1,6 @@
 package am.spaysapps.bibton.view.activities.homeActivity;
 
 import am.spaysapps.bibton.R;
-import am.spaysapps.bibton.adapters.BalanceHomeAdapter;
 import am.spaysapps.bibton.adapters.NavigationMenuAdapter;
 import am.spaysapps.bibton.shared.utils.ChangeColorsTabBar;
 import am.spaysapps.bibton.shared.utils.ChangeFragments;
@@ -9,7 +8,7 @@ import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.BibtonCard
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.MoreFragment;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.PaymentFragment;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.homeFragment.HomeFragment;
-import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.StatementFragment;
+import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.statementFragment.StatementFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -31,7 +30,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
@@ -49,12 +47,14 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView analytics_icon;
     private ImageView more_icon;
     private ImageView card_icon;
+    private View toolbar_layout_home_activity;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setCountryNamesList();
+       // setCountryNamesList();
         init();
         setFragment();
 
@@ -64,18 +64,22 @@ public class HomeActivity extends AppCompatActivity {
     private void init() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         drawer_layout_home = findViewById(R.id.drawer_layout_home);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout_home, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle = new ActionBarDrawerToggle(this, drawer_layout_home, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         NavigationMenuAdapter navigationViewAdapter = new NavigationMenuAdapter(this);
         drawer_layout_home.addDrawerListener(toggle);
         RecyclerView recycler_view_navigation = findViewById(R.id.recycler_view_navigation);
         recycler_view_navigation.setLayoutManager(layoutManager);
         recycler_view_navigation.setAdapter(navigationViewAdapter);
         toggle.syncState();
-        BalanceHomeAdapter balanceHomeAdapter = new BalanceHomeAdapter(this, country_names);
-        RecyclerView recyclerView_balance_list = findViewById(R.id.recycle_balance);
-        RecyclerView.LayoutManager recycler_Manager = new LinearLayoutManager(this);
-        recyclerView_balance_list.setLayoutManager(recycler_Manager);
-        recyclerView_balance_list.setAdapter(balanceHomeAdapter);
+//        BalanceHomeAdapter balanceHomeAdapter = new BalanceHomeAdapter(this, country_names);
+//
+//
+////        RecyclerView recyclerView_balance_list = findViewById(R.id.recycle_balance);
+////        RecyclerView.LayoutManager recycler_Manager = new LinearLayoutManager(this);
+////        recyclerView_balance_list.setLayoutManager(recycler_Manager);
+////        recyclerView_balance_list.setAdapter(balanceHomeAdapter);
+
+
         wallet_layout = findViewById(R.id.constrait_wallet);
         currentFragment = new HomeFragment();
         home_icon = findViewById(R.id.home_icon);
@@ -85,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
         card_icon = findViewById(R.id.card_icon);
         constraint_balance = findViewById(R.id.constraint_balance);
         changeFragments = new ChangeFragments(context, mainView, currentFragment);
-
+        toolbar_layout_home_activity = findViewById(R.id.toolbar_layout_home_activity);
     }
 
 
@@ -96,37 +100,38 @@ public class HomeActivity extends AppCompatActivity {
         mainView = parent;
         return super.onCreateView(parent, name, context, attrs);
     }
+
     public void open_home_fragment(View view) {
+
         changeFragments.replaceFragment(new HomeFragment(), true);
-        ChangeColorsTabBar.changeColorsOfTabs(this,home_icon,analytics_icon,transfers_icon,card_icon,more_icon,0);
+        ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, transfers_icon, card_icon, more_icon, 0);
 
     }
+
     public void open_analytics_fragment(View view) {
-        changeFragments.replaceFragment(new PaymentFragment(), false);
-        ChangeColorsTabBar.changeColorsOfTabs(this,home_icon,analytics_icon,transfers_icon,card_icon,more_icon,1);
+        changeFragments.replaceFragment(new StatementFragment(), false);
+        ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, transfers_icon, card_icon, more_icon, 1);
 
 
     }
-    public void open_transfers_fragment(View view) {
-        changeFragments.replaceFragment(new StatementFragment(), false);
-        ChangeColorsTabBar.changeColorsOfTabs(this,home_icon,analytics_icon,transfers_icon,card_icon,more_icon,2);
 
+    public void open_transfers_fragment(View view) {
+        changeFragments.replaceFragment(new PaymentFragment(), false);
+        ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, transfers_icon, card_icon, more_icon, 2);
 
 
     }
 
     public void open_card_fragment(View view) {
         changeFragments.replaceFragment(new BibtonCardFragment(), true);
-        ChangeColorsTabBar.changeColorsOfTabs(this,home_icon,analytics_icon,transfers_icon,card_icon,more_icon,3);
+        ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, transfers_icon, card_icon, more_icon, 3);
 
     }
 
 
-
-
     public void open_more_fragment(View view) {
         changeFragments.replaceFragment(new MoreFragment(), true);
-        ChangeColorsTabBar.changeColorsOfTabs(this,home_icon,analytics_icon,card_icon,transfers_icon,more_icon,4);
+        ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, card_icon, transfers_icon, more_icon, 4);
 
     }
 
@@ -154,29 +159,29 @@ public class HomeActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
 
-    public void open_wallet_layout(View view) {
-        setWalletLayout();
-    }
+//    public void open_wallet_layout(View view) {
+//        setWalletLayout();
+//    }
 
-    public void close_wallet_layout(View view) {
-        Animation animation_up_to_down = AnimationUtils.loadAnimation(getApplication(), R.anim.up_to_down);
-        wallet_layout.setAnimation(animation_up_to_down);
-        wallet_layout.setFocusable(true);
-        wallet_layout.setVisibility(View.GONE);
-    }
+//    public void close_wallet_layout(View view) {
+//        Animation animation_up_to_down = AnimationUtils.loadAnimation(getApplication(), R.anim.up_to_down);
+//        wallet_layout.setAnimation(animation_up_to_down);
+//        wallet_layout.setFocusable(true);
+//        wallet_layout.setVisibility(View.GONE);
+//    }
 
-    public void close_balance_list(View view) {
-        Animation animation_up_to_down = AnimationUtils.loadAnimation(getApplication(), R.anim.up_to_down);
-        constraint_balance.setAnimation(animation_up_to_down);
-        constraint_balance.setVisibility(View.GONE);
-    }
+//    public void close_balance_list(View view) {
+//        Animation animation_up_to_down = AnimationUtils.loadAnimation(getApplication(), R.anim.up_to_down);
+//        constraint_balance.setAnimation(animation_up_to_down);
+//        constraint_balance.setVisibility(View.GONE);
+//    }
 
-    public void open_balance_list(View view) {
-        Animation animation_down_to_up = AnimationUtils.loadAnimation(getApplication(), R.anim.down_to_up);
-        constraint_balance.setAnimation(animation_down_to_up);
-        constraint_balance.setFocusable(true);
-        constraint_balance.setVisibility(View.VISIBLE);
-    }
+//    public void open_balance_list(View view) {
+//        Animation animation_down_to_up = AnimationUtils.loadAnimation(getApplication(), R.anim.down_to_up);
+//        constraint_balance.setAnimation(animation_down_to_up);
+//        constraint_balance.setFocusable(true);
+//        constraint_balance.setVisibility(View.VISIBLE);
+//    }
 
     public void open_exchange_fragment(View view) {
         Intent goToExchangeFragment = new Intent(this, ExchangeActivity.class);
@@ -189,10 +194,10 @@ public class HomeActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
     }
 
-    private void setCountryNamesList() {
-        country_names = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            country_names.add("AMD");
-        }
-    }
+//    private void setCountryNamesList() {
+//        country_names = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            country_names.add("AMD");
+//        }
+//    }
 }

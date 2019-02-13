@@ -5,14 +5,14 @@ public class TransactionResponse {
     private String text;
     private String image;
     private String created_at;
-    private int total_amount;
+    private float total_amount;
 
     public String getCreated_at() {
 
         return created_at;
     }
 
-    public int getTotal_amount() {
+    public float getTotal_amount() {
         return total_amount;
     }
 
