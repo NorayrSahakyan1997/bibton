@@ -7,4 +7,5 @@ import am.spaysapps.bibton.view.activities.IBaseView;
 
 public interface IStatementFragment extends IBaseView {
     void getFilteredTransactionList(List<TransactionResponse> transactionResponses);
+    void getTransactionList(List<TransactionResponse> transactionResponses);
 }

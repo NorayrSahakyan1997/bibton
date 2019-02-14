@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activities.homeActivity.DetailsActivity"></activity>
+        <activity android:name=".RecyclerInRecyclerActivity"></activity>
+        <activity android:name=".view.activities.homeActivity.DetailsActivity" />
         <activity
             android:name=".view.activities.homeActivity.ExchangeActivity"
             android:screenOrientation="portrait" />

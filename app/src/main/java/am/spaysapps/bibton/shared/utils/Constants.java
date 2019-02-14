@@ -24,4 +24,7 @@ public final class Constants {
     public static boolean IS_WALLET=true;
     public static int CURRENCY_ID=1;
 
+    public static List<String> DATE= new ArrayList<>();
+    public static List<TransactionResponse> DATELIST= new ArrayList<>();
+
 }

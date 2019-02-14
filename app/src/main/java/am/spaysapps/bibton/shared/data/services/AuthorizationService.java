@@ -52,15 +52,20 @@ public class AuthorizationService extends BaseService {
         return request(mService.forgetPassCode(unique_id, passCode));
     }
 
-    public Flowable<ResponseModel<TransactionParentModel>> getTransaction(TransactionRequestModel transactionRequestModel) {
-        return request(mService.getTransactionList(transactionRequestModel));
+//    public Flowable<ResponseModel<TransactionParentModel>> getTransaction(TransactionRequestModel transactionRequestModel) {
+//        return request(mService.getTransactionList(transactionRequestModel));
+//    }
+    public Flowable<ResponseModel<TransactionParentModel>> getTransaction() {
+        return request(mService.getTransactionList());
     }
-
     public Flowable<ResponseModel<WalletCurrencyParentResponse>> getCurrency() {
         return request(mService.getCurrencyList());
     }
     public Flowable<ResponseModel<TransactionParentModel>> getTransactionFiltered(TransactionFilterRequestModel transactionFilterRequestModel) {
         return request(mService.getFilteredListTransaction(transactionFilterRequestModel));
+    }
+    public Flowable<ResponseModel<TransactionParentModel>> getTransactionsUnfiltered() {
+        return request(mService.getTransactionListUnfiltered());
     }
 
 }

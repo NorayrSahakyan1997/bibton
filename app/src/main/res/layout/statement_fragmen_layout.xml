@@ -165,10 +165,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/text_view_data_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="From"
+                android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_normal"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
@@ -187,6 +190,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_to"
             android:layout_width="@dimen/statement_from_to_constraint"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
@@ -198,10 +202,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/text_view_data_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/to"
                 android:textSize="@dimen/text_size_normal"
+                android:gravity="center"
+
+                android:textColor="@color/colorBlack"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"

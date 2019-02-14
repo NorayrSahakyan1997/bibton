@@ -24,17 +24,34 @@ public class StatementFragmentPresenter extends BasePresenter<IStatementFragment
 
     public void getTransactionList(TransactionFilterRequestModel transactionFilterRequestModel) {
         Disposable disposable = mService.getTransactionFiltered(transactionFilterRequestModel)
-                .subscribe(this::transactionResponse, this::errorView);
+                .subscribe(this::transactionResponseFiltered, this::errorView);
         addDisposable(disposable);
     }
 
 
-    private void transactionResponse(ResponseModel<TransactionParentModel> responseModel) {
+    private void transactionResponseFiltered(ResponseModel<TransactionParentModel> responseModel) {
         if (responseModel.isSuccess() && responseModel.getData() != null) {
-            mView.getFilteredTransactionList(responseModel.getData().getData());
+            //mView.getFilteredTransactionList(responseModel.getData().getData());
             Toast.makeText(mContext,responseModel.getData().getData().size()+"",Toast.LENGTH_SHORT).show();
         } else
 
             mView.showServerError();
     }
+
+    public void getTransactionList() {
+        Disposable disposable = mService.getTransactionsUnfiltered()
+                .subscribe(this::transactionResponseList, this::errorView);
+        addDisposable(disposable);
+    }
+
+
+    private void transactionResponseList(ResponseModel<TransactionParentModel> responseModel) {
+        if (responseModel.isSuccess() && responseModel.getData() != null) {
+            //mView.getTransactionList(responseModel.getData().getData());
+
+        } else
+
+            mView.showServerError();
+    }
+
 }

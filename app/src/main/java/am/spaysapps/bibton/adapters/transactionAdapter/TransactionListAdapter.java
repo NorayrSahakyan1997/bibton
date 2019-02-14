@@ -1,4 +1,4 @@
-package am.spaysapps.bibton.adapters;
+package am.spaysapps.bibton.adapters.transactionAdapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,22 +6,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.squareup.picasso.Picasso;
+
 import java.util.List;
 import am.spaysapps.bibton.R;
-import am.spaysapps.bibton.model.getTransactionList.TransactionResponse;
+import am.spaysapps.bibton.model.getTransactionList.TransactionDateResponse;
+import am.spaysapps.bibton.shared.utils.Constants;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TransactionListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private LayoutInflater layoutInflater;
-    private List<TransactionResponse> transactionResponses;
+//    private List<TransactionDateResponse> transactionResponses;
     private View mainView;
+    private List<String> transactionResponses;
 
-    public TransactionListAdapter(Context context, List<TransactionResponse> transactionResponseList) {
+//    public TransactionListAdapter(Context context, List<TransactionDateResponse> transactionResponseList) {
+//        this.context = context;
+//        this.transactionResponses = transactionResponseList;
+//        layoutInflater = LayoutInflater.from(context);
+//    }
+
+    public TransactionListAdapter(Context context) {
         this.context = context;
-        this.transactionResponses = transactionResponseList;
+      //  this.transactionResponses = transactionResponseList;
         layoutInflater = LayoutInflater.from(context);
     }
 
@@ -37,16 +45,17 @@ public class TransactionListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         TransactionListAdapter.ViewHolder viewHolder = (TransactionListAdapter.ViewHolder) holder;
-        viewHolder.transaction_name.setText(transactionResponses.get(position).getText());
-        viewHolder.transaction_cost.setText(transactionResponses.get(position).getTotal_amount() + "$");
-        Picasso.get()
-                .load(transactionResponses.get(position).getImage())
-                .into(viewHolder.transaction_image);
+        viewHolder.transaction_name.setText(Constants.DATELIST.get(position).getText());
+//        viewHolder.transaction_cost.setText(transactionResponses.get(position).getTotal_amount() + "$");
+//        Picasso.get()
+//                .load(transactionResponses.get(position).getImage())
+//                .into(viewHolder.transaction_image);
     }
+//
 
     @Override
     public int getItemCount() {
-        return transactionResponses.size();
+        return Constants.DATELIST.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
