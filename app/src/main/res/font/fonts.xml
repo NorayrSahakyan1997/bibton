@@ -8,7 +8,14 @@
         android:fontStyle="normal"
         android:fontWeight="400"
         android:font="@font/noto_sans_light" />
-
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/segoe_ui_regular" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/semi_bold" />
 
 
 </font-family>

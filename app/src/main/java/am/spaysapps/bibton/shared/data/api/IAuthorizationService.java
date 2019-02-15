@@ -46,14 +46,23 @@ public interface IAuthorizationService {
     @POST("api/recover/new-passcode")
     Flowable<ResponseModel<ForgetPassCodeModel>> forgetPassCode(@Field("unique_id") String unique_id, @Field("passcode") String passCode);
 
+//    @POST("api/transactions/get-transactions-list")
+//    Flowable<ResponseModel<TransactionParentModel>> getTransactionList(@Body TransactionRequestModel transactionRequestModel);
     @POST("api/transactions/get-transactions-list")
-    Flowable<ResponseModel<TransactionParentModel>> getTransactionList(@Body TransactionRequestModel transactionRequestModel);
+    Flowable<ResponseModel<TransactionParentModel>> getTransactionList();
+
+
 
     @GET("api/wallet/get-wallet-balance-list")
     Flowable<ResponseModel<WalletCurrencyParentResponse>> getCurrencyList();
 
     @POST("api/transactions/get-transactions-list")
     Flowable<ResponseModel<TransactionParentModel>> getFilteredListTransaction(@Body TransactionFilterRequestModel transactionFilterRequestModel);
+
+
+
+    @POST("api/transactions/get-transactions-list")
+    Flowable<ResponseModel<TransactionParentModel>> getTransactionListUnfiltered();
 
 
 

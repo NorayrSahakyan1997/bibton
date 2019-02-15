@@ -6,6 +6,11 @@ public class TransactionResponse {
     private String image;
     private String created_at;
     private float total_amount;
+    private int transfer_type;
+
+    public int getTransfer_type() {
+        return transfer_type;
+    }
 
     public String getCreated_at() {
 

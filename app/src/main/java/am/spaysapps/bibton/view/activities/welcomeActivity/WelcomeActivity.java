@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import am.spaysapps.bibton.RecyclerInRecyclerActivity;
 import am.spaysapps.bibton.view.activities.homeActivity.HomeActivity;
 import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.BibtonSignFragment;
 import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.FlexibleTransferringFragment;

@@ -2,6 +2,7 @@ package am.spaysapps.bibton.presenter;
 
 import android.widget.Toast;
 
+
 import javax.inject.Inject;
 
 import am.spaysapps.bibton.model.ResponseModel;
@@ -23,21 +24,29 @@ public class HomeFragmentPresenter extends BasePresenter<IHomeFragment> {
         mService = service;
     }
 
-    public void getTransactionList(TransactionRequestModel transactionRequestModel) {
-        Disposable disposable = mService.getTransaction(transactionRequestModel)
+    //    public void getTransactionList(TransactionRequestModel transactionRequestModel) {
+//        Disposable disposable = mService.getTransaction(transactionRequestModel)
+//                .subscribe(this::transactionResponse, this::errorView);
+//        addDisposable(disposable);
+//    }
+    public void getTransactionList() {
+        Disposable disposable = mService.getTransaction()
                 .subscribe(this::transactionResponse, this::errorView);
         addDisposable(disposable);
     }
 
 
     private void transactionResponse(ResponseModel<TransactionParentModel> responseModel) {
+
         if (responseModel.isSuccess() && responseModel.getData() != null) {
             mView.getTransactionList(responseModel.getData().getData());
+
 
         } else
 
             mView.showServerError();
     }
+
 
     public void getCurrencyList() {
         Disposable disposable = mService.getCurrency().subscribe(this::currencyResponse, this::errorView);
@@ -48,7 +57,7 @@ public class HomeFragmentPresenter extends BasePresenter<IHomeFragment> {
         if (responseModel.isSuccess() && responseModel.getData() != null) {
             mView.getCurrencyWallet(responseModel.getData().getList());
         } else {
-            Toast.makeText(mContext,"False",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "False", Toast.LENGTH_SHORT).show();
             mView.showNetworkError();
         }
     }
