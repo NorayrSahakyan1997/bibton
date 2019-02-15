@@ -34,4 +34,34 @@
     <dimen name="main_categories_photo_height">180dp</dimen>
     <dimen name="menu_item_margin20">20dp</dimen>
     <dimen name="menu_item_margin10">10dp</dimen>
+    <dimen name="edit_text_search">380dp</dimen>
+    <dimen name="country_name_size">22sp</dimen>
+    <dimen name="next_button_size">350dp</dimen>
+    <dimen name="margin_top_text_phone">80dp</dimen>
+    <dimen name="margin_top_phone_code">60dp</dimen>
+    <dimen name="vertical_bias_input_code">150dp</dimen>
+    <dimen name="underline_width">55dp</dimen>
+    <dimen name="margin_top_frame_layout">120dp</dimen>
+
+    <dimen name="margin_top_text_exchange">120dp</dimen>
+    <dimen name="margin_top_scroll_exchange">150dp</dimen>
+    <dimen name="margin_top_exchange">50dp</dimen>
+    <dimen name="details_activity_heigh">500dp</dimen>
+    <dimen name="details_activity_oval_width">200dp</dimen>
+    <dimen name="oval_size_details">100dp</dimen>
+    <dimen name="statement_wallet_card_background_size">220dp</dimen>
+    <dimen name="statement_from_to_constraint">210dp</dimen>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </resources>

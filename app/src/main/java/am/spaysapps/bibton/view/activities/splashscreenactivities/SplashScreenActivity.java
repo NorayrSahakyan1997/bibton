@@ -3,7 +3,7 @@ package am.spaysapps.bibton.view.activities.splashscreenactivities;
 import android.content.Intent;
 import android.os.Bundle;
 
-import am.spaysapps.bibton.view.activities.WelcomeActivity;
+import am.spaysapps.bibton.view.activities.welcomeActivity.WelcomeActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {

@@ -4,18 +4,25 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class CountryModel {
-    private String value;
+    private String phone_code;
+    private String short_name;
     private String name;
-    private String text;
     private String flag;
-    private int code;
 
-    public String getValue() {
-        return value;
+    public String getPhone_code() {
+        return phone_code;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setPhone_code(String phone_code) {
+        this.phone_code = phone_code;
+    }
+
+    public String getShort_name() {
+        return short_name;
+    }
+
+    public void setShort_name(String short_name) {
+        this.short_name = short_name;
     }
 
     public String getName() {
@@ -26,27 +33,11 @@ public class CountryModel {
         this.name = name;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public String getFlag() {
         return flag;
     }
 
     public void setFlag(String flag) {
         this.flag = flag;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
     }
 }

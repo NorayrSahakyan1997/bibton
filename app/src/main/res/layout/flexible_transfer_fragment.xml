@@ -91,7 +91,7 @@
         android:id="@+id/constraint_next_flexible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,8 +99,8 @@
         app:layout_constraintVertical_bias="0.95">
 
         <ImageButton
-            android:id="@+id/skip_button"
-            android:layout_width="300dp"
+            android:id="@+id/gotToProfitableExchangeFragment"
+            android:layout_width="@dimen/next_button_size"
             android:layout_height="60dp"
             android:background="@drawable/button_skip"
             android:onClick="goToProfitableExchangeFragment"

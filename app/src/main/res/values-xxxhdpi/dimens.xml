@@ -35,5 +35,42 @@
     <dimen name="menu_item_margin20">15dp</dimen>
     <dimen name="menu_item_margin10">5dp</dimen>
     <dimen name="transferring_text_size">28dp</dimen>
+    <dimen name="edit_text_search">360dp</dimen>
+    <dimen name="country_name_size">20sp</dimen>
+    <dimen name="next_button_size">330dp</dimen>
+    <dimen name="margin_top_text_phone">65dp</dimen>
+    <dimen name="margin_top_phone_code">50dp</dimen>
+    <dimen name="vertical_bias_input_code">180dp</dimen>
+    <dimen name="underline_width">50dp</dimen>
+    <dimen name="margin_top_frame_layout">80dp</dimen>
+
+    <dimen name="margin_top_text_exchange">60dp</dimen>
+    <dimen name="margin_top_scroll_exchange">90dp</dimen>
+    <dimen name="margin_top_exchange">40dp</dimen>
+    <dimen name="details_activity_heigh">450dp</dimen>
+    <dimen name="details_activity_oval_width">160dp</dimen>
+    <dimen name="height_devider_details">120dp</dimen>
+    <dimen name="oval_size_details">60dp</dimen>
+    <dimen name="oval_layout_size">90dp</dimen>
+    <dimen name="text_size_width">280dp</dimen>
+    <dimen name="statement_wallet_card_background_size">200dp</dimen>
+    <dimen name="statement_from_to_constraint">170dp</dimen>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </resources>

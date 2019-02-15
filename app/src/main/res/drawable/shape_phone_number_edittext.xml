@@ -6,6 +6,5 @@
         android:radius="30dp"
         />
 
-    <solid
-        android:color="@color/phoneNumberShadow"></solid>
+    <solid android:color="@color/conver_edittext_background" />
 </shape>
