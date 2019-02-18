@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -45,10 +46,10 @@
         app:layout_constraintVertical_bias="0.15">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="@dimen/statement_wallet_card_background_size"
+            android:layout_width="@dimen/statement_wallet_card_width"
             android:layout_height="80dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/card_backgound"
+            android:background="@drawable/card_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -92,10 +93,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="@dimen/statement_wallet_card_background_size"
+            android:layout_width="@dimen/statement_wallet_card_width"
             android:layout_height="80dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/card_backgound"
+            android:background="@drawable/card_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
@@ -104,10 +105,9 @@
             app:layout_constraintVertical_bias="0.15">
 
             <ImageView
-                android:id="@+id/flag_iamge_statement"
+                android:id="@+id/flag_image_statement"
                 android:layout_width="25dp"
                 android:layout_height="22dp"
-                android:background="@drawable/wallet_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
@@ -115,16 +115,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/currency_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/gbpmain"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_normal"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toEndOf="@id/flag_iamge_statement"
+                app:layout_constraintStart_toEndOf="@id/flag_image_statement"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -168,10 +168,11 @@
                 android:id="@+id/text_view_data_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:hint="From"
+                android:paddingStart="10dp"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_normal"
-                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
@@ -205,16 +206,17 @@
                 android:id="@+id/text_view_data_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/to"
-                android:textSize="@dimen/text_size_normal"
                 android:gravity="center"
-
+                android:hint="@string/to"
+                android:paddingStart="10dp"
                 android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                 />
 
             <ImageView
                 android:layout_width="24dp"
@@ -233,14 +235,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_statement_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/statement_constraint_from_to"
-        >
+        app:layout_constraintVertical_bias="0">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -256,10 +258,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_balance"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/wallet_background_color"
+        android:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_balance_currency_statement"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1">
+
+        </androidx.recyclerview.widget.RecyclerView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

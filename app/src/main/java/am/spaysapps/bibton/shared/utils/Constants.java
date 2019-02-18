@@ -21,8 +21,9 @@ public final class Constants {
     public static boolean IS_REGISTERED;
 
     public static List<TransactionResponse> TRANSACTION_LIST= new ArrayList<>();
-    public static boolean IS_WALLET=true;
+    public static boolean IS_WALLET=false;
     public static int CURRENCY_ID=1;
+    public static String SYMBOL="";
 
     public static List<String> DATE= new ArrayList<>();
     public static List<TransactionResponse> DATELIST= new ArrayList<>();

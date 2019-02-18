@@ -1,7 +1,7 @@
 package am.spaysapps.bibton.model.walletCurrency;
 
 public class WalletCurrencyResponse {
-    private int wallet_currency_id;
+    private int currency_id;
     private String currency_icon;
     private String currency_iso;
     private String symbol;
@@ -20,8 +20,8 @@ public class WalletCurrencyResponse {
         return currency_name;
     }
 
-    public int getWallet_currency_id() {
-        return wallet_currency_id;
+    public int getCurrency_id() {
+        return currency_id;
     }
 
     public String getCurrency_icon() {

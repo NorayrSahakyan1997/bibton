@@ -1,5 +1,6 @@
 package am.spaysapps.bibton.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import am.spaysapps.bibton.R;
+import am.spaysapps.bibton.adapters.transactionAdapter.TransactionListChildAdapter;
 import am.spaysapps.bibton.model.walletCurrency.WalletCurrencyResponse;
 import am.spaysapps.bibton.shared.utils.Constants;
 import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.phoneNumberFragment.PhoneNumberFragment;
@@ -28,19 +30,16 @@ public class BalanceHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private LayoutInflater layoutInflater;
     private List<WalletCurrencyResponse> walletCurrencyResponses;
     private View mainView;
-    private ConstraintLayout constraintLayout_wallet;
-    private TextView currencyName;
-    private Fragment current_Fragment;
+    private final BalanceHomeAdapter.OnItemClickListener mListener;
 
 
-
-    public BalanceHomeAdapter(Context context, List<WalletCurrencyResponse> walletCurrencyResponses,Fragment current_Fragment,ConstraintLayout constraintLayout_wallet,TextView currencyName) {
+    public BalanceHomeAdapter(Context context, List<WalletCurrencyResponse> walletCurrencyResponses, BalanceHomeAdapter.OnItemClickListener mListener) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
-        this.current_Fragment=current_Fragment;
-        this.walletCurrencyResponses = walletCurrencyResponses;
-        this.constraintLayout_wallet=constraintLayout_wallet;
-        this.currencyName=currencyName;
+        this.walletCurrencyResponses=walletCurrencyResponses;
+        this.mListener = mListener;
+
+
     }
 
     @NonNull
@@ -52,15 +51,18 @@ public class BalanceHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return viewHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         BalanceHomeAdapter.ViewHolder viewHolder = (BalanceHomeAdapter.ViewHolder) holder;
         viewHolder.country_name.setText(walletCurrencyResponses.get(position).getCurrency_name());
         viewHolder.county_money_short_name.setText(walletCurrencyResponses.get(position).getCurrency_iso());
-        viewHolder.currency_amount.setText(walletCurrencyResponses.get(position).getBalance() + walletCurrencyResponses.get(position).getSymbol());
+        viewHolder.currency_amount.setText(walletCurrencyResponses.get(position).getSymbol() + walletCurrencyResponses.get(position).getBalance());
         Picasso.get()
                 .load(walletCurrencyResponses.get(position).getCurrency_icon())
                 .into(viewHolder.country_flags);
+        viewHolder.onClick(holder.itemView, position);
+
     }
 
     @Override
@@ -68,7 +70,11 @@ public class BalanceHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return walletCurrencyResponses.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public interface OnItemClickListener {
+        void onClick(final int position);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView county_money_short_name;
         ImageView country_flags;
@@ -77,27 +83,16 @@ public class BalanceHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         ViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
             county_money_short_name = itemView.findViewById(R.id.county_money_short_name);
             country_flags = itemView.findViewById(R.id.country_flag_balance);
             country_name = itemView.findViewById(R.id.country_name_balance_list);
             currency_amount = itemView.findViewById(R.id.currency_amount);
         }
 
-        @Override
-        public void onClick(View v) {
-
-            constraintLayout_wallet.setVisibility(View.INVISIBLE);
-            currencyName.setText(walletCurrencyResponses.get(getAdapterPosition()).getCurrency_iso());
-            FragmentTransaction ft = ((FragmentActivity) mainView.getContext()).getSupportFragmentManager().beginTransaction();
-            Constants.CURRENCY_ID=getAdapterPosition();
-            ft.detach(current_Fragment).attach(current_Fragment).commit();
-
-//            ft.detach(current_Fragment);
-//            ft.attach(current_Fragment);
-//            ft.commit();
-
-
+        void onClick(final View itemView, final int position) {
+            itemView.setOnClickListener(v -> mListener.onClick(position));
         }
+
+
     }
 }

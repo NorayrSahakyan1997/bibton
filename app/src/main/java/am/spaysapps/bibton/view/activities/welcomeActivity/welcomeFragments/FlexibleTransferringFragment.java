@@ -3,7 +3,6 @@ package am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments;
 import android.animation.Animator;
 import android.content.Context;
 import android.os.Bundle;
-
 import am.spaysapps.bibton.shared.utils.ChangeFragments;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

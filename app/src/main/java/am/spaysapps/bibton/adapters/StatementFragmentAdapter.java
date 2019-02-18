@@ -1,18 +1,17 @@
 package am.spaysapps.bibton.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
 import am.spaysapps.bibton.R;
 import am.spaysapps.bibton.model.getTransactionList.TransactionResponse;
+import am.spaysapps.bibton.shared.utils.Constants;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +19,6 @@ public class StatementFragmentAdapter extends RecyclerView.Adapter<RecyclerView.
     private Context context;
     private LayoutInflater layoutInflater;
     private List<TransactionResponse> transactionResponseList;
-    private View view_statement_row;
 
 
     public StatementFragmentAdapter(Context context, List<TransactionResponse> transactionResponses) {
@@ -32,15 +30,16 @@ public class StatementFragmentAdapter extends RecyclerView.Adapter<RecyclerView.
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        view_statement_row = layoutInflater.inflate(R.layout.transaction_list_row, parent, false);
+        View view_statement_row = layoutInflater.inflate(R.layout.transaction_list_child_row, parent, false);
         RecyclerView.ViewHolder viewHolder = new StatementFragmentAdapter.ViewHolder(view_statement_row);
         return viewHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         StatementFragmentAdapter.ViewHolder statementFragmentViewHolder = (StatementFragmentAdapter.ViewHolder) holder;
-        statementFragmentViewHolder.transaction_cost.setText(transactionResponseList.get(position).getTotal_amount() + "$");
+        statementFragmentViewHolder.transaction_cost.setText(Constants.SYMBOL+transactionResponseList.get(position).getTotal_amount());
         statementFragmentViewHolder.transaction_name.setText(transactionResponseList.get(position).getText());
         Picasso.get()
                 .load(transactionResponseList.get(position).getImage())
