@@ -66,5 +66,10 @@ public interface IAuthorizationService {
     @POST("api/transactions/get-transactions-list")
     Flowable<ResponseModel<TransactionParentModel>> getTransactionListUnfiltered();
 
+    @FormUrlEncoded
+    @POST("api/transactions/get-transactions-list")
+    Flowable<ResponseModel<TransactionParentModel>> getTransactionListWithCurrency(@Field("currency_id") int currency_id);
+
+
 
 }

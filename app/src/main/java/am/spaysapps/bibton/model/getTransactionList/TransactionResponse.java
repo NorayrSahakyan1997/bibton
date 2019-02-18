@@ -7,6 +7,11 @@ public class TransactionResponse {
     private String created_at;
     private float total_amount;
     private int transfer_type;
+    private int transaction_id;
+
+    public int getTransaction_id() {
+        return transaction_id;
+    }
 
     public int getTransfer_type() {
         return transfer_type;
