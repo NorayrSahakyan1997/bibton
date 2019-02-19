@@ -1,8 +1,8 @@
 package am.spaysapps.bibton.shared.data.services;
 
 import am.spaysapps.bibton.model.ResponseModel;
+import am.spaysapps.bibton.model.getTransactionList.TransactionCurrencyRequestModel;
 import am.spaysapps.bibton.model.getTransactionList.TransactionFilterRequestModel;
-import am.spaysapps.bibton.model.getTransactionList.TransactionRequestModel;
 import am.spaysapps.bibton.model.checkPassCode.CheckPassCodeModel;
 import am.spaysapps.bibton.model.countryModel.CountryParentModel;
 import am.spaysapps.bibton.model.createAccountModel.CreateAccountModel;
@@ -52,20 +52,27 @@ public class AuthorizationService extends BaseService {
         return request(mService.forgetPassCode(unique_id, passCode));
     }
 
-//    public Flowable<ResponseModel<TransactionParentModel>> getTransaction(TransactionRequestModel transactionRequestModel) {
+    //    public Flowable<ResponseModel<TransactionParentModel>> getTransaction(TransactionCurrencyRequestModel transactionRequestModel) {
 //        return request(mService.getTransactionList(transactionRequestModel));
 //    }
     public Flowable<ResponseModel<TransactionParentModel>> getTransaction() {
         return request(mService.getTransactionList());
     }
+
     public Flowable<ResponseModel<WalletCurrencyParentResponse>> getCurrency() {
         return request(mService.getCurrencyList());
     }
+
     public Flowable<ResponseModel<TransactionParentModel>> getTransactionFiltered(TransactionFilterRequestModel transactionFilterRequestModel) {
         return request(mService.getFilteredListTransaction(transactionFilterRequestModel));
     }
+
     public Flowable<ResponseModel<TransactionParentModel>> getTransactionsUnfiltered() {
         return request(mService.getTransactionListUnfiltered());
+    }
+
+    public Flowable<ResponseModel<TransactionParentModel>> getTransactionWithCurrency(int from_currency) {
+        return request(mService.getTransactionWithCurrency(from_currency));
     }
 
 }

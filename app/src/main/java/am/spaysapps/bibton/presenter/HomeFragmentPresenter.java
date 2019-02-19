@@ -6,11 +6,12 @@ import android.widget.Toast;
 import javax.inject.Inject;
 
 import am.spaysapps.bibton.model.ResponseModel;
-import am.spaysapps.bibton.model.getTransactionList.TransactionRequestModel;
+import am.spaysapps.bibton.model.getTransactionList.TransactionCurrencyRequestModel;
 import am.spaysapps.bibton.model.getTransactionList.TransactionParentModel;
 import am.spaysapps.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import am.spaysapps.bibton.presenter.root.BasePresenter;
 import am.spaysapps.bibton.shared.data.services.AuthorizationService;
+import am.spaysapps.bibton.shared.utils.Constants;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.homeFragment.IHomeFragment;
 import io.reactivex.disposables.Disposable;
 
@@ -24,11 +25,24 @@ public class HomeFragmentPresenter extends BasePresenter<IHomeFragment> {
         mService = service;
     }
 
-    //    public void getTransactionList(TransactionRequestModel transactionRequestModel) {
-//        Disposable disposable = mService.getTransaction(transactionRequestModel)
-//                .subscribe(this::transactionResponse, this::errorView);
-//        addDisposable(disposable);
-//    }
+    public void getTransactionListWithCurrency(int from_currency) {
+        Disposable disposable = mService.getTransactionWithCurrency(from_currency)
+                .subscribe(this::transactionResponseWithCurrency, this::errorView);
+        addDisposable(disposable);
+    }
+
+    private void transactionResponseWithCurrency(ResponseModel<TransactionParentModel> responseModel) {
+
+        if (responseModel.isSuccess() && responseModel.getData() != null) {
+
+            mView.getTransactionList(responseModel.getData().getData());
+
+
+        } else
+            mView.showServerError();
+    }
+
+
     public void getTransactionList() {
         Disposable disposable = mService.getTransaction()
                 .subscribe(this::transactionResponse, this::errorView);
@@ -56,6 +70,7 @@ public class HomeFragmentPresenter extends BasePresenter<IHomeFragment> {
     private void currencyResponse(ResponseModel<WalletCurrencyParentResponse> responseModel) {
         if (responseModel.isSuccess() && responseModel.getData() != null) {
             mView.getCurrencyWallet(responseModel.getData().getList());
+            Constants.SYMBOL=responseModel.getData().getList().get(0).getSymbol();
         } else {
             Toast.makeText(mContext, "False", Toast.LENGTH_SHORT).show();
             mView.showNetworkError();

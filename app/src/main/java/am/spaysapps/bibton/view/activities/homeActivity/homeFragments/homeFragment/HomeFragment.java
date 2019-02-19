@@ -1,29 +1,21 @@
 package am.spaysapps.bibton.view.activities.homeActivity.homeFragments.homeFragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.List;
-
 import javax.inject.Inject;
-
 import am.spaysapps.bibton.Bibton;
 import am.spaysapps.bibton.R;
 import am.spaysapps.bibton.adapters.BalanceHomeAdapter;
-import am.spaysapps.bibton.adapters.BalanceListParentAdapter;
 import am.spaysapps.bibton.adapters.ServiceAdapterHorizontal;
+import am.spaysapps.bibton.adapters.transactionAdapter.TransactionParentAdapter;
 import am.spaysapps.bibton.model.getTransactionList.TransactionDateResponse;
-import am.spaysapps.bibton.model.getTransactionList.TransactionRequestModel;
 import am.spaysapps.bibton.model.walletCurrency.WalletCurrencyResponse;
 import am.spaysapps.bibton.presenter.HomeFragmentPresenter;
 import am.spaysapps.bibton.shared.utils.Constants;
@@ -50,11 +42,10 @@ public class HomeFragment extends Fragment implements IHomeFragment {
     private TextView text_view_bank_account;
     private TextView wallet_state_text_view;
     private ImageView wallet_image_view_state;
-    private ConstraintLayout open_currency_view;
     private ConstraintLayout constraint_balance;
     private TextView currencyName;
-    private Fragment current_fragment;
     private RecyclerView recycler_view_transaction;
+    private TextView textViewCash;
 
 
     @Nullable
@@ -63,10 +54,8 @@ public class HomeFragment extends Fragment implements IHomeFragment {
         mainView = inflater.inflate(R.layout.home_fragment_layout, container, false);
         Bibton.getInstance().getAuthorizationComponent().inject(this);
         mPresenter.onViewCreated(this);
-
-        TransactionRequestModel transactionRequestModel = new TransactionRequestModel();
-        transactionRequestModel.setCurrency_id(1);
         mPresenter.getCurrencyList();
+
         mPresenter.getTransactionList();
         init();
         wallet_State(Constants.IS_WALLET);
@@ -76,7 +65,7 @@ public class HomeFragment extends Fragment implements IHomeFragment {
         second_item_selected();
         open_currency_view();
         close_currency_view();
-        changeCashBalanceSizes();
+        //changeCashBalanceSizes();
 
         return mainView;
     }
@@ -88,9 +77,6 @@ public class HomeFragment extends Fragment implements IHomeFragment {
         recyclerView_service_horizontal.setLayoutManager(layoutManager);
         ServiceAdapterHorizontal serviceAdapterHorizontal = new ServiceAdapterHorizontal(context);
         recyclerView_service_horizontal.setAdapter(serviceAdapterHorizontal);
-        RecyclerView transaction_recycler_view = mainView.findViewById(R.id.recycler_view_transaction);
-        RecyclerView.LayoutManager transaction_layout_manager = new LinearLayoutManager(getContext());
-        transaction_recycler_view.setLayoutManager(transaction_layout_manager);
         open_wallet_layout = mainView.findViewById(R.id.open_wallet_layout);
         constrait_wallet = mainView.findViewById(R.id.constrait_wallet);
         close_wallet_text_view = mainView.findViewById(R.id.close_wallet_text_view);
@@ -100,23 +86,24 @@ public class HomeFragment extends Fragment implements IHomeFragment {
         text_view_bank_account = mainView.findViewById(R.id.text_view_bank_account);
         wallet_state_text_view = mainView.findViewById(R.id.wallet_state);
         wallet_image_view_state = mainView.findViewById(R.id.wallet_image_view_state);
-        open_currency_view = mainView.findViewById(R.id.open_currency_view);
         constraint_balance = mainView.findViewById(R.id.constraint_balance);
         currencyName = mainView.findViewById(R.id.currency_name);
-        current_fragment = new HomeFragment();
         recycler_view_transaction = mainView.findViewById(R.id.recycler_view_transaction);
+        textViewCash = mainView.findViewById(R.id.cash_balance);
 
 
     }
 
-    private void changeCashBalanceSizes() {
-        String s = "$99000.00";
-        SpannableString ss1 = new SpannableString(s);
-        ss1.setSpan(new RelativeSizeSpan(1.5f), 0, 6, 0); // set size
-        ss1.setSpan(new ForegroundColorSpan(Color.WHITE), 0, 6, 0);// set color
-        TextView tv = (TextView) mainView.findViewById(R.id.cash_balance);
-        tv.setText(ss1);
-    }
+//    private void changeCashBalanceSizes() {
+//        String s = "$19,000.00";
+//        SpannableString ss1 = new SpannableString(s);
+//        ss1.setSpan(new RelativeSizeSpan(1.5f), 0, 7, 0); // set size
+//        ss1.setSpan(new RelativeSizeSpan(0.7f), 0, 1, 0); // set size
+//
+//        ss1.setSpan(new ForegroundColorSpan(Color.WHITE), 0, 6, 0);// set color
+//        TextView tv = (TextView) mainView.findViewById(R.id.cash_balance);
+//        tv.setText(ss1);
+//    }
 
 
     private void open_wallet_layout() {
@@ -128,11 +115,12 @@ public class HomeFragment extends Fragment implements IHomeFragment {
     }
 
     private void open_currency_view() {
-        open_currency_view.setOnClickListener(v -> constraint_balance.setVisibility(View.VISIBLE));
+        currencyName.setOnClickListener(v -> constraint_balance.setVisibility(View.VISIBLE));
     }
 
     private void close_currency_view() {
         constraint_balance.setOnClickListener(v -> constraint_balance.setVisibility(View.INVISIBLE));
+        constrait_wallet.setVisibility(View.GONE);
     }
 
     private void first_item_selected() {
@@ -149,9 +137,10 @@ public class HomeFragment extends Fragment implements IHomeFragment {
         first_item_selected.setBackground(context.getResources().getDrawable(R.drawable.rectangle_shape_active));
         textViewWallet.setTextColor(context.getResources().getColor(R.color.white));
         constrait_wallet.setVisibility(View.INVISIBLE);
-        wallet_state_text_view.setText(context.getResources().getText(R.string.wallet));
-        wallet_image_view_state.setBackground(context.getResources().getDrawable(R.drawable.wallet_icon_white_black));
+        wallet_state_text_view.setText(context.getResources().getText(R.string.bankAccount));
+        wallet_image_view_state.setBackground(context.getResources().getDrawable(R.drawable.wallet_icon_colorful));
         Constants.IS_WALLET = false;
+
 
     }
 
@@ -161,7 +150,7 @@ public class HomeFragment extends Fragment implements IHomeFragment {
         second_item_selected.setBackground(context.getResources().getDrawable(R.drawable.rectangle_shape_active));
         text_view_bank_account.setTextColor(context.getResources().getColor(R.color.white));
         constrait_wallet.setVisibility(View.INVISIBLE);
-        wallet_state_text_view.setText(context.getResources().getText(R.string.bankAccount));
+        wallet_state_text_view.setText(context.getResources().getText(R.string.wallet));
         wallet_image_view_state.setBackground(context.getResources().getDrawable(R.drawable.wallet_icon_colorful));
         Constants.IS_WALLET = true;
     }
@@ -190,16 +179,29 @@ public class HomeFragment extends Fragment implements IHomeFragment {
 
     @Override
     public void getTransactionList(List<TransactionDateResponse> data) {
-
-        BalanceListParentAdapter transactionParentAdapter = new BalanceListParentAdapter(context, data);
+        TransactionParentAdapter transactionParentAdapter = new TransactionParentAdapter(context, data);
         recycler_view_transaction.setLayoutManager(new LinearLayoutManager(context));
         recycler_view_transaction.setAdapter(transactionParentAdapter);
-        Toast.makeText(context, data.size() + "", Toast.LENGTH_SHORT).show();
     }
 
+
+    @SuppressLint("SetTextI18n")
     @Override
     public void getCurrencyWallet(List<WalletCurrencyResponse> getWalletCurrencyList) {
-        BalanceHomeAdapter balanceHomeAdapter = new BalanceHomeAdapter(context, getWalletCurrencyList, current_fragment, constraint_balance, currencyName);
+        currencyName.setText(getWalletCurrencyList.get(0).getCurrency_iso());
+        textViewCash.setText(getWalletCurrencyList.get(0).getSymbol() + getWalletCurrencyList.get(0).getBalance());
+        BalanceHomeAdapter balanceHomeAdapter = new BalanceHomeAdapter(context, getWalletCurrencyList, position -> {
+            constraint_balance.setVisibility(View.GONE);
+            currencyName.setText(getWalletCurrencyList.get(position).getCurrency_iso());
+
+
+            Constants.SYMBOL = getWalletCurrencyList.get(position).getSymbol();
+            mPresenter.getTransactionListWithCurrency(getWalletCurrencyList.get(position).getCurrency_id());
+            textViewCash.setText(getWalletCurrencyList.get(position).getSymbol() + getWalletCurrencyList.get(position).getBalance());
+
+
+        });
+
 
         RecyclerView recyclerView_balance_list = mainView.findViewById(R.id.recycle_balance);
         recyclerView_balance_list.setLayoutManager(new LinearLayoutManager(context));

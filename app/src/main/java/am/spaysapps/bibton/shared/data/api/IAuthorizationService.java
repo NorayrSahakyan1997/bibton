@@ -1,8 +1,8 @@
 package am.spaysapps.bibton.shared.data.api;
 
 import am.spaysapps.bibton.model.ResponseModel;
+import am.spaysapps.bibton.model.getTransactionList.TransactionCurrencyRequestModel;
 import am.spaysapps.bibton.model.getTransactionList.TransactionFilterRequestModel;
-import am.spaysapps.bibton.model.getTransactionList.TransactionRequestModel;
 import am.spaysapps.bibton.model.checkPassCode.CheckPassCodeModel;
 import am.spaysapps.bibton.model.countryModel.CountryParentModel;
 import am.spaysapps.bibton.model.createAccountModel.CreateAccountModel;
@@ -46,11 +46,10 @@ public interface IAuthorizationService {
     @POST("api/recover/new-passcode")
     Flowable<ResponseModel<ForgetPassCodeModel>> forgetPassCode(@Field("unique_id") String unique_id, @Field("passcode") String passCode);
 
-//    @POST("api/transactions/get-transactions-list")
-//    Flowable<ResponseModel<TransactionParentModel>> getTransactionList(@Body TransactionRequestModel transactionRequestModel);
+    //    @POST("api/transactions/get-transactions-list")
+//    Flowable<ResponseModel<TransactionParentModel>> getTransactionList(@Body TransactionCurrencyRequestModel transactionRequestModel);
     @POST("api/transactions/get-transactions-list")
     Flowable<ResponseModel<TransactionParentModel>> getTransactionList();
-
 
 
     @GET("api/wallet/get-wallet-balance-list")
@@ -60,12 +59,16 @@ public interface IAuthorizationService {
     Flowable<ResponseModel<TransactionParentModel>> getFilteredListTransaction(@Body TransactionFilterRequestModel transactionFilterRequestModel);
 
 
+    @FormUrlEncoded
+    @POST("api/transactions/get-transactions-list")
+    Flowable<ResponseModel<TransactionParentModel>> getTransactionWithCurrency(@Field("currency_id") int currency_id);
 
     @POST("api/transactions/get-transactions-list")
     Flowable<ResponseModel<TransactionParentModel>> getTransactionListUnfiltered();
 
-
-
+    @FormUrlEncoded
+    @POST("api/transactions/get-transactions-list")
+    Flowable<ResponseModel<TransactionParentModel>> getTransactionListWithCurrency(@Field("currency_id") int currency_id);
 
 
 

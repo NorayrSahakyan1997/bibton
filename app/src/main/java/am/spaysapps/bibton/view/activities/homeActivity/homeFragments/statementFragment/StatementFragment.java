@@ -1,21 +1,26 @@
 package am.spaysapps.bibton.view.activities.homeActivity.homeFragments.statementFragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.squareup.picasso.Picasso;
 import java.util.List;
 import javax.inject.Inject;
 import am.spaysapps.bibton.Bibton;
 import am.spaysapps.bibton.R;
-import am.spaysapps.bibton.adapters.StatementFragmentAdapter;
+import am.spaysapps.bibton.adapters.BalanceHomeAdapter;
+import am.spaysapps.bibton.adapters.transactionAdapter.TransactionParentAdapter;
+import am.spaysapps.bibton.model.getTransactionList.TransactionDateResponse;
 import am.spaysapps.bibton.model.getTransactionList.TransactionFilterRequestModel;
-import am.spaysapps.bibton.model.getTransactionList.TransactionResponse;
+import am.spaysapps.bibton.model.walletCurrency.WalletCurrencyResponse;
 import am.spaysapps.bibton.presenter.StatementFragmentPresenter;
+import am.spaysapps.bibton.shared.utils.Constants;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -32,10 +37,13 @@ public class StatementFragment extends Fragment implements IStatementFragment {
     private TextView text_data_from;
     private TextView text_data_to;
     private RecyclerView recycler_view_statement_fragment;
-    private RecyclerView.LayoutManager recycler_view_manager;
+    private Context context;
+    private ImageView statementFlagIcon;
     @Inject
     StatementFragmentPresenter mPresenter;
     private TransactionFilterRequestModel transactionFilterRequestModel;
+    private ConstraintLayout constraintBalance;
+    private TextView currencyName;
 
 
     @Nullable
@@ -48,23 +56,28 @@ public class StatementFragment extends Fragment implements IStatementFragment {
 
         mPresenter.getTransactionList(transactionFilterRequestModel);
         mPresenter.getTransactionList();
+        mPresenter.getCurrencyList();
 
         init();
         handleClicksFromTO();
+        openCurrencyConstraint();
+        closeConstraintBalance();
         return mainView;
     }
 
     private void init() {
         recycler_view_statement_fragment = mainView.findViewById(R.id.recycler_view_statement_fragment);
-        recycler_view_manager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager recycler_view_manager = new LinearLayoutManager(getContext());
         recycler_view_statement_fragment.setLayoutManager(recycler_view_manager);
-
         constraint_from = mainView.findViewById(R.id.constraint_from);
         calendarView = mainView.findViewById(R.id.calendar_view_constraint);
         calendar = mainView.findViewById(R.id.calendar);
         constraint_to = mainView.findViewById(R.id.constraint_to);
         text_data_from = mainView.findViewById(R.id.text_view_data_from);
         text_data_to = mainView.findViewById(R.id.text_view_data_to);
+        statementFlagIcon = mainView.findViewById(R.id.flag_image_statement);
+        constraintBalance = mainView.findViewById(R.id.constraint_balance);
+        currencyName = mainView.findViewById(R.id.currency_name);
     }
 
 
@@ -72,9 +85,11 @@ public class StatementFragment extends Fragment implements IStatementFragment {
     private String endDate;
 
     private void handleClicksFromTO() {
+        calendar.setMaxDate(System.currentTimeMillis() -5);
 
         constraint_from.setOnClickListener(v -> {
             calendarView.setVisibility(View.VISIBLE);
+
             calendar.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
                 calendarView.setVisibility(View.GONE);
 
@@ -90,6 +105,7 @@ public class StatementFragment extends Fragment implements IStatementFragment {
         });
         constraint_to.setOnClickListener(v -> {
             calendarView.setVisibility(View.VISIBLE);
+            calendar.setMaxDate(System.currentTimeMillis() + 100);
 
             calendar.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
                 calendarView.setVisibility(View.GONE);
@@ -103,6 +119,9 @@ public class StatementFragment extends Fragment implements IStatementFragment {
                 mPresenter.getTransactionList(transactionFilterRequestModel);
 
 
+
+
+
             });
         });
         calendarView.setOnClickListener(v -> calendarView.setVisibility(View.INVISIBLE));
@@ -110,15 +129,50 @@ public class StatementFragment extends Fragment implements IStatementFragment {
     }
 
     @Override
-    public void getFilteredTransactionList(List<TransactionResponse> transactionResponses) {
+    public void getFilteredTransactionList(List<TransactionDateResponse> transactionResponses) {
 
+
+    }
+
+    private void openCurrencyConstraint() {
+        currencyName.setOnClickListener(v -> constraintBalance.setVisibility(View.VISIBLE));
     }
 
     @Override
-    public void getTransactionList(List<TransactionResponse> transactionResponses) {
-        StatementFragmentAdapter statementFragmentAdapter = new StatementFragmentAdapter(getContext(), transactionResponses);
-        recycler_view_statement_fragment.setAdapter(statementFragmentAdapter);
+    public void getTransactionList(List<TransactionDateResponse> transactionResponses) {
+        TransactionParentAdapter transactionParentAdapter = new TransactionParentAdapter(context, transactionResponses);
+        recycler_view_statement_fragment.setLayoutManager(new LinearLayoutManager(context));
+        recycler_view_statement_fragment.setAdapter(transactionParentAdapter);
     }
+
+    @Override
+    public void getWalletCurrency(List<WalletCurrencyResponse> getWalletCurrencyResponse) {
+        Picasso.get()
+                .load(getWalletCurrencyResponse.get(0).getCurrency_icon())
+                .into(statementFlagIcon);
+        currencyName.setText(getWalletCurrencyResponse.get(0).getCurrency_iso());
+
+        BalanceHomeAdapter balanceHomeAdapter = new BalanceHomeAdapter(context, getWalletCurrencyResponse, position -> {
+            constraintBalance.setVisibility(View.GONE);
+            currencyName.setText(getWalletCurrencyResponse.get(position).getCurrency_iso());
+            Picasso.get()
+                    .load(getWalletCurrencyResponse.get(position).getCurrency_icon())
+                    .into(statementFlagIcon);
+            Constants.SYMBOL = getWalletCurrencyResponse.get(position).getSymbol();
+            mPresenter.getTransactionListWithCurrency(getWalletCurrencyResponse.get(position).getCurrency_id());
+        });
+
+
+        RecyclerView recyclerView_balance_list = mainView.findViewById(R.id.recycle_balance_currency_statement);
+        recyclerView_balance_list.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView_balance_list.setAdapter(balanceHomeAdapter);
+    }
+
+    private void closeConstraintBalance() {
+        constraintBalance.setOnClickListener(v -> constraintBalance.setVisibility(View.GONE));
+    }
+
+
 
     @Override
     public void onError(String errorMessage) {
@@ -132,6 +186,13 @@ public class StatementFragment extends Fragment implements IStatementFragment {
 
     @Override
     public void showNetworkError() {
+
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        this.context = context;
+        super.onAttach(context);
 
     }
 }

@@ -8,9 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.airbnb.lottie.LottieAnimationView;
-
 import am.spaysapps.bibton.R;
 
 public class BibtonSignFragment extends Fragment {
