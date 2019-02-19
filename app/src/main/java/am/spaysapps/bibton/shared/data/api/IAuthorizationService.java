@@ -1,6 +1,7 @@
 package am.spaysapps.bibton.shared.data.api;
 
 import am.spaysapps.bibton.model.ResponseModel;
+import am.spaysapps.bibton.model.exchangeModel.ExchangeParentModel;
 import am.spaysapps.bibton.model.getTransactionList.TransactionCurrencyRequestModel;
 import am.spaysapps.bibton.model.getTransactionList.TransactionFilterRequestModel;
 import am.spaysapps.bibton.model.checkPassCode.CheckPassCodeModel;
@@ -69,6 +70,10 @@ public interface IAuthorizationService {
     @FormUrlEncoded
     @POST("api/transactions/get-transactions-list")
     Flowable<ResponseModel<TransactionParentModel>> getTransactionListWithCurrency(@Field("currency_id") int currency_id);
+
+    @FormUrlEncoded
+    @POST("api/rate/exchange")
+    Flowable<ResponseModel<ExchangeParentModel>> getExchangeRate(@Field("from") int exchange_from, @Field("to") int exchange_to, @Field("value") int value);
 
 
 

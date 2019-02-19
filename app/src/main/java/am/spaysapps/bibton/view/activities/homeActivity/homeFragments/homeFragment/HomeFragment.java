@@ -119,8 +119,13 @@ public class HomeFragment extends Fragment implements IHomeFragment {
     }
 
     private void close_currency_view() {
-        constraint_balance.setOnClickListener(v -> constraint_balance.setVisibility(View.INVISIBLE));
-        constrait_wallet.setVisibility(View.GONE);
+        constraint_balance.setOnClickListener(v ->  constraint_balance.setVisibility(View.GONE));
+        constrait_wallet.setOnClickListener(v -> constrait_wallet.setVisibility(View.GONE));
+
+
+
+
+
     }
 
     private void first_item_selected() {

@@ -1,6 +1,7 @@
 package am.spaysapps.bibton.shared.data.services;
 
 import am.spaysapps.bibton.model.ResponseModel;
+import am.spaysapps.bibton.model.exchangeModel.ExchangeParentModel;
 import am.spaysapps.bibton.model.getTransactionList.TransactionCurrencyRequestModel;
 import am.spaysapps.bibton.model.getTransactionList.TransactionFilterRequestModel;
 import am.spaysapps.bibton.model.checkPassCode.CheckPassCodeModel;
@@ -73,6 +74,11 @@ public class AuthorizationService extends BaseService {
 
     public Flowable<ResponseModel<TransactionParentModel>> getTransactionWithCurrency(int from_currency) {
         return request(mService.getTransactionWithCurrency(from_currency));
+    }
+
+    public Flowable<ResponseModel<ExchangeParentModel>>changeMoney(int from_currency,int to_currency,int amount)
+    {
+        return request(mService.getExchangeRate(from_currency,to_currency,amount));
     }
 
 }

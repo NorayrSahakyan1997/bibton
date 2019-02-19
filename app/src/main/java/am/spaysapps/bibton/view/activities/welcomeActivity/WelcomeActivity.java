@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import am.spaysapps.bibton.view.activities.homeActivity.HomeActivity;
+import am.spaysapps.bibton.view.activities.homeActivity.ratesActivity.RatesActivity;
 import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.FlexibleTransferringFragment;
 import am.spaysapps.bibton.view.activities.welcomeActivity.welcomeFragments.phoneNumberFragment.PhoneNumberFragment;
 import androidx.fragment.app.Fragment;
@@ -41,11 +41,10 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        //loteAnimation();
-        //init();
+//        loteAnimation();
+//        init();
          enterHomeActivity();
-
-        //setFragments();
+//        setFragments();
 
     }
 
@@ -66,10 +65,9 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
 
-    private FragmentTransaction transaction;
-
     public void replaceFragment(Fragment fragment, boolean backAnim) {
-        transaction = getSupportFragmentManager().beginTransaction();
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         if (backAnim) {
             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
@@ -83,7 +81,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void enterHomeActivity() {
-        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        Intent intent = new Intent(getApplicationContext(), RatesActivity.class);
 
         startActivity(intent);
     }
