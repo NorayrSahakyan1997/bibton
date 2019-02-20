@@ -5,6 +5,7 @@ import am.spaysapps.bibton.adapters.NavigationMenuAdapter;
 import am.spaysapps.bibton.shared.utils.ChangeColorsTabBar;
 import am.spaysapps.bibton.shared.utils.ChangeFragments;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.BibtonCardFragment;
+import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.exchangeFragment.ExchangeActivity;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.MoreFragment;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.PaymentFragment;
 import am.spaysapps.bibton.view.activities.homeActivity.homeFragments.homeFragment.HomeFragment;

@@ -49,7 +49,6 @@
     <dimen name="margin_top_frame_layout">50dp</dimen>
     <dimen name="margin_top_text_exchange">30dp</dimen>
     <dimen name="margin_top_scroll_exchange">60dp</dimen>
-    <dimen name="margin_top_exchange">22dp</dimen>
     <dimen name="details_activity_heigh">270dp</dimen>
     <dimen name="details_activity_oval_width">130dp</dimen>
     <dimen name="height_devider_details">60dp</dimen>
@@ -58,7 +57,18 @@
     <dimen name="statement_wallet_card_width">135dp</dimen>
     <dimen name="statement_from_to_constraint">130dp</dimen>
     <integer name="transaction_child_item_height">70</integer>
+
     <dimen name="margin_top_toolbar_height">60dp</dimen>
+    <dimen name="margin_top_exchange_activity">20dp</dimen>
+    <dimen name="margin_top_exchange">20dp</dimen>
+    <dimen name="margin_top_exchange_last_item">40dp</dimen>
+    <dimen name="constraing_width_rates_fragment"></dimen>
+    <dimen name="constraint_width_rates">85dp</dimen>
+    <dimen name="margin_top_frame_layout_rates_activity">200dp</dimen>
+
+
+
+
 
 
 

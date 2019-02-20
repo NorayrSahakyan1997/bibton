@@ -45,7 +45,6 @@
 
     <dimen name="margin_top_text_exchange">120dp</dimen>
     <dimen name="margin_top_scroll_exchange">150dp</dimen>
-    <dimen name="margin_top_exchange">60dp</dimen>
     <dimen name="details_activity_heigh">530dp</dimen>
     <dimen name="details_activity_oval_width">300dp</dimen>
     <dimen name="oval_size_details">80dp</dimen>
@@ -54,6 +53,14 @@
     <dimen name="statement_from_to_constraint">230dp</dimen>
     <integer name="transaction_child_item_height">160</integer>
     <dimen name="margin_top_toolbar_height">105dp</dimen>
+    <dimen name="margin_top_exchange_activity">80dp</dimen>
+    <dimen name="margin_top_exchange">80dp</dimen>
+    <dimen name="margin_top_exchange_last_item">70dp</dimen>
+    <dimen name="constraint_width_rates">150dp</dimen>
+    <dimen name="margin_top_frame_layout_rates_activity">240dp</dimen>
+
+
+
 
 
 

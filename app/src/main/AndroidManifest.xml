@@ -15,9 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".view.activities.homeActivity.ratesActivity.RatesActivity"></activity>
         <activity android:name=".view.activities.homeActivity.DetailsActivity" />
         <activity
-            android:name=".view.activities.homeActivity.ExchangeActivity"
+            android:name=".view.activities.homeActivity.homeFragments.exchangeFragment.ExchangeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.activities.homeActivity.HomeActivity"
