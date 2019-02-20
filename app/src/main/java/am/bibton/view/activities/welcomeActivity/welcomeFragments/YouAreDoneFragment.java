@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.airbnb.lottie.LottieAnimationView;
-
 import am.bibton.R;
 import am.bibton.view.activities.BaseFragment;
 import am.bibton.view.activities.homeActivity.HomeActivity;

@@ -7,22 +7,53 @@ import am.bibton.view.activities.ratesActivity.ratesFragments.ConverterFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.RatesFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.annotation.SuppressLint;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 @SuppressLint("Registered")
 public class RatesActivity extends BaseActivity {
     private Fragment currentFragment;
 
+    private ImageView imageRateFrame;
+    private ImageView imageConvertFrame;
+    private ImageView imageAlertFrame;
+
+    private ImageView rateIcon;
+    private ImageView convertIcon;
+    private ImageView alertIcon;
+
+    private TextView rateText;
+    private TextView convertText;
+    private TextView alertText;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rates);
         setFragments();
+        init();
+    }
 
+    public void init() {
+        imageRateFrame = findViewById(R.id.rate_frame_image);
+        imageConvertFrame = findViewById(R.id.convert_frame_image);
+        imageAlertFrame = findViewById(R.id.alert_frame_image);
+
+        rateIcon = findViewById(R.id.rate_Icon);
+        convertIcon = findViewById(R.id.convert_Icon);
+        alertIcon = findViewById(R.id.alert_Icon);
+        rateIcon.getDrawable().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+
+
+        rateText = findViewById(R.id.text_Rate);
+        convertText = findViewById(R.id.text_Convert);
+        alertText = findViewById(R.id.text_Alert);
+        changeTabBarColors(0);
     }
 
     public void replaceFragment(Fragment fragment, boolean backAnim) {
@@ -49,15 +80,63 @@ public class RatesActivity extends BaseActivity {
 
     public void openRatesFragment(View view) {
         replaceFragment(new RatesFragment(), true);
+        changeTabBarColors(0);
     }
 
     public void openAlertFragment(View view) {
         replaceFragment(new AlertsFragment(), false);
+        changeTabBarColors(2);
     }
 
     public void openConverterFragment(View view) {
         replaceFragment(new ConverterFragment(), false);
+        changeTabBarColors(1);
     }
 
+    public void changeTabBarColors(int currentPosition) {
+        if (currentPosition == 0) {
+            imageRateFrame.setBackground(getDrawable(R.drawable.rectangle_shape_rates_activity));
+            rateText.setTextColor(getResources().getColor(R.color.white));
+            rateIcon.getDrawable().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+
+            imageConvertFrame.setBackground(getResources().getDrawable(R.drawable.rectangle_shape_rates_activity_transparent));
+            convertText.setTextColor(getResources().getColor(R.color.pass_code_active));
+            convertIcon.getDrawable().setColorFilter(getResources().getColor(R.color.pass_code_active), PorterDuff.Mode.SRC_ATOP);
+
+            imageAlertFrame.setBackground(getResources().getDrawable(R.drawable.rectangle_shape_rates_activity_transparent));
+            alertText.setTextColor(getResources().getColor(R.color.pass_code_active));
+            alertIcon.getDrawable().setColorFilter(getResources().getColor(R.color.pass_code_active), PorterDuff.Mode.SRC_ATOP);
+
+
+        } else if (currentPosition == 1) {
+            imageRateFrame.setBackground(getResources().getDrawable(R.drawable.rectangle_shape_rates_activity_transparent));
+            rateText.setTextColor(getResources().getColor(R.color.pass_code_active));
+            rateIcon.getDrawable().setColorFilter(getResources().getColor(R.color.pass_code_active), PorterDuff.Mode.SRC_ATOP);
+
+            imageConvertFrame.setBackground(getDrawable(R.drawable.rectangle_shape_rates_activity));
+            convertText.setTextColor(getResources().getColor(R.color.white));
+            convertIcon.getDrawable().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+
+            imageAlertFrame.setBackground(getResources().getDrawable(R.drawable.rectangle_shape_rates_activity_transparent));
+            alertText.setTextColor(getResources().getColor(R.color.pass_code_active));
+            alertIcon.getDrawable().setColorFilter(getResources().getColor(R.color.pass_code_active), PorterDuff.Mode.SRC_ATOP);
+
+
+        } else if (currentPosition == 2) {
+            imageRateFrame.setBackground(getResources().getDrawable(R.drawable.rectangle_shape_rates_activity_transparent));
+            rateText.setTextColor(getResources().getColor(R.color.pass_code_active));
+            rateIcon.getDrawable().setColorFilter(getResources().getColor(R.color.pass_code_active), PorterDuff.Mode.SRC_ATOP);
+
+            imageConvertFrame.setBackground(getResources().getDrawable(R.drawable.rectangle_shape_rates_activity_transparent));
+            convertText.setTextColor(getResources().getColor(R.color.pass_code_active));
+            convertIcon.getDrawable().setColorFilter(getResources().getColor(R.color.pass_code_active), PorterDuff.Mode.SRC_ATOP);
+
+            imageAlertFrame.setBackground(getDrawable(R.drawable.rectangle_shape_rates_activity));
+            alertText.setTextColor(getResources().getColor(R.color.white));
+            alertIcon.getDrawable().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+
+        }
+
+    }
 
 }

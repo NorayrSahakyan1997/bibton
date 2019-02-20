@@ -35,7 +35,6 @@ public class AuthorizationService extends BaseService {
         return request(mService.getUserInfo(shortName, phoneNumber));
     }
 
-
     public Flowable<ResponseModel<CheckPassCodeModel>> checkPassCode(String unique_id, String code) {
         return request(mService.checkPassCode(unique_id, code));
     }
@@ -52,9 +51,6 @@ public class AuthorizationService extends BaseService {
         return request(mService.forgetPassCode(unique_id, passCode));
     }
 
-    //    public Flowable<ResponseModel<TransactionParentModel>> getTransaction(TransactionCurrencyRequestModel transactionRequestModel) {
-//        return request(mService.getTransactionList(transactionRequestModel));
-//    }
     public Flowable<ResponseModel<TransactionParentModel>> getTransaction() {
         return request(mService.getTransactionList());
     }

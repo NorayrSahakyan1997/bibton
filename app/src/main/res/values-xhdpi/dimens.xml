@@ -60,23 +60,11 @@
     <dimen name="margin_top_exchange_activity">30dp</dimen>
     <dimen name="margin_top_exchange">20dp</dimen>
     <dimen name="margin_top_exchange_last_item">50dp</dimen>
-    <dimen name="constraint_width_rates">90dp</dimen>
-    <dimen name="margin_top_frame_layout_rates_activity">200dp</dimen>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <dimen name="constraint_width_rates">100dp</dimen>
+    <dimen name="margin_top_frame_layout_rates_activity">180dp</dimen>
+    <dimen name="rates_circle_width_height">55dp</dimen>
+    <dimen name="rates_item_row_image_width">160dp</dimen>
+    <dimen name="margin_height_rates_frame">170dp</dimen>
 
 
 

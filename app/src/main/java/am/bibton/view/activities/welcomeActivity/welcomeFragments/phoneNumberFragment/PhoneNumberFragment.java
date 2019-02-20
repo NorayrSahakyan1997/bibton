@@ -10,19 +10,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.airbnb.lottie.LottieAnimationView;
-
 import java.util.Objects;
-
 import javax.inject.Inject;
-
 import am.bibton.Bibton;
 import am.bibton.R;
 import am.bibton.presenter.PhoneNumberPresenter;
 import am.bibton.shared.utils.ChangeFragments;
-import am.bibton.shared.utils.CloseKeyBoard;
 import am.bibton.shared.utils.Constants;
+import am.bibton.shared.utils.KeyboardUtils;
 import am.bibton.view.activities.BaseFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.countrySearchFragment.CountrySearchFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.inputCodeFragment.InputPhoneCodeFragment;
@@ -49,7 +45,7 @@ public class PhoneNumberFragment extends BaseFragment implements IPhoneNumberFra
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.phone_number_fragment, container, false);
         Bibton.getInstance().getAuthorizationComponent().inject(this);
-        CloseKeyBoard.hideKeyboard(Objects.requireNonNull(getActivity()));
+        KeyboardUtils.hideSoftInput(Objects.requireNonNull(getActivity()));
         init();
         goToInputCodeFragment();
         goToCountrySearchFragment();

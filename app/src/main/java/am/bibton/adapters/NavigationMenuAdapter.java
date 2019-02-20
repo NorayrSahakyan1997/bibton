@@ -74,11 +74,7 @@ public class NavigationMenuAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         @Override
         public void onClick(View v) {
-//            Fragment newFragment = new PhoneNumberFragment();
-//            FragmentTransaction transaction = ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction();
-//            transaction.replace(R.id.frameLayoutWelcome, newFragment);
-//
-//            transaction.commit();
+
         }
 
     }
