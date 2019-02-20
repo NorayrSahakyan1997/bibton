@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
-    tools:context=".view.activities.homeActivity.homeFragments.exchangeFragment.ExchangeActivity">
+    tools:context=".view.activities.exchangeActivity.ExchangeActivity">
 
     <ImageView
         android:layout_width="24dp"
