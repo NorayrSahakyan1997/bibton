@@ -2,7 +2,7 @@ package am.bibton.view.activities.exchangeActivity;
 
 import am.bibton.Bibton;
 import am.bibton.R;
-import am.bibton.adapters.BalanceHomeAdapter;
+import am.bibton.adapters.CurrencyAdapter;
 import am.bibton.model.exchangeModel.ExchangeParentModel;
 import am.bibton.model.walletCurrency.WalletCurrencyResponse;
 import am.bibton.presenter.ExchangeActivityPresenter;
@@ -164,7 +164,7 @@ public class ExchangeActivity extends BaseActivity implements IExchangeActivity 
         toSymbol = getWalletCurrencyList.get(1).getSymbol();
 
         mPresenter.getExchange(from_currency_id, to_currency_id, 1);
-        BalanceHomeAdapter balanceHomeAdapter = new BalanceHomeAdapter(this, getWalletCurrencyList, position -> {
+        CurrencyAdapter balanceHomeAdapter = new CurrencyAdapter(this, getWalletCurrencyList, position -> {
             constraintBalance.setVisibility(View.GONE);
             if (setFrom) {
                 textCurrencyFrom.setText(getWalletCurrencyList.get(position).getCurrency_iso());

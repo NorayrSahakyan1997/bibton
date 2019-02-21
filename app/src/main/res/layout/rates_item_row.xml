@@ -6,7 +6,8 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/rates_item_text"
+
+        android:id="@+id/from_iso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -17,22 +18,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+         />
 
     <TextView
+        android:id="@+id/from_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="@string/britishBound"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/text_size_smaller"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rates_item_text" />
+        app:layout_constraintTop_toBottomOf="@+id/from_iso" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/rates_item_row_image_width"
@@ -41,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.4"
         android:background="@drawable/button_skip">
         <ImageView
             android:layout_width="24dp"
@@ -73,11 +77,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:background="@drawable/ic_chevron_right_black_24dp"
-            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintHorizontal_bias="1"
+            android:layout_marginEnd="10dp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
-        android:id="@+id/rates_item_balance"
+
+        android:id="@+id/to_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -86,22 +92,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="1"
         android:layout_marginEnd="20dp"
-        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_bias="0.3"
         android:text="1,69"
         android:textSize="@dimen/text_size_big"
         android:textColor="@color/colorBlack"
         android:fontFamily="@font/noto_sans_bold"
         />
     <TextView
+        android:id="@+id/to_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/rates_item_balance"
+        app:layout_constraintTop_toBottomOf="@+id/to_rate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="1"
         android:layout_marginEnd="20dp"
-        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_bias="0"
         android:text="@string/canadianDollar"
         android:textSize="@dimen/text_size_smaller"
         android:textColor="@color/colorBlack"

@@ -14,7 +14,7 @@ import java.util.List;
 import javax.inject.Inject;
 import am.bibton.Bibton;
 import am.bibton.R;
-import am.bibton.adapters.BalanceHomeAdapter;
+import am.bibton.adapters.CurrencyAdapter;
 import am.bibton.adapters.transactionAdapter.TransactionParentAdapter;
 import am.bibton.model.getTransactionList.TransactionDateResponse;
 import am.bibton.model.getTransactionList.TransactionFilterRequestModel;
@@ -136,7 +136,7 @@ public class StatementFragment extends BaseFragment implements IStatementFragmen
                 .into(statementFlagIcon);
         currencyName.setText(getWalletCurrencyResponse.get(0).getCurrency_iso());
 
-        BalanceHomeAdapter balanceHomeAdapter = new BalanceHomeAdapter(context, getWalletCurrencyResponse, position -> {
+        CurrencyAdapter balanceHomeAdapter = new CurrencyAdapter(context, getWalletCurrencyResponse, position -> {
             constraintBalance.setVisibility(View.GONE);
             currencyName.setText(getWalletCurrencyResponse.get(position).getCurrency_iso());
             Picasso.get()

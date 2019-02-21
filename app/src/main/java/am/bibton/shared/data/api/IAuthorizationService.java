@@ -9,6 +9,7 @@ import am.bibton.model.createAccountModel.CreateAccountModel;
 import am.bibton.model.forgetPassCodeModel.ForgetPassCodeModel;
 import am.bibton.model.getTransactionList.TransactionParentModel;
 import am.bibton.model.phoneNumberCodeModel.CountryCode;
+import am.bibton.model.rateModel.RateParentModel;
 import am.bibton.model.singUpModel.SignUp;
 import am.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import io.reactivex.Flowable;
@@ -69,6 +70,10 @@ public interface IAuthorizationService {
     @FormUrlEncoded
     @POST("api/rate/exchange")
     Flowable<ResponseModel<ExchangeParentModel>> getExchangeRate(@Field("from") int exchange_from, @Field("to") int exchange_to, @Field("value") int value);
+
+    @GET("api/rate/show/user-rate-list")
+    Flowable<ResponseModel<RateParentModel>> getRateList();
+
 
 
 

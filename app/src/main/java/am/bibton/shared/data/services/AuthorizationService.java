@@ -9,6 +9,7 @@ import am.bibton.model.createAccountModel.CreateAccountModel;
 import am.bibton.model.forgetPassCodeModel.ForgetPassCodeModel;
 import am.bibton.model.getTransactionList.TransactionParentModel;
 import am.bibton.model.phoneNumberCodeModel.CountryCode;
+import am.bibton.model.rateModel.RateParentModel;
 import am.bibton.model.singUpModel.SignUp;
 import am.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import am.bibton.shared.data.api.IAuthorizationService;
@@ -71,9 +72,12 @@ public class AuthorizationService extends BaseService {
         return request(mService.getTransactionWithCurrency(from_currency));
     }
 
-    public Flowable<ResponseModel<ExchangeParentModel>>changeMoney(int from_currency,int to_currency,int amount)
-    {
-        return request(mService.getExchangeRate(from_currency,to_currency,amount));
+    public Flowable<ResponseModel<ExchangeParentModel>> changeMoney(int from_currency, int to_currency, int amount) {
+        return request(mService.getExchangeRate(from_currency, to_currency, amount));
+    }
+
+    public Flowable<ResponseModel<RateParentModel>> getRateList() {
+        return request(mService.getRateList());
     }
 
 }

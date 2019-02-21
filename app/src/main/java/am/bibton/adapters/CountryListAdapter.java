@@ -1,5 +1,6 @@
 package am.bibton.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -27,7 +28,6 @@ public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private Context context;
     private List<CountryModel> countryArray;
     private LayoutInflater layoutInflater;
-    private String selected_Country_Code;
     private View view;
 
 
@@ -45,6 +45,7 @@ public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return viewHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
@@ -53,8 +54,7 @@ public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         viewHolder.country_code.setText(countryArray.get(position).getPhone_code() + "");
         Picasso.get()
                 .load(countryArray.get(position).getFlag())
-                //.error(R.drawable.user_placeholder_error)
-                .into(viewHolder.country_flags);
+                 .into(viewHolder.country_flags);
     }
 
 

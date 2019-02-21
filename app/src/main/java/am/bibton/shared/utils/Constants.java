@@ -12,7 +12,7 @@ public final class Constants {
     public static int CURRENT_PAGE = 0;
     public static int COINS_TRANSFERRING_DURABILITY = 3000;
 
-    public static  String TOKEN  ;
+    public static String TOKEN  ;
     public static String PHONE_NUMBER;
 
     public static String COUNTRY_SHORT_NAME;
@@ -22,7 +22,10 @@ public final class Constants {
 
     public static List<TransactionResponse> TRANSACTION_LIST= new ArrayList<>();
     public static boolean IS_WALLET=false;
-    public static int CURRENCY_ID=1;
+    public static int CURRENCY_ID_FIRST=0;
+    public static int CURRENCY_ID_SECOND=0;
+    public static int CURRENCY_SUM=0;
+
     public static String SYMBOL="";
 
     public static List<String> DATE= new ArrayList<>();

@@ -46,6 +46,7 @@ public class HomeActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
         init();
         setFragment();
     }
@@ -78,10 +79,8 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void open_home_fragment(View view) {
-
         changeFragments.replaceFragment(new HomeFragment(), true);
         ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, transfers_icon, card_icon, more_icon, 0);
-
     }
 
     public void open_analytics_fragment(View view) {

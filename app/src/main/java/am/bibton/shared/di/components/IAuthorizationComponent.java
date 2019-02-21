@@ -6,6 +6,8 @@ import am.bibton.shared.di.scopes.AuthorizationScope;
 import am.bibton.view.activities.exchangeActivity.ExchangeActivity;
 import am.bibton.view.activities.homeActivity.homeFragments.statementFragment.StatementFragment;
 import am.bibton.view.activities.homeActivity.homeFragments.homeFragment.HomeFragment;
+import am.bibton.view.activities.ratesActivity.addCurrencyActivity.AddCurrencyActivity;
+import am.bibton.view.activities.ratesActivity.ratesFragments.rateFragment.RatesFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.forgetPassCodeFragment.ForgetPassCodeFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.countrySearchFragment.CountrySearchFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.createPassCodeFragment.CreatePassCodeFragment;
@@ -16,6 +18,7 @@ import dagger.Component;
 @AuthorizationScope
 @Component(dependencies = {IAppComponent.class}, modules = {AuthorizationModule.class})
 public interface IAuthorizationComponent {
+
     void inject(PhoneNumberFragment fragment);
 
     void inject(CountrySearchFragment countrySearchFragment);
@@ -32,6 +35,9 @@ public interface IAuthorizationComponent {
 
     void inject(ExchangeActivity exchangeActivity);
 
+    void inject(RatesFragment ratesFragment);
+
+    void inject(AddCurrencyActivity addCurrencyActivity);
 
 
 }

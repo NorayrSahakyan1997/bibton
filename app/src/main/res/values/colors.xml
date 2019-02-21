@@ -15,5 +15,6 @@
     <color name="color_blue_text">#0086BF</color>
     <color name="inactive_text_color_tab">#9EB4CA</color>
     <color name="background_color">#232749</color>
+    <color name="grey">#707070</color>
 
 </resources>

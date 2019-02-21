@@ -1,15 +1,19 @@
 package am.bibton.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import am.bibton.R;
+import am.bibton.view.activities.ratesActivity.RatesActivity;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,6 +54,7 @@ public class ServiceAdapterHorizontal extends RecyclerView.Adapter<RecyclerView.
         viewHolder.image_view_horizontal_item_row.setBackgroundResource(service_icons[position]);
     }
 
+
     @Override
     public int getItemCount() {
         return service_names.size();
@@ -64,17 +69,22 @@ public class ServiceAdapterHorizontal extends RecyclerView.Adapter<RecyclerView.
 
             super(itemView);
             itemView.setOnClickListener(this);
-            text_view_horizontal_item_row=itemView.findViewById(R.id.text_view_horizontal_item_row);
-            image_view_horizontal_item_row=itemView.findViewById(R.id.image_view_horizontal_item_row);
+            text_view_horizontal_item_row = itemView.findViewById(R.id.text_view_horizontal_item_row);
+            image_view_horizontal_item_row = itemView.findViewById(R.id.image_view_horizontal_item_row);
 
 
         }
+
 
         @Override
         public void onClick(View v) {
 
-        }
+            if (getAdapterPosition() == 3) {
+                Intent goToRateActivity = new Intent(context, RatesActivity.class);
+                context.startActivity(goToRateActivity);
 
+            }
+        }
     }
 
 }

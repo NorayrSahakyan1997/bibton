@@ -23,16 +23,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_regular"
-            android:text="@string/addCurrency"
+            android:text="@string/addCurrencyPair"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_size_big"
-            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/add_currency_constraint"
+
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_currency_constraint"
             android:layout_width="@dimen/rates_circle_width_height"
             android:layout_height="@dimen/rates_circle_width_height"
             android:background="@drawable/circle_shadow_shape"

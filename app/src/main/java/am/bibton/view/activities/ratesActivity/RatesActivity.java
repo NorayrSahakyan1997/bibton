@@ -2,12 +2,15 @@ package am.bibton.view.activities.ratesActivity;
 
 import am.bibton.R;
 import am.bibton.view.activities.BaseActivity;
+import am.bibton.view.activities.homeActivity.HomeActivity;
 import am.bibton.view.activities.ratesActivity.ratesFragments.AlertsFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.ConverterFragment;
-import am.bibton.view.activities.ratesActivity.ratesFragments.RatesFragment;
+import am.bibton.view.activities.ratesActivity.ratesFragments.rateFragment.RatesFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
@@ -30,13 +33,16 @@ public class RatesActivity extends BaseActivity {
     private TextView rateText;
     private TextView convertText;
     private TextView alertText;
+    private ImageView goToHomeActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rates);
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         setFragments();
         init();
+        goToHomeActivity();
     }
 
     public void init() {
@@ -49,10 +55,11 @@ public class RatesActivity extends BaseActivity {
         alertIcon = findViewById(R.id.alert_Icon);
         rateIcon.getDrawable().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
-
         rateText = findViewById(R.id.text_Rate);
         convertText = findViewById(R.id.text_Convert);
         alertText = findViewById(R.id.text_Alert);
+
+        goToHomeActivity = findViewById(R.id.back_toHomeActivity);
         changeTabBarColors(0);
     }
 
@@ -139,4 +146,13 @@ public class RatesActivity extends BaseActivity {
 
     }
 
+    public void goToHomeActivity() {
+        goToHomeActivity.setOnClickListener(v -> onBackPressed());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent returnHomeActivity = new Intent(this, HomeActivity.class);
+        startActivity(returnHomeActivity);
+    }
 }

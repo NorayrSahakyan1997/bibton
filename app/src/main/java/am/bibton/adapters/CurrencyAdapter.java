@@ -17,15 +17,15 @@ import am.bibton.model.walletCurrency.WalletCurrencyResponse;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BalanceHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private LayoutInflater layoutInflater;
     private List<WalletCurrencyResponse> walletCurrencyResponses;
     private View mainView;
-    private final BalanceHomeAdapter.OnItemClickListener mListener;
+    private final CurrencyAdapter.OnItemClickListener mListener;
 
 
-    public BalanceHomeAdapter(Context context, List<WalletCurrencyResponse> walletCurrencyResponses, BalanceHomeAdapter.OnItemClickListener mListener) {
+    public CurrencyAdapter(Context context, List<WalletCurrencyResponse> walletCurrencyResponses, CurrencyAdapter.OnItemClickListener mListener) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         this.walletCurrencyResponses=walletCurrencyResponses;
@@ -36,7 +36,7 @@ public class BalanceHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mainView = layoutInflater.inflate(R.layout.recycler_balance_row, parent, false);
-        RecyclerView.ViewHolder viewHolder = new BalanceHomeAdapter.ViewHolder(mainView);
+        RecyclerView.ViewHolder viewHolder = new CurrencyAdapter.ViewHolder(mainView);
 
         return viewHolder;
     }
@@ -44,7 +44,7 @@ public class BalanceHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        BalanceHomeAdapter.ViewHolder viewHolder = (BalanceHomeAdapter.ViewHolder) holder;
+        CurrencyAdapter.ViewHolder viewHolder = (CurrencyAdapter.ViewHolder) holder;
         viewHolder.country_name.setText(walletCurrencyResponses.get(position).getCurrency_name());
         viewHolder.county_money_short_name.setText(walletCurrencyResponses.get(position).getCurrency_iso());
         viewHolder.currency_amount.setText(walletCurrencyResponses.get(position).getSymbol() + walletCurrencyResponses.get(position).getBalance());

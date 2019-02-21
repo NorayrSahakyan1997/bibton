@@ -12,7 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 import am.bibton.Bibton;
 import am.bibton.R;
-import am.bibton.adapters.BalanceHomeAdapter;
+import am.bibton.adapters.CurrencyAdapter;
 import am.bibton.adapters.ServiceAdapterHorizontal;
 import am.bibton.adapters.transactionAdapter.TransactionParentAdapter;
 import am.bibton.model.getTransactionList.TransactionDateResponse;
@@ -180,7 +180,7 @@ public class HomeFragment extends BaseFragment implements IHomeFragment {
     public void getCurrencyWallet(List<WalletCurrencyResponse> getWalletCurrencyList) {
         currencyName.setText(getWalletCurrencyList.get(0).getCurrency_iso());
         textViewCash.setText(getWalletCurrencyList.get(0).getSymbol() + getWalletCurrencyList.get(0).getBalance());
-        BalanceHomeAdapter balanceHomeAdapter = new BalanceHomeAdapter(context, getWalletCurrencyList, position -> {
+        CurrencyAdapter balanceHomeAdapter = new CurrencyAdapter(context, getWalletCurrencyList, position -> {
             constraint_balance.setVisibility(View.GONE);
             currencyName.setText(getWalletCurrencyList.get(position).getCurrency_iso());
 
