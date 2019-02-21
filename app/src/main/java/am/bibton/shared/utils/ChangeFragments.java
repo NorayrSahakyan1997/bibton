@@ -9,22 +9,21 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 
-
-
 public class ChangeFragments {
     private Fragment currentFragment;
     private View view;
+    private Context context;
 
 
     public ChangeFragments(Context context, View view, Fragment currentFragment) {
-        Context context1 = context;
+        this.context = context;
         this.view = view;
         this.currentFragment = currentFragment;
 
     }
 
     public void replaceFragment(Fragment fragment, boolean backAnim) {
-        FragmentTransaction transaction = ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
 
         if (backAnim) {
             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);

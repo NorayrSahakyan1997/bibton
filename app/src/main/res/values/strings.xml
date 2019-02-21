@@ -69,6 +69,8 @@
     <string name="gbpmain">GBP: Main</string>
     <string name="from">From</string>
     <string name="to">To</string>
+    <string name="britishBound">British Pound</string>
+    <string name="canadianDollar">Canadian Dollar</string>
     <string-array name="menu_names_array">
         <item>Summery</item>
         <item>Payments</item>

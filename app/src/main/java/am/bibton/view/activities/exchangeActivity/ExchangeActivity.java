@@ -6,7 +6,7 @@ import am.bibton.adapters.BalanceHomeAdapter;
 import am.bibton.model.exchangeModel.ExchangeParentModel;
 import am.bibton.model.walletCurrency.WalletCurrencyResponse;
 import am.bibton.presenter.ExchangeActivityPresenter;
-import am.bibton.shared.utils.CloseKeyBoard;
+import am.bibton.shared.utils.KeyboardUtils;
 import am.bibton.view.activities.BaseActivity;
 import am.bibton.view.activities.homeActivity.HomeActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -83,7 +83,7 @@ public class ExchangeActivity extends BaseActivity implements IExchangeActivity 
     }
 
     private void closeKeyBoard() {
-        parent_layout_exchange.setOnClickListener(v -> CloseKeyBoard.hideKeyboard(this));
+        parent_layout_exchange.setOnClickListener(v -> KeyboardUtils.hideSoftInput(this));
     }
 
     private void rotateImageViewExchange() {
@@ -134,13 +134,13 @@ public class ExchangeActivity extends BaseActivity implements IExchangeActivity 
     }
 
     public void openCurrencyFrom(View view) {
-        CloseKeyBoard.hideKeyboard(this);
+        KeyboardUtils.hideSoftInput(this);
         setFrom = true;
         constraintBalance.setVisibility(View.VISIBLE);
     }
 
     public void openCurrencyTo(View view) {
-        CloseKeyBoard.hideKeyboard(this);
+        KeyboardUtils.hideSoftInput(this);
         setFrom = false;
         constraintBalance.setVisibility(View.VISIBLE);
     }

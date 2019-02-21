@@ -59,8 +59,14 @@
     <dimen name="margin_top_exchange_activity">50dp</dimen>
     <dimen name="margin_top_exchange">50dp</dimen>
     <dimen name="margin_top_exchange_last_item">70dp</dimen>
-    <dimen name="constraint_width_rates">120dp</dimen>
+    <dimen name="constraint_width_rates">110dp</dimen>
     <dimen name="margin_top_frame_layout_rates_activity">220dp</dimen>
+    <dimen name="rates_circle_width_height">70dp</dimen>
+    <dimen name="rates_item_row_image_width">175dp</dimen>
+    <dimen name="margin_height_rates_frame">180dp</dimen>
+
+
+
 
 
 

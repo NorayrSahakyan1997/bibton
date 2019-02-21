@@ -46,4 +46,6 @@ public class ChangeColorsTabBar {
             moreIcon.getDrawable().setColorFilter(context.getResources().getColor(R.color.pass_code_active), PorterDuff.Mode.SRC_ATOP);
         }
     }
+
+
 }

@@ -2,7 +2,6 @@ package am.bibton.view.activities.splashscreenactivities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import am.bibton.view.activities.BaseActivity;
 import am.bibton.view.activities.welcomeActivity.WelcomeActivity;
 

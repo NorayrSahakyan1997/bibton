@@ -8,6 +8,8 @@ import android.os.Handler;
 
 import am.bibton.view.activities.BaseActivity;
 import am.bibton.view.activities.homeActivity.HomeActivity;
+import am.bibton.view.activities.ratesActivity.RatesActivity;
+import am.bibton.view.activities.welcomeActivity.welcomeFragments.BibtonSignFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.FlexibleTransferringFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.phoneNumberFragment.PhoneNumberFragment;
 import androidx.fragment.app.Fragment;
@@ -23,9 +25,9 @@ import com.airbnb.lottie.LottieAnimationView;
 import am.bibton.R;
 
 public class WelcomeActivity extends BaseActivity {
+
     private Handler handler;
     private int waitTime = 2000;
-
     private FrameLayout frameLayout_welcome;
     private Fragment currentFragment = null;
     private FragmentTransaction fragmentTransaction;
@@ -41,10 +43,10 @@ public class WelcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 //
-//        loteAnimation();
-//        init();
+        //  loteAnimation();
+        //init();
         enterHomeActivity();
-//        setFragments();
+        //setFragments();
 
     }
 
@@ -57,17 +59,15 @@ public class WelcomeActivity extends BaseActivity {
 
     public void setFragments() {
         fragmentManager = getSupportFragmentManager();
-        //currentFragment = new BibtonSignFragment();
-        currentFragment = new PhoneNumberFragment();
+        currentFragment = new BibtonSignFragment();
+        // currentFragment = new PhoneNumberFragment();
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.frameLayoutWelcome, currentFragment);
         fragmentTransaction.commit();
     }
 
     public void replaceFragment(Fragment fragment, boolean backAnim) {
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
         if (backAnim) {
             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
         } else {
@@ -75,7 +75,7 @@ public class WelcomeActivity extends BaseActivity {
         }
         transaction.remove(currentFragment);
         currentFragment = fragment;
-        transaction.replace(R.id.frameLayoutWelcome, currentFragment);
+        transaction.replace(R.id.frame_layout_home, currentFragment);
         transaction.commit();
     }
 
