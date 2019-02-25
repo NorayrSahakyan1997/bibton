@@ -1,6 +1,9 @@
 package am.bibton.shared.data.services;
 
+import java.util.List;
+
 import am.bibton.model.ResponseModel;
+import am.bibton.model.currencyModel.CurrencyParentModel;
 import am.bibton.model.exchangeModel.ExchangeParentModel;
 import am.bibton.model.getTransactionList.TransactionFilterRequestModel;
 import am.bibton.model.checkPassCode.CheckPassCodeModel;
@@ -56,9 +59,11 @@ public class AuthorizationService extends BaseService {
         return request(mService.getTransactionList());
     }
 
+
     public Flowable<ResponseModel<WalletCurrencyParentResponse>> getCurrency() {
-        return request(mService.getCurrencyList());
+        return request(mService.getCurrencyWalletList());
     }
+
 
     public Flowable<ResponseModel<TransactionParentModel>> getTransactionFiltered(TransactionFilterRequestModel transactionFilterRequestModel) {
         return request(mService.getFilteredListTransaction(transactionFilterRequestModel));
@@ -78,6 +83,17 @@ public class AuthorizationService extends BaseService {
 
     public Flowable<ResponseModel<RateParentModel>> getRateList() {
         return request(mService.getRateList());
+    }
+
+    public Flowable<ResponseModel<List>> addCurrencyPair(int firstCurrencyId, int secondCurrencyId) {
+        return request(mService.addCurrencyPair(firstCurrencyId, secondCurrencyId));
+    }
+    public Flowable<ResponseModel<CurrencyParentModel>> getCurrencyList() {
+        return request(mService.getCurrencList());
+    }
+
+    public Flowable<ResponseModel<List>> deleteRateItem(int pairID){
+        return request(mService.deleteRateItem(pairID));
     }
 
 }

@@ -10,7 +10,7 @@ android {
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "BASE_URL", "\"http://104.251.212.43:8080/\""
+        buildConfigField "String", "BASE_URL", "\"http://dev.itfllc.am\""
     }
     buildTypes {
         release {
@@ -60,11 +60,12 @@ dependencies {
 
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
-    implementation 'com.android.support:cardview-v7:26.0.0'
     implementation 'com.applandeo:material-calendar-view:1.5.1'
 
     implementation 'com.timehop.stickyheadersrecyclerview:library:0.4.3'
     implementation 'com.shuhart.stickyheader:stickyheader:1.0.5'
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+
 
 //    implementation "android.arch.navigation:navigation-ui:28.0.0"
 //    implementation "android.arch.navigation:navigation"

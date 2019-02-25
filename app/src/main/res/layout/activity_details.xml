@@ -192,6 +192,7 @@
                     app:layout_constraintVertical_bias="0.36">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:onClick="goToRatesActivity"
                         android:layout_width="@dimen/oval_size_details"
                         android:layout_height="@dimen/oval_size_details"
                         android:background="@drawable/oval_icon_details"
@@ -287,13 +288,13 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraint_local"
                     android:layout_width="@dimen/details_activity_oval_width"
-                    android:layout_height="55dp"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/shadow_inactive_details"
-
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/activity_details_button_shape"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_bias="0.15"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0">
@@ -564,7 +565,7 @@
                 <TextView
                     android:layout_width="@dimen/text_size_width"
                     android:layout_height="wrap_content"
-                    android:text="@string/transferusually"
+                    android:text="@string/transferUsually"
                     android:textSize="@dimen/text_size_small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -592,7 +593,7 @@
                 <TextView
                     android:layout_width="@dimen/text_size_width"
                     android:layout_height="wrap_content"
-                    android:text="@string/onlySiwft"
+                    android:text="@string/onlySwift"
                     android:textSize="@dimen/text_size_small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

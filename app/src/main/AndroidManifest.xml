@@ -14,9 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activities.ratesActivity.addCurrencyActivity.AddCurrencyActivity"></activity>
-        <activity android:name=".view.activities.ratesActivity.RatesActivity" />
-        <activity android:name=".view.activities.homeActivity.DetailsActivity" />
+        <activity android:name=".view.activities.ratesActivity.addCurrencyActivity.AddCurrencyActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activities.ratesActivity.RatesActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activities.homeActivity.DetailsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activities.exchangeActivity.ExchangeActivity"
             android:screenOrientation="portrait" />

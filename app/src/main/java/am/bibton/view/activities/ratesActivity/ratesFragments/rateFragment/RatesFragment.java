@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.appbar.AppBarLayout;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,8 +29,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RatesFragment extends BaseFragment implements IRateFragment {
     private View mainView;
     private Context context;
-    private ConstraintLayout addCurrencyConstraint;
     private RecyclerView ratesRecycle;
+    private ConstraintLayout addCurrencyParentConstraint;
+    private ConstraintLayout addCurrencyPairEmpty;
+    private ConstraintLayout addCurrencyImageEmpty;
+    private AppBarLayout appBarLayoutRate;
     @Inject
     RatePresenter mPresenter;
 
@@ -39,7 +44,6 @@ public class RatesFragment extends BaseFragment implements IRateFragment {
         Bibton.getInstance().getAuthorizationComponent().inject(this);
         mPresenter.onViewCreated(this);
         mPresenter.getRatesList();
-        addCurrencyConstraint = mainView.findViewById(R.id.add_currency_constraint);
         init();
         goToAddCurrencyActivity();
         return mainView;
@@ -48,8 +52,24 @@ public class RatesFragment extends BaseFragment implements IRateFragment {
 
     public void init() {
         ratesRecycle = mainView.findViewById(R.id.recycler_view_rates_fragment);
-
+        addCurrencyParentConstraint = mainView.findViewById(R.id.addCurrencyParentConstraint);
+        addCurrencyPairEmpty = mainView.findViewById(R.id.addCurrencyPairEmptyRate);
+        addCurrencyImageEmpty = mainView.findViewById(R.id.constraintAddCurrencyImageEmpty);
+        appBarLayoutRate = mainView.findViewById(R.id.appBarLayoutRate);
     }
+
+    private void goToAddCurrencyActivity() {
+
+        addCurrencyImageEmpty.setOnClickListener(v -> {
+            Intent goToAddCurrencyActivity = new Intent(context, AddCurrencyActivity.class);
+            context.startActivity(goToAddCurrencyActivity);
+        });
+        addCurrencyParentConstraint.setOnClickListener(v -> {
+            Intent goToAddCurrencyActivity = new Intent(context, AddCurrencyActivity.class);
+            context.startActivity(goToAddCurrencyActivity);
+        });
+    }
+
 
     @Override
     public void onAttach(Context context) {
@@ -57,20 +77,51 @@ public class RatesFragment extends BaseFragment implements IRateFragment {
         super.onAttach(context);
     }
 
-    private void goToAddCurrencyActivity() {
-        addCurrencyConstraint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToAddCurrencyActivity = new Intent(context, AddCurrencyActivity.class);
-                context.startActivity(goToAddCurrencyActivity);
-            }
-        });
-    }
+    private RatesAdapter ratesAdapter;
 
     @Override
     public void getRateList(List<RateResponse> rateResponsesList) {
+        if (rateResponsesList.isEmpty()) {
+            addCurrencyParentConstraint.setVisibility(View.GONE);
+            appBarLayoutRate.setVisibility(View.GONE);
+            addCurrencyPairEmpty.setVisibility(View.VISIBLE);
+            ratesRecycle.setVisibility(View.GONE);
+
+        } else {
+            addCurrencyPairEmpty.setVisibility(View.GONE);
+            addCurrencyParentConstraint.setVisibility(View.VISIBLE);
+            ratesRecycle.setVisibility(View.VISIBLE);
+            appBarLayoutRate.setVisibility(View.VISIBLE);
+
+        }
         ratesRecycle.setLayoutManager(new LinearLayoutManager(context));
-        RatesAdapter ratesAdapter = new RatesAdapter(context, rateResponsesList);
+        ratesAdapter = new RatesAdapter(context, rateResponsesList, new RatesAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                mPresenter.deleteRateItem(position);
+
+            }
+
+            @Override
+            public void onSize(int size) {
+                appBarLayoutRate.setVisibility(View.VISIBLE);
+                if (size == 0) {
+                    appBarLayoutRate.setVisibility(View.GONE);
+                    addCurrencyParentConstraint.setVisibility(View.GONE);
+                    addCurrencyPairEmpty.setVisibility(View.VISIBLE);
+                    ratesRecycle.setVisibility(View.GONE);
+                } else {
+                    addCurrencyParentConstraint.setVisibility(View.VISIBLE);
+                    addCurrencyPairEmpty.setVisibility(View.GONE);
+                    ratesRecycle.setVisibility(View.VISIBLE);
+                    appBarLayoutRate.setVisibility(View.VISIBLE);
+
+                }
+
+            }
+        });
         ratesRecycle.setAdapter(ratesAdapter);
     }
+
+
 }

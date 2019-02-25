@@ -1,6 +1,9 @@
 package am.bibton.shared.data.api;
 
+import java.util.List;
+
 import am.bibton.model.ResponseModel;
+import am.bibton.model.currencyModel.CurrencyParentModel;
 import am.bibton.model.exchangeModel.ExchangeParentModel;
 import am.bibton.model.getTransactionList.TransactionFilterRequestModel;
 import am.bibton.model.checkPassCode.CheckPassCodeModel;
@@ -51,7 +54,7 @@ public interface IAuthorizationService {
     Flowable<ResponseModel<TransactionParentModel>> getTransactionList();
 
     @GET("api/wallet/get-wallet-balance-list")
-    Flowable<ResponseModel<WalletCurrencyParentResponse>> getCurrencyList();
+    Flowable<ResponseModel<WalletCurrencyParentResponse>> getCurrencyWalletList();
 
     @POST("api/transactions/get-transactions-list")
     Flowable<ResponseModel<TransactionParentModel>> getFilteredListTransaction(@Body TransactionFilterRequestModel transactionFilterRequestModel);
@@ -74,7 +77,16 @@ public interface IAuthorizationService {
     @GET("api/rate/show/user-rate-list")
     Flowable<ResponseModel<RateParentModel>> getRateList();
 
+    @FormUrlEncoded
+    @POST("api/rate/add/user-rate")
+    Flowable<ResponseModel<List>> addCurrencyPair(@Field("first_currency")int firstCurrencyID, @Field("second_currency") int secondCurrencyid);
 
+    @GET("api/rate/currency")
+    Flowable<ResponseModel<CurrencyParentModel>> getCurrencList();
+
+    @FormUrlEncoded
+    @POST("api/rate/delete/user-rate-pair")
+    Flowable<ResponseModel<List>> deleteRateItem(@Field("pair_id") int pairId);
 
 
 }

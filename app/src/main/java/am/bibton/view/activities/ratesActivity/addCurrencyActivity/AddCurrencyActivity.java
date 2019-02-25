@@ -3,8 +3,10 @@ package am.bibton.view.activities.ratesActivity.addCurrencyActivity;
 import am.bibton.Bibton;
 import am.bibton.R;
 import am.bibton.adapters.AddCurrencyPairAdapter;
+import am.bibton.model.ResponseModel;
+import am.bibton.model.currencyModel.CurrencyResponse;
 import am.bibton.model.walletCurrency.WalletCurrencyResponse;
-import am.bibton.presenter.AddCurrencyPresenter;
+import am.bibton.presenter.CurrencyListPresenter;
 import am.bibton.shared.utils.Constants;
 import am.bibton.shared.utils.KeyboardUtils;
 import am.bibton.view.activities.BaseActivity;
@@ -18,7 +20,6 @@ import android.view.View;
 import android.widget.SearchView;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
 
 public class AddCurrencyActivity extends BaseActivity implements IAddCurrencyActivity {
@@ -26,8 +27,10 @@ public class AddCurrencyActivity extends BaseActivity implements IAddCurrencyAct
     private ConstraintLayout constraintParent;
     private SearchView searchView;
     @Inject
-    AddCurrencyPresenter mPresenter;
-    private List<WalletCurrencyResponse> outputCountries;
+    CurrencyListPresenter mPresenter;
+    private List<CurrencyResponse> outputCountries;
+    private boolean ratesAdded;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,10 +39,10 @@ public class AddCurrencyActivity extends BaseActivity implements IAddCurrencyAct
         Bibton.getInstance().getAuthorizationComponent().inject(this);
         mPresenter.onViewCreated(this);
         mPresenter.getCurrencyList();
+
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         init();
         closeKeyBoard();
-
     }
 
     public void init() {
@@ -63,18 +66,20 @@ public class AddCurrencyActivity extends BaseActivity implements IAddCurrencyAct
     }
 
     @Override
-    public void getCurrencyList(List<WalletCurrencyResponse> getWalletCurrencyList) {
-        outputCountries = getWalletCurrencyList;
-        AddCurrencyPairAdapter balanceHomeAdapter = new AddCurrencyPairAdapter(this, getWalletCurrencyList, position -> {
-
+    public void getCurrencyList(List<CurrencyResponse> getCurrencyList) {
+        outputCountries = getCurrencyList;
+        AddCurrencyPairAdapter balanceHomeAdapter = new AddCurrencyPairAdapter(this, getCurrencyList, position -> {
+            selectTwoCurrency(position);
         });
         addCurrencyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         addCurrencyRecyclerView.setAdapter(balanceHomeAdapter);
+
     }
+
 
     public void goToHomeActivity(View view) {
         onBackPressed();
-        Constants.CURRENCY_SUM=0;
+        Constants.CURRENCY_SUM = 0;
     }
 
     private void closeKeyBoard() {
@@ -88,37 +93,46 @@ public class AddCurrencyActivity extends BaseActivity implements IAddCurrencyAct
     }
 
     private void searchItemsFromCountryList(String query) {
-        List<WalletCurrencyResponse> filteredList = new ArrayList<>();
+        List<CurrencyResponse> filteredList = new ArrayList<>();
 
         if (searchView != null) {
-            for (WalletCurrencyResponse item : outputCountries) {
-                if (item.getCurrency_name().toLowerCase().startsWith(query.toLowerCase())) {
+            for (CurrencyResponse item : outputCountries) {
+                if (item.getName().toLowerCase().startsWith(query.toLowerCase())) {
                     filteredList.add(item);
                 }
             }
         } else
             filteredList = outputCountries;
-        AddCurrencyPairAdapter countryListAdapter = new AddCurrencyPairAdapter(this, filteredList, position ->{});
+        AddCurrencyPairAdapter countryListAdapter = new AddCurrencyPairAdapter(this, filteredList, position -> {
+            selectTwoCurrency(position);
+        });
         addCurrencyRecyclerView.setAdapter(countryListAdapter);
     }
-    //    public void selectTwoCurrency() {
-//        Constants.CURRENCY_SUM++;
-//        if (Constants.CURRENCY_SUM < 3) {
-//            Constants.CURRENCY_SUM++;
-//            Intent intent = getIntent();
-//            startActivity(intent);
-//            if (Constants.CURRENCY_SUM == 1) {
-//                Constants.CURRENCY_ID_FIRST = currencyFirst;
-//            }
-//            if (Constants.CURRENCY_SUM == 2) {
-//                Constants.CURRENCY_ID_SECOND = currencySecond;
-//            }
-//
-//        } else if (Constants.CURRENCY_SUM ==3) {
-//            Intent intent = new Intent(getApplicationContext(), RatesActivity.class);
-//            startActivity(intent);
-//            Toast.makeText(this,currencySecond+"",Toast.LENGTH_SHORT).show();
-//            Constants.CURRENCY_SUM = 0;
-//        }
-//    }
+
+    @Override
+    public void addCurrencyPair(boolean isAdded) {
+        ratesAdded = isAdded;
+    }
+
+
+
+    public void selectTwoCurrency(int currency) {
+
+        Constants.CURRENCY_SUM++;
+        if (Constants.CURRENCY_SUM < 3) {
+            Intent intent = getIntent();
+            startActivity(intent);
+            if (Constants.CURRENCY_SUM == 1) {
+                Constants.CURRENCY_ID_FIRST = currency;
+            }
+            if (Constants.CURRENCY_SUM == 2) {
+                Constants.CURRENCY_ID_SECOND = currency;
+                mPresenter.addCurrencyPair(Constants.CURRENCY_ID_FIRST, Constants.CURRENCY_ID_SECOND);
+                Intent backToHomeActivity = new Intent(getApplicationContext(), RatesActivity.class);
+                startActivity(backToHomeActivity);
+                Constants.CURRENCY_SUM = 0;
+            }
+        }
+
+    }
 }

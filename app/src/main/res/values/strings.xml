@@ -59,8 +59,8 @@
     <string name="ardshinBank">Ardshin Bank</string>
     <string name="bibtonLTDLevel">Bibton LTD, Level 00, Armenia, Yerevan, Arshakunyats 19</string>
     <string name="intermediary">Intermediary or sender`s bank may charge you for international payments</string>
-    <string name="transferusually">Transfers usually take 1 to 3 working days to appear on your Spays account.</string>
-    <string name="onlySiwft">Only SWIFT transfers are accepted</string>
+    <string name="transferUsually">Transfers usually take 1 to 3 working days to appear on your Spays account.</string>
+    <string name="onlySwift">Only SWIFT transfers are accepted</string>
     <string name="home">Home</string>
     <string name="analytics">Analytics</string>
     <string name="transfers">Transfers</string>
@@ -72,6 +72,7 @@
     <string name="britishBound">British Pound</string>
     <string name="canadianDollar">Canadian Dollar</string>
     <string name="addCurrencyPair">Add Currency Pair</string>
+    <string name="chooseacurrency">Choose a currency pair to compare their \n live rates</string>
     <string-array name="menu_names_array">
         <item>Summery</item>
         <item>Payments</item>
@@ -93,14 +94,5 @@
     <string name="converter">Converter</string>
     <string name="alert">Alert</string>
 
-
-    <!--<integer-array name="menu_icons">-->
-    <!--<item>@drawable/summary_icons</item>-->
-    <!--<item>@drawable/payments_icon</item>-->
-    <!--<item>@drawable/exchange_icon</item>-->
-    <!--<item>@drawable/statement_icon</item>-->
-    <!--<item>@drawable/settings_icon</item>-->
-    <!--<item>@drawable/help_icon</item>-->
-    <!--</integer-array>-->
 
 </resources>
