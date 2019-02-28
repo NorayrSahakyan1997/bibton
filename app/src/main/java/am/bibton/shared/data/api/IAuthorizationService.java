@@ -2,7 +2,9 @@ package am.bibton.shared.data.api;
 
 import java.util.List;
 
+import am.bibton.model.ConvertModel.ConvertParentModel;
 import am.bibton.model.ResponseModel;
+import am.bibton.model.alertModel.AlertParentModel;
 import am.bibton.model.currencyModel.CurrencyParentModel;
 import am.bibton.model.exchangeModel.ExchangeParentModel;
 import am.bibton.model.getTransactionList.TransactionFilterRequestModel;
@@ -21,6 +23,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface IAuthorizationService {
 
@@ -79,7 +82,7 @@ public interface IAuthorizationService {
 
     @FormUrlEncoded
     @POST("api/rate/add/user-rate")
-    Flowable<ResponseModel<List>> addCurrencyPair(@Field("first_currency")int firstCurrencyID, @Field("second_currency") int secondCurrencyid);
+    Flowable<ResponseModel<List>> addCurrencyPair(@Field("first_currency") int firstCurrencyID, @Field("second_currency") int secondCurrencyid);
 
     @GET("api/rate/currency")
     Flowable<ResponseModel<CurrencyParentModel>> getCurrencList();
@@ -87,6 +90,28 @@ public interface IAuthorizationService {
     @FormUrlEncoded
     @POST("api/rate/delete/user-rate-pair")
     Flowable<ResponseModel<List>> deleteRateItem(@Field("pair_id") int pairId);
+
+    @GET("api/rate/show/user-comparable-list?")
+    Flowable<ResponseModel<ConvertParentModel>> getConvertList(@Query("amount") float amount);
+
+    @FormUrlEncoded
+    @POST("api/rate/delete/comparable-currency")
+    Flowable<ResponseModel<List>> deleteConvertItem(@Field("compare_id") int compare_id);
+
+    @FormUrlEncoded
+    @POST("api/rate/add/comparable-rates")
+    Flowable<ResponseModel<List>> addConvertItem(@Field("currency_id") int currency_id);
+
+    @GET("api/rate/alert/list")
+    Flowable<ResponseModel<AlertParentModel>> getAlertList();
+
+    @FormUrlEncoded
+    @POST("api/rate/alert/delete")
+    Flowable<ResponseModel<List>> deleteAlertItem(@Field("alert_id") int alert_id);
+
+    @FormUrlEncoded
+    @POST("api/rate/comparable-make-main")
+    Flowable<ResponseModel<List>> makeCurrencyMain(@Field("currency_id") int currency_id);
 
 
 }

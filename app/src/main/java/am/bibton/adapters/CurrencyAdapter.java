@@ -7,26 +7,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
 import am.bibton.R;
 import am.bibton.model.walletCurrency.WalletCurrencyResponse;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private Context context;
     private LayoutInflater layoutInflater;
     private List<WalletCurrencyResponse> walletCurrencyResponses;
-    private View mainView;
     private final CurrencyAdapter.OnItemClickListener mListener;
 
 
     public CurrencyAdapter(Context context, List<WalletCurrencyResponse> walletCurrencyResponses, CurrencyAdapter.OnItemClickListener mListener) {
-        this.context = context;
+        Context context1 = context;
         layoutInflater = LayoutInflater.from(context);
         this.walletCurrencyResponses=walletCurrencyResponses;
         this.mListener = mListener;
@@ -35,7 +30,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        mainView = layoutInflater.inflate(R.layout.recycler_balance_row, parent, false);
+        View mainView = layoutInflater.inflate(R.layout.recycler_balance_row, parent, false);
         RecyclerView.ViewHolder viewHolder = new CurrencyAdapter.ViewHolder(mainView);
 
         return viewHolder;
@@ -82,7 +77,5 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         void onClick(final View itemView, final int position) {
             itemView.setOnClickListener(v -> mListener.onClick(position));
         }
-
-
     }
 }

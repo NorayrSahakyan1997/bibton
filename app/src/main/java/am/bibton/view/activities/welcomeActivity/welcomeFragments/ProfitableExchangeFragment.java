@@ -7,7 +7,6 @@ import am.bibton.shared.utils.ChangeFragments;
 import am.bibton.view.activities.BaseFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

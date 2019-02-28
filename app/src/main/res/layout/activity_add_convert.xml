@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
-    android:id="@+id/constraint_Parent_Add_Currency"
+    android:id="@+id/constraint_Parent_Add_Convert"
     >
     <ImageView
-        android:onClick="goToHomeActivity"
+        android:id="@+id/backIconAddConvertActivity"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="20dp"
@@ -21,8 +21,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
+
     <SearchView
-        android:id="@+id/search_view_editText"
+        android:id="@+id/searchViewAddConvert"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
@@ -42,7 +43,7 @@
         app:layout_constraintVertical_bias="0" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_add_currency"
+        android:id="@+id/recyclerViewAddConvert"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"

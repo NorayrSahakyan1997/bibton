@@ -8,11 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
 import am.bibton.R;
 import am.bibton.model.countryModel.CountryModel;
 import am.bibton.shared.utils.Constants;
@@ -30,8 +27,6 @@ public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private LayoutInflater layoutInflater;
     private View view;
 
-
-
     public CountryListAdapter(Context context, List<CountryModel> countryArray) {
         this.countryArray = countryArray;
         this.context = context;
@@ -48,7 +43,6 @@ public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
         CountryListAdapter.ViewHolder viewHolder = (CountryListAdapter.ViewHolder) holder;
         viewHolder.country_names.setText(countryArray.get(position).getName());
         viewHolder.country_code.setText(countryArray.get(position).getPhone_code() + "");
@@ -56,7 +50,6 @@ public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 .load(countryArray.get(position).getFlag())
                  .into(viewHolder.country_flags);
     }
-
 
     @Override
     public int getItemCount() {

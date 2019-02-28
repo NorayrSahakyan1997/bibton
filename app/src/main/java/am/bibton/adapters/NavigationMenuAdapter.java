@@ -20,12 +20,9 @@ public class NavigationMenuAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private Context context;
     private View view;
-
-
     private List<String> navigation_view_names;
     private LayoutInflater layoutInflater;
     private List<String> menu_names;
-
     private int[] navigation_view_icons;
 
 
@@ -39,14 +36,10 @@ public class NavigationMenuAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private void setMenuNames() {
         menu_names = new ArrayList<>();
         menu_names = Arrays.asList(context.getResources().getStringArray(R.array.menu_names_array));
-
     }
 
     private void setMenuIcons() {
-
         navigation_view_icons = new int[]{R.drawable.summery_icon, R.drawable.payment_icon, R.drawable.exchange_icon, R.drawable.statement_icon, R.drawable.settings_icon, R.drawable.help_icon};
-
-
     }
 
     @NonNull
@@ -69,25 +62,20 @@ public class NavigationMenuAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             itemView.setOnClickListener(this);
             nav_view_names = itemView.findViewById(R.id.menu_item_text_view);
             nav_view_images = itemView.findViewById(R.id.menu_item_icon);
-
         }
 
         @Override
         public void onClick(View v) {
 
         }
-
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
         NavigationMenuAdapter.ViewHolder viewHolder = (NavigationMenuAdapter.ViewHolder) holder;
         viewHolder.nav_view_names.setText(menu_names.get(position));
         viewHolder.nav_view_images.setBackgroundResource(navigation_view_icons[position]);
-
-
     }
 
     @Override

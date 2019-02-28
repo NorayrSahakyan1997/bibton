@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.List;
 import javax.inject.Inject;
 import am.bibton.Bibton;
@@ -99,7 +97,6 @@ public class HomeFragment extends BaseFragment implements IHomeFragment {
 //        SpannableString ss1 = new SpannableString(s);
 //        ss1.setSpan(new RelativeSizeSpan(1.5f), 0, 7, 0); // set size
 //        ss1.setSpan(new RelativeSizeSpan(0.7f), 0, 1, 0); // set size
-//
 //        ss1.setSpan(new ForegroundColorSpan(Color.WHITE), 0, 6, 0);// set color
 //        TextView tv = (TextView) mainView.findViewById(R.id.cash_balance);
 //        tv.setText(ss1);
@@ -191,13 +188,9 @@ public class HomeFragment extends BaseFragment implements IHomeFragment {
         CurrencyAdapter balanceHomeAdapter = new CurrencyAdapter(context, getWalletCurrencyList, position -> {
             constraint_balance.setVisibility(View.GONE);
             currencyName.setText(getWalletCurrencyList.get(position).getCurrency_iso());
-
-
             Constants.SYMBOL = getWalletCurrencyList.get(position).getSymbol();
             mPresenter.getTransactionListWithCurrency(getWalletCurrencyList.get(position).getCurrency_id());
             textViewCash.setText(getWalletCurrencyList.get(position).getSymbol() + getWalletCurrencyList.get(position).getBalance());
-
-
         });
         RecyclerView recyclerView_balance_list = mainView.findViewById(R.id.recycle_balance);
         recyclerView_balance_list.setLayoutManager(new LinearLayoutManager(context));

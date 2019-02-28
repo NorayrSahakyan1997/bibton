@@ -2,7 +2,9 @@ package am.bibton.shared.data.services;
 
 import java.util.List;
 
+import am.bibton.model.ConvertModel.ConvertParentModel;
 import am.bibton.model.ResponseModel;
+import am.bibton.model.alertModel.AlertParentModel;
 import am.bibton.model.currencyModel.CurrencyParentModel;
 import am.bibton.model.exchangeModel.ExchangeParentModel;
 import am.bibton.model.getTransactionList.TransactionFilterRequestModel;
@@ -88,12 +90,34 @@ public class AuthorizationService extends BaseService {
     public Flowable<ResponseModel<List>> addCurrencyPair(int firstCurrencyId, int secondCurrencyId) {
         return request(mService.addCurrencyPair(firstCurrencyId, secondCurrencyId));
     }
+
     public Flowable<ResponseModel<CurrencyParentModel>> getCurrencyList() {
         return request(mService.getCurrencList());
     }
 
-    public Flowable<ResponseModel<List>> deleteRateItem(int pairID){
+    public Flowable<ResponseModel<List>> deleteRateItem(int pairID) {
         return request(mService.deleteRateItem(pairID));
     }
 
+    public Flowable<ResponseModel<ConvertParentModel>> getConvertList(float amount) {
+        return request(mService.getConvertList(amount));
+    }
+
+    public Flowable<ResponseModel<List>> deleteConvertItem(int compare_id) {
+        return request(mService.deleteConvertItem(compare_id));
+    }
+
+    public Flowable<ResponseModel<List>> addConvertItem(int currency_id) {
+        return request(mService.addConvertItem(currency_id));
+    }
+
+    public Flowable<ResponseModel<AlertParentModel>> getAlertList(){
+        return request(mService.getAlertList());
+    }
+    public Flowable<ResponseModel<List>> deleteAlertItem(int alert_id){
+        return request(mService.deleteAlertItem(alert_id));
+    }
+    public Flowable<ResponseModel<List>> makeCurrencyMain(int currencyId){
+        return request(mService.makeCurrencyMain(currencyId));
+    }
 }

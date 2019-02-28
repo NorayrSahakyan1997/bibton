@@ -12,7 +12,6 @@ import am.bibton.view.activities.homeActivity.HomeActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,9 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import java.util.List;
-
 import javax.inject.Inject;
 
 public class ExchangeActivity extends BaseActivity implements IExchangeActivity {

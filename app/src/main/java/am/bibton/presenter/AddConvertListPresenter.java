@@ -8,18 +8,17 @@ import javax.inject.Inject;
 
 import am.bibton.model.ResponseModel;
 import am.bibton.model.currencyModel.CurrencyParentModel;
-import am.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import am.bibton.presenter.root.BasePresenter;
 import am.bibton.shared.data.services.AuthorizationService;
 import am.bibton.shared.utils.Constants;
-import am.bibton.view.activities.ratesActivity.addCurrencyActivity.IAddCurrencyActivity;
+import am.bibton.view.activities.ratesActivity.addConvertActivity.IAddConvertActivity;
 import io.reactivex.disposables.Disposable;
 
-public class CurrencyListPresenter extends BasePresenter<IAddCurrencyActivity> {
+public class AddConvertListPresenter extends BasePresenter<IAddConvertActivity> {
     private final AuthorizationService mService;
 
     @Inject
-    CurrencyListPresenter(AuthorizationService service) {
+    AddConvertListPresenter(AuthorizationService service) {
         mService = service;
     }
 
@@ -37,17 +36,16 @@ public class CurrencyListPresenter extends BasePresenter<IAddCurrencyActivity> {
             mView.showNetworkError();
         }
     }
-
-    public void addCurrencyPair(int firstCurrencyId, int secondCurrencyId) {
-        Disposable disposable = mService.addCurrencyPair(firstCurrencyId, secondCurrencyId).subscribe(this::addCurrencyPairResponse, this::errorView);
+    public void addConvertItem(int currency_id) {
+        Disposable disposable = mService.addConvertItem(currency_id).subscribe(this::addConvertItemResponse, this::errorView);
         addDisposable(disposable);
     }
 
-    private void addCurrencyPairResponse(ResponseModel<List> responseModel) {
+    private void addConvertItemResponse(ResponseModel<List> responseModel) {
         if (responseModel.isSuccess()) {
-            mView.addCurrencyPair(true);
+            // mView.addConvertItem(true);
+            Toast.makeText(mContext, "Convert Item Was Added Successfully", Toast.LENGTH_SHORT).show();
         } else {
-            mView.addCurrencyPair(false);
             Toast.makeText(mContext, "Rates already exists", Toast.LENGTH_SHORT).show();
             mView.showNetworkError();
 

@@ -3,8 +3,8 @@ package am.bibton.view.activities.ratesActivity;
 import am.bibton.R;
 import am.bibton.view.activities.BaseActivity;
 import am.bibton.view.activities.homeActivity.HomeActivity;
-import am.bibton.view.activities.ratesActivity.ratesFragments.AlertsFragment;
-import am.bibton.view.activities.ratesActivity.ratesFragments.ConverterFragment;
+import am.bibton.view.activities.ratesActivity.alertFragment.AlertFragment;
+import am.bibton.view.activities.ratesActivity.ratesFragments.convertFragment.ConverterFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.rateFragment.RatesFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -34,14 +34,15 @@ public class RatesActivity extends BaseActivity {
     private TextView convertText;
     private TextView alertText;
     private ImageView goToHomeActivity;
+    private String currentExtra = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rates);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-        setFragments();
         init();
+        setFragments();
         goToHomeActivity();
     }
 
@@ -79,7 +80,18 @@ public class RatesActivity extends BaseActivity {
     }
 
     public void setFragments() {
-        currentFragment = new RatesFragment();
+        Intent intent = getIntent();
+
+        if (intent.hasExtra("fragment")) {
+            currentExtra = intent.getStringExtra("fragment");
+        }
+        if (currentExtra.matches("")) {
+            currentFragment = new RatesFragment();
+        }
+        if (currentExtra.equals("convertFragment")) {
+            currentFragment = new ConverterFragment();
+            changeTabBarColors(1);
+        }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.frame_layout_rates_activity, currentFragment);
         fragmentTransaction.commit();
@@ -91,7 +103,7 @@ public class RatesActivity extends BaseActivity {
     }
 
     public void openAlertFragment(View view) {
-        replaceFragment(new AlertsFragment(), false);
+        replaceFragment(new AlertFragment(), false);
         changeTabBarColors(2);
     }
 

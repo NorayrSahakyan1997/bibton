@@ -16,13 +16,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class StatementFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private Context context;
     private LayoutInflater layoutInflater;
     private List<TransactionResponse> transactionResponseList;
 
 
     public StatementFragmentAdapter(Context context, List<TransactionResponse> transactionResponses) {
-        this.context = context;
+        Context context1 = context;
         this.transactionResponseList = transactionResponses;
         layoutInflater = LayoutInflater.from(context);
     }

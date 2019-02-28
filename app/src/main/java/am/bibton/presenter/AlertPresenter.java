@@ -1,43 +1,41 @@
 package am.bibton.presenter;
 
 import android.widget.Toast;
+
 import java.util.List;
+
 import javax.inject.Inject;
 import am.bibton.model.ResponseModel;
-import am.bibton.model.rateModel.RateParentModel;
+import am.bibton.model.alertModel.AlertParentModel;
 import am.bibton.presenter.root.BasePresenter;
 import am.bibton.shared.data.services.AuthorizationService;
 import am.bibton.shared.di.scopes.AuthorizationScope;
-import am.bibton.shared.utils.Constants;
-import am.bibton.view.activities.ratesActivity.ratesFragments.rateFragment.IRateFragment;
+import am.bibton.view.activities.ratesActivity.alertFragment.IAlertFragment;
 import io.reactivex.disposables.Disposable;
 
 @AuthorizationScope
-public class RatePresenter extends BasePresenter<IRateFragment> {
+public class AlertPresenter extends BasePresenter<IAlertFragment> {
 
     private final AuthorizationService mService;
-
     @Inject
-    RatePresenter(AuthorizationService service) {
+    AlertPresenter(AuthorizationService service) {
         mService = service;
     }
 
-    public void getRatesList() {
-        Disposable disposable = mService.getRateList().subscribe(this::response, this::errorView);
+    public void getAlertList() {
+        Disposable disposable = mService.getAlertList().subscribe(this::response, this::errorView);
         addDisposable(disposable);
     }
 
-
-    private void response(ResponseModel<RateParentModel> responseModel) {
+    private void response(ResponseModel<AlertParentModel> responseModel) {
         if (responseModel.isSuccess() && responseModel.getData() != null) {
-            mView.getRateList(responseModel.getData().getRateList());
-            Constants.RATELIST=responseModel.getData().getRateList();
+            mView.getAlertList(responseModel.getData().getGetAlertList());
         } else
             mView.showServerError();
     }
 
-    public void deleteRateItem(int pair_id) {
-        Disposable disposable = mService.deleteRateItem(pair_id).subscribe(this::deleteItemResponse, this::errorView);
+    public void deleteAlertItem(int alert_id) {
+        Disposable disposable = mService.deleteAlertItem(alert_id).subscribe(this::deleteItemResponse, this::errorView);
         addDisposable(disposable);
     }
 
