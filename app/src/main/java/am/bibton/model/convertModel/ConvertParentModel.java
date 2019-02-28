@@ -1,4 +1,4 @@
-package am.bibton.model.ConvertModel;
+package am.bibton.model.convertModel;
 
 import java.util.List;
 

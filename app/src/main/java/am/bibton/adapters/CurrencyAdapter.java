@@ -7,8 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
+
 import am.bibton.R;
 import am.bibton.model.walletCurrency.WalletCurrencyResponse;
 import androidx.annotation.NonNull;
@@ -23,7 +26,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public CurrencyAdapter(Context context, List<WalletCurrencyResponse> walletCurrencyResponses, CurrencyAdapter.OnItemClickListener mListener) {
         Context context1 = context;
         layoutInflater = LayoutInflater.from(context);
-        this.walletCurrencyResponses=walletCurrencyResponses;
+        this.walletCurrencyResponses = walletCurrencyResponses;
         this.mListener = mListener;
     }
 
@@ -60,7 +63,6 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         TextView county_money_short_name;
         ImageView country_flags;
         TextView country_name;

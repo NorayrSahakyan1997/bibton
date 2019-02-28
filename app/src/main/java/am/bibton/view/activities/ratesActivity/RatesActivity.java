@@ -92,6 +92,10 @@ public class RatesActivity extends BaseActivity {
             currentFragment = new ConverterFragment();
             changeTabBarColors(1);
         }
+        if (currentExtra.equals("AddAlertActivity")) {
+            currentFragment = new AlertFragment();
+            changeTabBarColors(2);
+        }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.frame_layout_rates_activity, currentFragment);
         fragmentTransaction.commit();

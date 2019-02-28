@@ -70,7 +70,6 @@
                 android:id="@+id/recycler_view_rates_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:nestedScrollingEnabled="false"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"

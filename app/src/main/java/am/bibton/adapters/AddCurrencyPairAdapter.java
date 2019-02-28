@@ -105,8 +105,12 @@ public class AddCurrencyPairAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
     private void unableExistedItems(ViewHolder viewHolder, int position) {
-        if (Constants.CURRENCY_SUM == 1 && Constants.CURRENCY_ID_FIRST == currencyResponse.get(position).getCurrency_id()) {
-            viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.unableRow));
+        if (Constants.CURRENCY_SUM == 1) {
+            if (Constants.CURRENCY_ID_FIRST == currencyResponse.get(position).getCurrency_id()) {
+                viewHolder.itemView.setEnabled(false);
+                viewHolder.itemView.setClickable(false);
+                viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.unableRow));
+            }
             for (int i = 0; i < fromList.size(); i++) {
                 if (fromList.get(i) == currencyResponse.get(position).getCurrency_id()) {
                     viewHolder.itemView.setEnabled(false);
@@ -114,6 +118,7 @@ public class AddCurrencyPairAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.unableRow));
                 }
             }
+
         }
     }
 

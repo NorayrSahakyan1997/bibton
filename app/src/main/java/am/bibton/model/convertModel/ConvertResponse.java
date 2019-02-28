@@ -1,4 +1,4 @@
-package am.bibton.model.ConvertModel;
+package am.bibton.model.convertModel;
 
 public class ConvertResponse {
     private int compare_id;

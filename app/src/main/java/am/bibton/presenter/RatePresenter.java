@@ -46,6 +46,7 @@ public class RatePresenter extends BasePresenter<IRateFragment> {
             Toast.makeText(mContext, "Item was deleted successfully", Toast.LENGTH_SHORT).show();
 
         } else {
+
             mView.showNetworkError();
         }
     }

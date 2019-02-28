@@ -43,7 +43,7 @@ public class WelcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 //
-        //  loteAnimation();
+          //loteAnimation();
         //init();
         enterHomeActivity();
         //setFragments();
@@ -75,7 +75,7 @@ public class WelcomeActivity extends BaseActivity {
         }
         transaction.remove(currentFragment);
         currentFragment = fragment;
-        transaction.replace(R.id.frame_layout_home, currentFragment);
+        transaction.replace(R.id.frameLayoutWelcome, currentFragment);
         transaction.commit();
     }
 

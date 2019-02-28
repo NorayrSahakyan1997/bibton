@@ -2,7 +2,7 @@ package am.bibton.shared.data.api;
 
 import java.util.List;
 
-import am.bibton.model.ConvertModel.ConvertParentModel;
+import am.bibton.model.convertModel.ConvertParentModel;
 import am.bibton.model.ResponseModel;
 import am.bibton.model.alertModel.AlertParentModel;
 import am.bibton.model.currencyModel.CurrencyParentModel;
@@ -96,22 +96,26 @@ public interface IAuthorizationService {
 
     @FormUrlEncoded
     @POST("api/rate/delete/comparable-currency")
-    Flowable<ResponseModel<List>> deleteConvertItem(@Field("compare_id") int compare_id);
+    Flowable<ResponseModel<List>> deleteConvertItem(@Field("compare_id") int compareId);
 
     @FormUrlEncoded
     @POST("api/rate/add/comparable-rates")
-    Flowable<ResponseModel<List>> addConvertItem(@Field("currency_id") int currency_id);
+    Flowable<ResponseModel<List>> addConvertItem(@Field("currency_id") int currencyId);
 
     @GET("api/rate/alert/list")
     Flowable<ResponseModel<AlertParentModel>> getAlertList();
 
     @FormUrlEncoded
     @POST("api/rate/alert/delete")
-    Flowable<ResponseModel<List>> deleteAlertItem(@Field("alert_id") int alert_id);
+    Flowable<ResponseModel<List>> deleteAlertItem(@Field("alert_id") int alertId);
 
     @FormUrlEncoded
     @POST("api/rate/comparable-make-main")
-    Flowable<ResponseModel<List>> makeCurrencyMain(@Field("currency_id") int currency_id);
+    Flowable<ResponseModel<List>> makeCurrencyMain(@Field("currency_id") int currencyId);
+
+    @FormUrlEncoded
+    @POST("api/rate/alert/add")
+    Flowable<ResponseModel<List>> addAlert(@Field("from_currency") int fromCurrency,@Field("to_currency") int toCurrency,@Field("amount") float amount);
 
 
 }

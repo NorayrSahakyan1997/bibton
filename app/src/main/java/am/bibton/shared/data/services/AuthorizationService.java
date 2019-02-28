@@ -2,7 +2,7 @@ package am.bibton.shared.data.services;
 
 import java.util.List;
 
-import am.bibton.model.ConvertModel.ConvertParentModel;
+import am.bibton.model.convertModel.ConvertParentModel;
 import am.bibton.model.ResponseModel;
 import am.bibton.model.alertModel.AlertParentModel;
 import am.bibton.model.currencyModel.CurrencyParentModel;
@@ -119,5 +119,8 @@ public class AuthorizationService extends BaseService {
     }
     public Flowable<ResponseModel<List>> makeCurrencyMain(int currencyId){
         return request(mService.makeCurrencyMain(currencyId));
+    }
+    public Flowable<ResponseModel<List>> addAlert(int fromCurrency,int toCurrency,float amount){
+        return request(mService.addAlert(fromCurrency,toCurrency,amount));
     }
 }

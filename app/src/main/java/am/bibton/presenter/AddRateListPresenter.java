@@ -45,26 +45,28 @@ public class AddRateListPresenter extends BasePresenter<IAddRateActivity> {
     private void addCurrencyPairResponse(ResponseModel<List> responseModel) {
         if (responseModel.isSuccess()) {
             mView.addCurrencyPair(true);
+            Toast.makeText(mContext,"Pair was added successfully",Toast.LENGTH_SHORT).show();
         } else {
+            Toast.makeText(mContext,"Pair was already exists",Toast.LENGTH_SHORT).show();
             mView.addCurrencyPair(false);
             mView.showNetworkError();
 
         }
     }
 
-    public void addConvertItem(int currency_id) {
-        Disposable disposable = mService.addConvertItem(currency_id).subscribe(this::addConvertItemResponse, this::errorView);
-        addDisposable(disposable);
-    }
-
-    private void addConvertItemResponse(ResponseModel<List> responseModel) {
-        if (responseModel.isSuccess()) {
-            Toast.makeText(mContext, "Convert Item Was Added Successfully", Toast.LENGTH_SHORT).show();
-        } else {
-            mView.addCurrencyPair(false);
-            Toast.makeText(mContext, "Rates already exists", Toast.LENGTH_SHORT).show();
-            mView.showNetworkError();
-
-        }
-    }
+//    public void addConvertItem(int currency_id) {
+//        Disposable disposable = mService.addConvertItem(currency_id).subscribe(this::addConvertItemResponse, this::errorView);
+//        addDisposable(disposable);
+//    }
+//
+//    private void addConvertItemResponse(ResponseModel<List> responseModel) {
+//        if (responseModel.isSuccess()) {
+//            Toast.makeText(mContext, "Convert Item Was Added Successfully", Toast.LENGTH_SHORT).show();
+//        } else {
+//            mView.addCurrencyPair(false);
+//            Toast.makeText(mContext, "Rates already exists", Toast.LENGTH_SHORT).show();
+//            mView.showNetworkError();
+//
+//        }
+//    }
 }

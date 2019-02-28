@@ -22,7 +22,6 @@ public class RatesAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHolder> 
 
 
     public RatesAdapter(Context context, List<RateResponse> rateParentModels, RatesAdapter.OnItemClickListener mListener) {
-        Context context1 = context;
         this.rateResponseList = rateParentModels;
         this.mListener = mListener;
         layoutInflater = LayoutInflater.from(context);

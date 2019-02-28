@@ -4,16 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
 import java.util.List;
+
 import javax.inject.Inject;
+
 import am.bibton.Bibton;
 import am.bibton.R;
 import am.bibton.adapters.ConvertListAdapter;
-import am.bibton.model.ConvertModel.ConvertResponse;
+import am.bibton.model.convertModel.ConvertResponse;
 import am.bibton.presenter.ConvertListPresenter;
 import am.bibton.shared.utils.Constants;
+import am.bibton.shared.utils.KeyboardUtils;
 import am.bibton.view.activities.BaseFragment;
 import am.bibton.view.activities.ratesActivity.addConvertActivity.AddConvertActivity;
 import androidx.annotation.NonNull;
@@ -42,6 +48,7 @@ public class ConverterFragment extends BaseFragment implements IConvertFragment 
         mPresenter.getRatesList(1);
         init();
         goToAddCurrencyActivity();
+        setupUI(mainView);
         return mainView;
     }
 
@@ -49,6 +56,27 @@ public class ConverterFragment extends BaseFragment implements IConvertFragment 
         addCurrencyParentConstraintConverts = mainView.findViewById(R.id.addCurrencyParentConstraintConverts);
         addCurrencyPairEmpty = mainView.findViewById(R.id.addCurrencyPairEmptyConvert);
         recyclerViewConverts = mainView.findViewById(R.id.recycler_view_converts);
+    }
+
+    public void setupUI(View view) {
+
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    KeyboardUtils.hideSoftInput(getActivity());
+                    return false;
+                }
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
     }
 
     @Override
@@ -84,12 +112,13 @@ public class ConverterFragment extends BaseFragment implements IConvertFragment 
             @Override
             public void makeCurrencyMain(int currencyId, float amount) {
                 mPresenter.makeCurrencyMain(currencyId);
-                mPresenter.getRatesList(amount);
+                //mPresenter.getRatesList(amount);
             }
 
             @Override
             public void getAdapterSize(int position) {
                 if (position == 0) {
+                    Constants.FromCurrencyConvert.clear();
                     addCurrencyParentConstraintConverts.setVisibility(View.GONE);
                     addCurrencyPairEmpty.setVisibility(View.VISIBLE);
                     recyclerViewConverts.setVisibility(View.GONE);

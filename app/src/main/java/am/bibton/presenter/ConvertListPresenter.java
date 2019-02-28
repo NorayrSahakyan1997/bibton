@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import am.bibton.model.ConvertModel.ConvertParentModel;
+import am.bibton.model.convertModel.ConvertParentModel;
 import am.bibton.model.ResponseModel;
 import am.bibton.presenter.root.BasePresenter;
 import am.bibton.shared.data.services.AuthorizationService;
@@ -25,11 +25,11 @@ public class ConvertListPresenter extends BasePresenter<IConvertFragment> {
     }
 
     public void getRatesList(float amount) {
-        Disposable disposable = mService.getConvertList(amount).subscribe(this::response, this::errorView);
+        Disposable disposable = mService.getConvertList(amount).subscribe(this::getRateListResponse, this::errorView);
         addDisposable(disposable);
     }
 
-    private void response(ResponseModel<ConvertParentModel> responseModel) {
+    private void getRateListResponse(ResponseModel<ConvertParentModel> responseModel) {
         List<Integer> convertFromId = new ArrayList<>();
         if (responseModel.isSuccess() && responseModel.getData() != null) {
             mView.getConvertList(responseModel.getData().getList());
@@ -49,8 +49,8 @@ public class ConvertListPresenter extends BasePresenter<IConvertFragment> {
 
     private void deleteItemResponse(ResponseModel<List> deleteResponse) {
         if (deleteResponse.isSuccess()) {
-            //getRatesList();
             Toast.makeText(mContext, "Item was deleted successfully", Toast.LENGTH_SHORT).show();
+            getRatesList(1);
         } else {
             mView.showNetworkError();
         }

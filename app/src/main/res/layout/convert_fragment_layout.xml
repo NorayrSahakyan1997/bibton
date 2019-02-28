@@ -7,7 +7,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -65,7 +67,6 @@
                 android:id="@+id/recycler_view_converts"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:nestedScrollingEnabled="false"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -74,12 +75,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/addCurrencyParentConstraintConverts"
                 app:layout_constraintVertical_bias="0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/addCurrencyPairEmptyConvert"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

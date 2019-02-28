@@ -7,11 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
 import am.bibton.R;
 import am.bibton.model.getTransactionList.TransactionResponse;
 import am.bibton.shared.utils.Constants;
