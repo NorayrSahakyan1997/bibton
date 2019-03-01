@@ -2,20 +2,14 @@ package am.bibton.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
 import am.bibton.R;
 import am.bibton.model.currencyModel.CurrencyResponse;
 import am.bibton.shared.utils.Constants;
@@ -26,7 +20,6 @@ public class AddCurrencyPairAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private Context context;
     private List<CurrencyResponse> currencyResponse;
     private LayoutInflater layoutInflater;
-    private View mainView;
     private final AddCurrencyPairAdapter.OnItemClickListener mListener;
     private List<Integer> fromList;
 
@@ -43,9 +36,8 @@ public class AddCurrencyPairAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        mainView = layoutInflater.inflate(R.layout.search_view_child, parent, false);
-        RecyclerView.ViewHolder viewHolder = new AddCurrencyPairAdapter.ViewHolder(mainView);
-        return viewHolder;
+        View mainView = layoutInflater.inflate(R.layout.search_view_child, parent, false);
+        return new ViewHolder(mainView);
     }
 
     @SuppressLint("SetTextI18n")

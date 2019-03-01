@@ -17,32 +17,26 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class AlertListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHolder> {
-    private Context context;
-    private View mainView;
     private List<AlertResponse> alertResponses;
     private LayoutInflater layoutInflater;
     private final AlertListAdapter.OnItemClickListener mListener;
 
     public AlertListAdapter(Context context, List<AlertResponse> alertResponses, AlertListAdapter.OnItemClickListener mListener) {
-        this.context = context;
         this.alertResponses = alertResponses;
         this.mListener = mListener;
         layoutInflater = LayoutInflater.from(context);
-
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        mainView = layoutInflater.inflate(R.layout.alert_item_row, parent, false);
-        RecyclerView.ViewHolder viewHolder = new AlertListAdapter.ViewHolder(mainView);
-        return viewHolder;
+        View mainView = layoutInflater.inflate(R.layout.alert_item_row, parent, false);
+        return new ViewHolder(mainView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         String amount = Float.toString(alertResponses.get(position).getAmount());
-
         AlertListAdapter.ViewHolder viewHolder = (AlertListAdapter.ViewHolder) holder;
         viewHolder.fromIso.setText(alertResponses.get(position).getFrom_iso());
         viewHolder.onClick(viewHolder.delete, position);

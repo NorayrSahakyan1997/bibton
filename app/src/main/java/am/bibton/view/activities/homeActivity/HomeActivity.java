@@ -46,7 +46,7 @@ public class HomeActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
+        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
         init();
         setFragment();
     }
@@ -79,27 +79,27 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void open_home_fragment(View view) {
-        changeFragments.replaceFragment(new HomeFragment(), true);
+        changeFragments.replaceHomeFragments(new HomeFragment(), true);
         ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, transfers_icon, card_icon, more_icon, 0);
     }
 
     public void open_analytics_fragment(View view) {
-        changeFragments.replaceFragment(new StatementFragment(), false);
+        changeFragments.replaceHomeFragments(new StatementFragment(), false);
         ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, transfers_icon, card_icon, more_icon, 1);
     }
 
     public void open_transfers_fragment(View view) {
-        changeFragments.replaceFragment(new PaymentFragment(), false);
+        changeFragments.replaceHomeFragments(new PaymentFragment(), false);
         ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, transfers_icon, card_icon, more_icon, 2);
     }
 
     public void open_card_fragment(View view) {
-        changeFragments.replaceFragment(new BibtonCardFragment(), true);
+        changeFragments.replaceHomeFragments(new BibtonCardFragment(), true);
         ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, transfers_icon, card_icon, more_icon, 3);
     }
 
     public void open_more_fragment(View view) {
-        changeFragments.replaceFragment(new MoreFragment(), true);
+        changeFragments.replaceHomeFragments(new MoreFragment(), true);
         ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, card_icon, transfers_icon, more_icon, 4);
     }
 

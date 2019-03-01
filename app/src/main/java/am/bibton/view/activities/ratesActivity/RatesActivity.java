@@ -40,7 +40,7 @@ public class RatesActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rates);
-        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+//        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         init();
         setFragments();
         goToHomeActivity();
@@ -65,9 +65,7 @@ public class RatesActivity extends BaseActivity {
     }
 
     public void replaceFragment(Fragment fragment, boolean backAnim) {
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
         if (backAnim) {
             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
         } else {
@@ -81,7 +79,6 @@ public class RatesActivity extends BaseActivity {
 
     public void setFragments() {
         Intent intent = getIntent();
-
         if (intent.hasExtra("fragment")) {
             currentExtra = intent.getStringExtra("fragment");
         }

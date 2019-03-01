@@ -36,8 +36,8 @@ public class YouAreDoneFragment extends BaseFragment {
             @Override
             public void onAnimationEnd(Animator animation) {
                 Intent intent = new Intent(getContext(), HomeActivity.class);
-
                 startActivity(intent);
+
             }
 
             @Override

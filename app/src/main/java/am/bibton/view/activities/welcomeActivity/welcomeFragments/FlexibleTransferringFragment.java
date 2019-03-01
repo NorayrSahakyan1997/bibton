@@ -32,7 +32,6 @@ public class FlexibleTransferringFragment extends BaseFragment  {
         return main_view;
     }
 
-
     private void init() {
 
         gotToProfitableExchangeFragment = main_view.findViewById(R.id.gotToProfitableExchangeFragment);
@@ -40,7 +39,7 @@ public class FlexibleTransferringFragment extends BaseFragment  {
     }
 
     private void gotToProfitableExchangeFragment() {
-        gotToProfitableExchangeFragment.setOnClickListener(v -> changeFragments.replaceFragment(new ProfitableExchangeFragment(), false));
+        gotToProfitableExchangeFragment.setOnClickListener(v -> changeFragments.replaceWelcomeFragments(new ProfitableExchangeFragment(), false));
     }
 
     @Override

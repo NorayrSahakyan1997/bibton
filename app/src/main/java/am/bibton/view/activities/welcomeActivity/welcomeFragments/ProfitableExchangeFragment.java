@@ -38,7 +38,7 @@ public class ProfitableExchangeFragment extends BaseFragment implements View.OnC
     }
 
     private void goToModernUserFragment() {
-        goToModernUserFragment.setOnClickListener(v -> changeFragments.replaceFragment(new ModernUserFragment(), false));
+        goToModernUserFragment.setOnClickListener(v -> changeFragments.replaceWelcomeFragments(new ModernUserFragment(), false));
     }
 
     @Override

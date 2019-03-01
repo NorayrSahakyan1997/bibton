@@ -7,4 +7,5 @@ import am.bibton.view.activities.IBaseView;
 
 public interface IAddAlertActivity extends IBaseView {
     void getAlertList(List<CurrencyResponse> getAlertResponse) ;
+
 }

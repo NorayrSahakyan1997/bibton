@@ -20,7 +20,6 @@
     <string name="payment">Payment</string>
     <string name="phoneNumber">Phone Number</string>
     <string name="_00_00_00">00-00-00</string>
-
     <string name="network_error_message">No internet connection</string>
     <string name="default_error_message">Sorry something went wrong. Please try again later.</string>
     <string name="network_error">No internet connection</string>
@@ -73,6 +72,8 @@
     <string name="canadianDollar">Canadian Dollar</string>
     <string name="addCurrencyPair">Add Currency Pair</string>
     <string name="chooseacurrency">Choose a currency pair to compare their \n live rates</string>
+    <string name="createAPriceAlert">Create a price alert for </string>
+    <string name="submit">Submit</string>
     <string-array name="menu_names_array">
         <item>Summery</item>
         <item>Payments</item>

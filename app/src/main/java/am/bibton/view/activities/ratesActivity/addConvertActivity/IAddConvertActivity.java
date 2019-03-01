@@ -1,7 +1,5 @@
 package am.bibton.view.activities.ratesActivity.addConvertActivity;
 import java.util.List;
-
-import am.bibton.model.ResponseModel;
 import am.bibton.model.currencyModel.CurrencyResponse;
 import am.bibton.view.activities.IBaseView;
 

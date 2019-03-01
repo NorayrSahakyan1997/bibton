@@ -22,22 +22,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements RecyclerView.OnItemTouchListener {
 
-    private Context context;
     private List<CountryModel> countryArray;
     private LayoutInflater layoutInflater;
     private View view;
 
     public CountryListAdapter(Context context, List<CountryModel> countryArray) {
         this.countryArray = countryArray;
-        this.context = context;
         layoutInflater = LayoutInflater.from(context);
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         view = layoutInflater.inflate(R.layout.search_view_child, parent, false);
-        RecyclerView.ViewHolder viewHolder = new CountryListAdapter.ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")

@@ -33,7 +33,6 @@ public class ServiceAdapterHorizontal extends RecyclerView.Adapter<RecyclerView.
     private void setMenuNames() {
         service_names = new ArrayList<>();
         service_names = Arrays.asList(context.getResources().getStringArray(R.array.service_names));
-
     }
 
     private void setMenuIcons() {
@@ -71,18 +70,14 @@ public class ServiceAdapterHorizontal extends RecyclerView.Adapter<RecyclerView.
             itemView.setOnClickListener(this);
             text_view_horizontal_item_row = itemView.findViewById(R.id.text_view_horizontal_item_row);
             image_view_horizontal_item_row = itemView.findViewById(R.id.image_view_horizontal_item_row);
-
-
         }
 
 
         @Override
         public void onClick(View v) {
-
             if (getAdapterPosition() == 3) {
                 Intent goToRateActivity = new Intent(context, RatesActivity.class);
                 context.startActivity(goToRateActivity);
-
             }
         }
     }

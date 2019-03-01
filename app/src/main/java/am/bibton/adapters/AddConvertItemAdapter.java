@@ -1,5 +1,6 @@
 package am.bibton.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,10 +34,10 @@ public class AddConvertItemAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mainView = layoutInflater.inflate(R.layout.search_view_child, parent, false);
-        RecyclerView.ViewHolder viewHolder = new AddConvertItemAdapter.ViewHolder(mainView);
-        return viewHolder;
+        return new ViewHolder(mainView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         AddConvertItemAdapter.ViewHolder viewHolder = (AddConvertItemAdapter.ViewHolder) holder;
@@ -88,9 +89,7 @@ public class AddConvertItemAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
 
         void onClick(final View itemView, final int position) {
-            itemView.setOnClickListener(v -> {
-                        mListener.onClick(currencyResponse.get(position).getCurrency_id());
-                    }
+            itemView.setOnClickListener(v -> mListener.onClick(currencyResponse.get(position).getCurrency_id())
             );
         }
 

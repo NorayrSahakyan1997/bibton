@@ -9,7 +9,6 @@ public class SplashScreenActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
         finish();

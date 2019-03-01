@@ -39,8 +39,7 @@ public class NavigationMenuAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.menu_item_row, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -52,7 +51,6 @@ public class NavigationMenuAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             nav_view_images = itemView.findViewById(R.id.menu_item_icon);
         }
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {

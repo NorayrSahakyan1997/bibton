@@ -27,13 +27,11 @@ public class RatesAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHolder> 
         layoutInflater = LayoutInflater.from(context);
     }
 
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mainView = layoutInflater.inflate(R.layout.rates_item_row, parent, false);
-        RecyclerView.ViewHolder viewHolder = new RatesAdapter.ViewHolder(mainView);
-        return viewHolder;
+        return new ViewHolder(mainView);
     }
 
     @SuppressLint("SetTextI18n")
@@ -47,7 +45,6 @@ public class RatesAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHolder> 
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
         viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, viewHolder.swipeLayout.findViewById(R.id.bottom_wraper));
         viewHolder.onClick(viewHolder.delete, position);
-
     }
 
     @Override
@@ -94,11 +91,6 @@ public class RatesAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHolder> 
                 mItemManger.closeAllItems();
                 notifyDataSetChanged();
             });
-
-
         }
-
-
     }
-
 }

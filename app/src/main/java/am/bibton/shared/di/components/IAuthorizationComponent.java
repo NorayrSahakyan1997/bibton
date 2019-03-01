@@ -1,6 +1,5 @@
 package am.bibton.shared.di.components;
 
-import am.bibton.adapters.AddAlertAdapter;
 import am.bibton.shared.di.components.root.IAppComponent;
 import am.bibton.shared.di.modules.AuthorizationModule;
 import am.bibton.shared.di.scopes.AuthorizationScope;
@@ -10,6 +9,7 @@ import am.bibton.view.activities.homeActivity.homeFragments.homeFragment.HomeFra
 import am.bibton.view.activities.ratesActivity.addAlertActivity.AddAlertActivity;
 import am.bibton.view.activities.ratesActivity.addConvertActivity.AddConvertActivity;
 import am.bibton.view.activities.ratesActivity.addRateActivity.AddRateActivity;
+import am.bibton.view.activities.ratesActivity.addSecondAlertPairActivity.SecondAlertPairActivity;
 import am.bibton.view.activities.ratesActivity.alertFragment.AlertFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.convertFragment.ConverterFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.rateFragment.RatesFragment;
@@ -51,6 +51,9 @@ public interface IAuthorizationComponent {
     void inject(AlertFragment alertFragment);
 
     void inject(AddAlertActivity addAlertActivity);
+
+    void inject(SecondAlertPairActivity SecondAlertPairActivity);
+
 
 
 }

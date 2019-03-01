@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import am.bibton.model.ResponseModel;
 import am.bibton.model.currencyModel.CurrencyParentModel;
+import am.bibton.model.exchangeModel.ExchangeParentModel;
 import am.bibton.presenter.root.BasePresenter;
 import am.bibton.shared.data.services.AuthorizationService;
 import am.bibton.shared.utils.Constants;
@@ -51,4 +52,6 @@ public class AddAlertListPresenter extends BasePresenter<IAddAlertActivity> {
 
         }
     }
+
+
 }

@@ -23,7 +23,6 @@ public class ConvertListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHo
     private final ConvertListAdapter.OnItemClickListener mListener;
 
     public ConvertListAdapter(Context context, List<ConvertResponse> convertResponse, ConvertListAdapter.OnItemClickListener mListener) {
-        Context context1 = context;
         this.convertResponse = convertResponse;
         layoutInflater = LayoutInflater.from(context);
         this.mListener = mListener;
@@ -33,8 +32,7 @@ public class ConvertListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHo
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mainView = layoutInflater.inflate(R.layout.convert_fragment_item_row, parent, false);
-        RecyclerView.ViewHolder viewHolder = new ConvertListAdapter.ViewHolder(mainView);
-        return viewHolder;
+        return new ViewHolder(mainView);
     }
 
     @Override
@@ -66,9 +64,7 @@ public class ConvertListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHo
 
     public interface OnItemClickListener {
         void onClick(final int position);
-
         void getAdapterSize(final int positon);
-
         void makeCurrencyMain(final int currencyIdn, final float amount);
     }
 
@@ -85,7 +81,6 @@ public class ConvertListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHo
         private SwipeLayout swipeLayout;
         private TextView delete;
         private EditText balanceAmount;
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -112,7 +107,6 @@ public class ConvertListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHo
 
         @Override
         public void onClick(View v) {
-
             Collections.swap(convertResponse, getAdapterPosition(), 0);
             notifyItemMoved(getAdapterPosition(), 0);
             mListener.makeCurrencyMain(convertResponse.get(getAdapterPosition()).getCurrency_id(), convertResponse.get(getAdapterPosition()).getRate());

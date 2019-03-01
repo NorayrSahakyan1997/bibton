@@ -6,11 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import java.util.List;
-
 import javax.inject.Inject;
-
 import am.bibton.Bibton;
 import am.bibton.R;
 import am.bibton.adapters.AlertListAdapter;
@@ -48,13 +45,10 @@ public class AlertFragment extends BaseFragment implements IAlertFragment {
         addCurrencyParentConstraintAlert = mainView.findViewById(R.id.addCurrencyParentConstraintAlert);
     }
 
-    public void goToAddAlertActivity() {
-        addCurrencyParentConstraintAlert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToAddAlertActivity = new Intent(context, AddAlertActivity.class);
-                context.startActivity(goToAddAlertActivity);
-            }
+    private void goToAddAlertActivity() {
+        addCurrencyParentConstraintAlert.setOnClickListener(v -> {
+            Intent goToAddAlertActivity = new Intent(context, AddAlertActivity.class);
+            context.startActivity(goToAddAlertActivity);
         });
     }
 
@@ -65,7 +59,6 @@ public class AlertFragment extends BaseFragment implements IAlertFragment {
         AlertListAdapter alertListAdapter = new AlertListAdapter(context, getAlertList, position -> mPresenter.deleteAlertItem(position));
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(alertListAdapter);
-
     }
 
     @Override

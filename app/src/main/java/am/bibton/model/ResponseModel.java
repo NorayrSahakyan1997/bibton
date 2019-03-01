@@ -22,7 +22,6 @@ public class ResponseModel<T> implements Parcelable {
         dest.writeByte((byte) (success == null ? 0 : success ? 1 : 2));
         dest.writeString(message);
     }
-
     @Override
     public int describeContents() {
         return 0;
@@ -33,7 +32,6 @@ public class ResponseModel<T> implements Parcelable {
         public ResponseModel createFromParcel(Parcel in) {
             return new ResponseModel(in);
         }
-
         @Override
         public ResponseModel[] newArray(int size) {
             return new ResponseModel[size];

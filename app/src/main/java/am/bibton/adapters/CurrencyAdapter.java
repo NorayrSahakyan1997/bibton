@@ -24,7 +24,6 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     public CurrencyAdapter(Context context, List<WalletCurrencyResponse> walletCurrencyResponses, CurrencyAdapter.OnItemClickListener mListener) {
-        Context context1 = context;
         layoutInflater = LayoutInflater.from(context);
         this.walletCurrencyResponses = walletCurrencyResponses;
         this.mListener = mListener;
@@ -34,9 +33,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mainView = layoutInflater.inflate(R.layout.recycler_balance_row, parent, false);
-        RecyclerView.ViewHolder viewHolder = new CurrencyAdapter.ViewHolder(mainView);
-
-        return viewHolder;
+        return new ViewHolder(mainView);
     }
 
     @SuppressLint("SetTextI18n")
@@ -50,7 +47,6 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 .load(walletCurrencyResponses.get(position).getCurrency_icon())
                 .into(viewHolder.country_flags);
         viewHolder.onClick(holder.itemView, position);
-
     }
 
     @Override

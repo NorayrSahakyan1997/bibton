@@ -1,18 +1,17 @@
 package am.bibton.view.activities.ratesActivity.ratesFragments.convertFragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
-
 import am.bibton.Bibton;
 import am.bibton.R;
 import am.bibton.adapters.ConvertListAdapter;
@@ -58,19 +57,16 @@ public class ConverterFragment extends BaseFragment implements IConvertFragment 
         recyclerViewConverts = mainView.findViewById(R.id.recycler_view_converts);
     }
 
-    public void setupUI(View view) {
+    @SuppressLint("ClickableViewAccessibility")
+    private void setupUI(View view) {
 
-        // Set up touch listener for non-text box views to hide keyboard.
         if (!(view instanceof EditText)) {
-            view.setOnTouchListener(new View.OnTouchListener() {
-                public boolean onTouch(View v, MotionEvent event) {
-                    KeyboardUtils.hideSoftInput(getActivity());
-                    return false;
-                }
+            view.setOnTouchListener((v, event) -> {
+                KeyboardUtils.hideSoftInput(Objects.requireNonNull(getActivity()));
+                return false;
             });
         }
 
-        //If a layout container, iterate over children and seed recursion.
         if (view instanceof ViewGroup) {
             for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
                 View innerView = ((ViewGroup) view).getChildAt(i);
@@ -112,7 +108,7 @@ public class ConverterFragment extends BaseFragment implements IConvertFragment 
             @Override
             public void makeCurrencyMain(int currencyId, float amount) {
                 mPresenter.makeCurrencyMain(currencyId);
-                //mPresenter.getRatesList(amount);
+                mPresenter.getRatesList(amount);
             }
 
             @Override

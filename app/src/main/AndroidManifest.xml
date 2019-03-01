@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activities.ratesActivity.addAlertActivity.AddAlertActivity"></activity>
+        <activity
+            android:name=".view.activities.ratesActivity.addSecondAlertPairActivity.SecondAlertPairActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activities.ratesActivity.addAlertActivity.AddAlertActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activities.ratesActivity.addConvertActivity.AddConvertActivity"
             android:screenOrientation="portrait" />

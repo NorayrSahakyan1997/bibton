@@ -24,8 +24,6 @@ public class AddConvertActivity extends BaseActivity implements IAddConvertActiv
     @Inject
     AddConvertListPresenter mPresenter;
     private List<CurrencyResponse> outputCountries;
-    private ImageView backIconAddConvertActivity;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,13 +33,17 @@ public class AddConvertActivity extends BaseActivity implements IAddConvertActiv
         mPresenter.onViewCreated(this);
         mPresenter.getCurrencyList();
         init();
-        goToRatesActivity();
+        setSearchViewQueryListener();
     }
 
     public void init() {
         searchView = findViewById(R.id.searchViewAddConvert);
         searchView.setFocusable(true);
-        backIconAddConvertActivity = findViewById(R.id.backIconAddConvertActivity);
+        ImageView backIconAddConvertActivity = findViewById(R.id.backIconAddConvertActivity);
+        backIconAddConvertActivity.setOnClickListener(v -> goToRatesActivity());
+    }
+
+    public void setSearchViewQueryListener() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -62,9 +64,7 @@ public class AddConvertActivity extends BaseActivity implements IAddConvertActiv
         addCurrencyRecyclerView = findViewById(R.id.recyclerViewAddConvert);
         AddConvertItemAdapter addCurrencyPairAdapter = new AddConvertItemAdapter(this, getCurrencyList, position -> {
             mPresenter.addConvertItem(position);
-            Intent goToRatesActivity = new Intent(getApplicationContext(), RatesActivity.class);
-            goToRatesActivity.putExtra("fragment", "convertFragment");
-            startActivity(goToRatesActivity);
+            goToRatesActivity();
         });
         addCurrencyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         addCurrencyRecyclerView.setAdapter(addCurrencyPairAdapter);
@@ -82,20 +82,21 @@ public class AddConvertActivity extends BaseActivity implements IAddConvertActiv
             filteredList = outputCountries;
         AddConvertItemAdapter addCurrencyPairAdapter = new AddConvertItemAdapter(this, filteredList, position -> {
             mPresenter.addConvertItem(position);
-            Intent goToRatesActivity = new Intent(getApplicationContext(), RatesActivity.class);
-            goToRatesActivity.putExtra("fragment", "convertFragment");
-            startActivity(goToRatesActivity);
-
+            goToRatesActivity();
         });
         addCurrencyRecyclerView.setAdapter(addCurrencyPairAdapter);
     }
 
     public void goToRatesActivity() {
-        backIconAddConvertActivity.setOnClickListener(v -> {
-            Intent goToRatesActivity = new Intent(getApplicationContext(), RatesActivity.class);
-            goToRatesActivity.putExtra("fragment", "convertFragment");
-            startActivity(goToRatesActivity);
-        });
+        Intent goToRatesActivity = new Intent(getApplicationContext(), RatesActivity.class);
+        goToRatesActivity.putExtra("fragment", "convertFragment");
+        startActivity(goToRatesActivity);
+        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToRatesActivity();
     }
 }
