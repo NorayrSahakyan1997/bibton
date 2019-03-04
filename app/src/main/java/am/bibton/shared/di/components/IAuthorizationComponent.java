@@ -10,7 +10,7 @@ import am.bibton.view.activities.ratesActivity.addAlertActivity.AddAlertActivity
 import am.bibton.view.activities.ratesActivity.addConvertActivity.AddConvertActivity;
 import am.bibton.view.activities.ratesActivity.addRateActivity.AddRateActivity;
 import am.bibton.view.activities.ratesActivity.addSecondAlertPairActivity.SecondAlertPairActivity;
-import am.bibton.view.activities.ratesActivity.alertFragment.AlertFragment;
+import am.bibton.view.activities.ratesActivity.ratesFragments.alertFragment.AlertFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.convertFragment.ConverterFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.rateFragment.RatesFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.forgetPassCodeFragment.ForgetPassCodeFragment;

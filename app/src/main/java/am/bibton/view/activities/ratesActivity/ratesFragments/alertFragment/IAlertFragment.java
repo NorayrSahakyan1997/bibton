@@ -1,4 +1,4 @@
-package am.bibton.view.activities.ratesActivity.alertFragment;
+package am.bibton.view.activities.ratesActivity.ratesFragments.alertFragment;
 
 import java.util.List;
 

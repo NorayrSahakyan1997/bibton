@@ -11,12 +11,16 @@ import am.bibton.view.activities.ratesActivity.RatesActivity;
 import am.bibton.view.activities.ratesActivity.addSecondAlertPairActivity.SecondAlertPairActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.SearchView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
 
 public class AddAlertActivity extends BaseActivity implements IAddAlertActivity {
@@ -35,10 +39,7 @@ public class AddAlertActivity extends BaseActivity implements IAddAlertActivity 
         Bibton.getInstance().getAuthorizationComponent().inject(this);
         mPresenter.onViewCreated(this);
         mPresenter.getCurrencyList();
-
         init();
-
-
     }
 
     public void init() {
@@ -48,13 +49,14 @@ public class AddAlertActivity extends BaseActivity implements IAddAlertActivity 
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 searchItemsFromCountryList(searchView.getQuery().toString());
                 return false;
             }
         });
-
+        Log.d("N_TAG", Constants.FROM_AIERT_ID + "");
     }
 
 
@@ -87,8 +89,6 @@ public class AddAlertActivity extends BaseActivity implements IAddAlertActivity 
             goToSecondAlertPairActivity(fromIsoName, fromIsoIcon);
 
         });
-
-
         recyclerView.setAdapter(addAlertAdapter);
 
     }
@@ -100,8 +100,7 @@ public class AddAlertActivity extends BaseActivity implements IAddAlertActivity 
         startActivity(goToRatesActivity);
         overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
         Constants.SELECTSECONDALERT = false;
-        Constants.FIRST_Alert_ID = 0;
-
+        Constants.FROM_AIERT_ID = 0;
     }
 
     public void goToSecondAlertPairActivity(String firstValueIso, String fromAlertIcon) {
@@ -119,7 +118,6 @@ public class AddAlertActivity extends BaseActivity implements IAddAlertActivity 
             Constants.SELECTSECONDALERT = true;
         } else {
             Constants.ToAlertIso = isoName;
-
         }
     }
 }

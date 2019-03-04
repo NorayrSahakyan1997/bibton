@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
@@ -19,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class AlertListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHolder> {
     private List<AlertResponse> alertResponses;
     private LayoutInflater layoutInflater;
-    private final AlertListAdapter.OnItemClickListener mListener;
+    private AlertListAdapter.OnItemClickListener mListener;
 
     public AlertListAdapter(Context context, List<AlertResponse> alertResponses, AlertListAdapter.OnItemClickListener mListener) {
         this.alertResponses = alertResponses;
@@ -39,7 +41,9 @@ public class AlertListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHold
         String amount = Float.toString(alertResponses.get(position).getAmount());
         AlertListAdapter.ViewHolder viewHolder = (AlertListAdapter.ViewHolder) holder;
         viewHolder.fromIso.setText(alertResponses.get(position).getFrom_iso());
-        viewHolder.onClick(viewHolder.delete, position);
+        viewHolder.deleteItem(viewHolder.delete, position);
+        viewHolder.switchItem(viewHolder.switcherAlert, position);
+        //setSwitcherToAlert(viewHolder, alertResponses.get(position).getStatus());
         if (amount.length() > 15) {
             amount.substring(1, 15);
             viewHolder.amount.setText(amount);
@@ -55,11 +59,26 @@ public class AlertListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHold
 
     public interface OnItemClickListener {
         void onClick(final int position);
+
+        void setSwitcher(int Id);
+
+        void getSize(final int size);
+
     }
 
     @Override
     public int getItemCount() {
+        mListener.getSize(alertResponses.size());
         return alertResponses.size();
+
+    }
+
+    private void setSwitcherToAlert(ViewHolder viewHolder, int position) {
+        if (alertResponses.get(position).getStatus() != 1) {
+            viewHolder.switcherAlert.setChecked(false);
+        } else {
+            viewHolder.switcherAlert.setChecked(true);
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -67,17 +86,18 @@ public class AlertListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHold
         private TextView fromIso;
         private SwipeLayout swipeLayout;
         private TextView delete;
+        private Switch switcherAlert;
 
         ViewHolder(View itemView) {
             super(itemView);
             fromIso = itemView.findViewById(R.id.from_iso_alert);
             amount = itemView.findViewById(R.id.amount_alert);
             swipeLayout = itemView.findViewById(R.id.swipe_layout_add_alert);
-            delete=itemView.findViewById(R.id.delete_row_text_alert);
+            delete = itemView.findViewById(R.id.delete_row_text_alert);
+            switcherAlert = itemView.findViewById(R.id.switcher_alert);
         }
 
-        void onClick(final View itemView, final int position) {
-
+        void deleteItem(final View itemView, final int position) {
             itemView.setOnClickListener(v -> {
                 mListener.onClick(alertResponses.get(position).getId());
                 mItemManger.removeShownLayouts(swipeLayout);
@@ -87,6 +107,11 @@ public class AlertListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHold
                 mItemManger.closeAllItems();
                 notifyDataSetChanged();
             });
+        }
+
+        void switchItem(final Switch switcherAlert, final int position) {
+            switcherAlert.setOnCheckedChangeListener((buttonView, isChecked) ->
+                    mListener.setSwitcher(alertResponses.get(position).getId()));
         }
     }
 }

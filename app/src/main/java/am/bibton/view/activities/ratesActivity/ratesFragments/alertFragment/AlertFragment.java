@@ -1,4 +1,4 @@
-package am.bibton.view.activities.ratesActivity.alertFragment;
+package am.bibton.view.activities.ratesActivity.ratesFragments.alertFragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +26,8 @@ public class AlertFragment extends BaseFragment implements IAlertFragment {
     private View mainView;
     private Context context;
     private ConstraintLayout addCurrencyParentConstraintAlert;
+    private ConstraintLayout addAlertPairEmptyConvert;
+    private RecyclerView recyclerView;
     @Inject
     AlertPresenter mPresenter;
 
@@ -43,6 +45,11 @@ public class AlertFragment extends BaseFragment implements IAlertFragment {
 
     private void init() {
         addCurrencyParentConstraintAlert = mainView.findViewById(R.id.addCurrencyParentConstraintAlert);
+        addAlertPairEmptyConvert = mainView.findViewById(R.id.addAlertPairEmptyConvert);
+        recyclerView = mainView.findViewById(R.id.recycler_view_alert);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+
     }
 
     private void goToAddAlertActivity() {
@@ -50,13 +57,40 @@ public class AlertFragment extends BaseFragment implements IAlertFragment {
             Intent goToAddAlertActivity = new Intent(context, AddAlertActivity.class);
             context.startActivity(goToAddAlertActivity);
         });
+        addAlertPairEmptyConvert.setOnClickListener(v -> {
+                    Intent goToAddAlertActivity = new Intent(context, AddAlertActivity.class);
+                    context.startActivity(goToAddAlertActivity);
+                }
+        );
     }
 
     @Override
     public void getAlertList(List<AlertResponse> getAlertList) {
-        RecyclerView recyclerView = mainView.findViewById(R.id.recycler_view_alert);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        AlertListAdapter alertListAdapter = new AlertListAdapter(context, getAlertList, position -> mPresenter.deleteAlertItem(position));
+        setVisibilityOfAddCurrencyConstraint(getAlertList.isEmpty());
+        AlertListAdapter alertListAdapter = new AlertListAdapter(context, getAlertList, new AlertListAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                mPresenter.deleteAlertItem(position);
+            }
+
+            @Override
+            public void setSwitcher(int iD) {
+                mPresenter.switchAlert(iD);
+            }
+
+            @Override
+            public void getSize(int size) {
+                if (size == 0) {
+                    addAlertPairEmptyConvert.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                    addCurrencyParentConstraintAlert.setVisibility(View.GONE);
+                } else {
+                    addAlertPairEmptyConvert.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                    addCurrencyParentConstraintAlert.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(alertListAdapter);
     }
@@ -66,4 +100,18 @@ public class AlertFragment extends BaseFragment implements IAlertFragment {
         this.context = context;
         super.onAttach(context);
     }
+
+    private void setVisibilityOfAddCurrencyConstraint(boolean isActive) {
+        if (isActive) {
+            addAlertPairEmptyConvert.setVisibility(View.VISIBLE);
+            addCurrencyParentConstraintAlert.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
+
+        } else {
+            addAlertPairEmptyConvert.setVisibility(View.GONE);
+            addCurrencyParentConstraintAlert.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+    }
+
 }

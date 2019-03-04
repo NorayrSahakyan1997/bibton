@@ -123,4 +123,7 @@ public class AuthorizationService extends BaseService {
     public Flowable<ResponseModel<List>> addAlert(int fromCurrency,int toCurrency,float amount){
         return request(mService.addAlert(fromCurrency,toCurrency,amount));
     }
+    public Flowable<ResponseModel<List>> switchAlert(int id){
+        return request(mService.switchAlert(id));
+    }
 }

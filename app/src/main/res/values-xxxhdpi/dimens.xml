@@ -66,6 +66,8 @@
     <dimen name="margin_height_rates_frame">180dp</dimen>
 
 
+    <dimen name="paymentConstraintHeight">160dp</dimen>
+    <dimen name="paymentConstraintWidth">153dp</dimen>
 
 
 

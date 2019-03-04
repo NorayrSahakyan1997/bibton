@@ -29,18 +29,5 @@ public class DetailsActivity extends BaseActivity {
         Intent goToRatesActivity = new Intent(this, RatesActivity.class);
         startActivity(goToRatesActivity);
     }
-//    public void maxmize_constraint(View view) {
-//        ValueAnimator anim = ValueAnimator.ofInt(constraint_details.getMeasuredHeight(), 50);
-//        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//            @Override
-//            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-//                int val = (Integer) valueAnimator.getAnimatedValue();
-//                ViewGroup.LayoutParams layoutParams = constraint_details.getLayoutParams();
-//                layoutParams.height = val;
-//                constraint_details.setLayoutParams(layoutParams);
-//            }
-//        });
-//        anim.setDuration(500);
-//        anim.start();
-//    }
+
 }

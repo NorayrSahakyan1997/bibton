@@ -41,7 +41,9 @@ public class AddAlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         viewHolder.countryName.setText(currencyResponses.get(position).getName());
         viewHolder.textIso.setText(currencyResponses.get(position).getIso());
         viewHolder.onClick(viewHolder.itemView, position);
+
         unableItemRow(viewHolder, position);
+
         Picasso.get()
                 .load(currencyResponses.get(position).getFlag())
                 .into(viewHolder.countryIcon);
@@ -57,7 +59,7 @@ public class AddAlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private void unableItemRow(ViewHolder viewHolder, int position) {
-        if (Constants.FIRST_Alert_ID != 0 && Constants.FIRST_Alert_ID == currencyResponses.get(position).getCurrency_id()) {
+        if (Constants.FROM_AIERT_ID == currencyResponses.get(position).getCurrency_id()) {
             viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.unableRow));
             viewHolder.itemView.setClickable(false);
             viewHolder.itemView.setEnabled(false);
@@ -80,9 +82,13 @@ public class AddAlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         void onClick(final View itemView, final int position) {
             itemView.setOnClickListener(v -> {
-                Constants.FIRST_Alert_ID = currencyResponses.get(position).getCurrency_id();
-                if (Constants.FIRST_Alert_ID != 0) {
+                if (Constants.FROM_AIERT_ID == 0) {
                     mListener.onClick(currencyResponses.get(position).getIso(), currencyResponses.get(position).getFlag());
+                    Constants.FROM_AIERT_ID = currencyResponses.get(position).getCurrency_id();
+                    Constants.FromAlertIcon = currencyResponses.get(position).getFlag();
+                } else {
+                    mListener.onClick(currencyResponses.get(position).getIso(), currencyResponses.get(position).getFlag());
+                    Constants.TO_ALERT_ID = currencyResponses.get(position).getCurrency_id();
                 }
             });
         }

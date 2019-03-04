@@ -17,7 +17,7 @@
                 android:id="@+id/addCurrencyParentConstraintAlert"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/rates_circle_width_height"
-                android:visibility="visible"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="parent"
@@ -74,7 +74,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/addCurrencyPairEmptyConvert"
+        android:id="@+id/addAlertPairEmptyConvert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"

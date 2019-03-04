@@ -10,7 +10,7 @@ import am.bibton.model.alertModel.AlertParentModel;
 import am.bibton.presenter.root.BasePresenter;
 import am.bibton.shared.data.services.AuthorizationService;
 import am.bibton.shared.di.scopes.AuthorizationScope;
-import am.bibton.view.activities.ratesActivity.alertFragment.IAlertFragment;
+import am.bibton.view.activities.ratesActivity.ratesFragments.alertFragment.IAlertFragment;
 import io.reactivex.disposables.Disposable;
 
 @AuthorizationScope
@@ -43,6 +43,19 @@ public class AlertPresenter extends BasePresenter<IAlertFragment> {
         if (deleteResponse.isSuccess()) {
             Toast.makeText(mContext, "Item was deleted successfully", Toast.LENGTH_SHORT).show();
 
+        } else {
+            mView.showNetworkError();
+        }
+    }
+
+    public void switchAlert(int alert_id) {
+        Disposable disposable = mService.switchAlert(alert_id).subscribe(this::switchAlertResponse, this::errorView);
+        addDisposable(disposable);
+    }
+
+    private void switchAlertResponse(ResponseModel<List> switchAlert) {
+        if (switchAlert.isSuccess()) {
+            Toast.makeText(mContext, "Alert was switched", Toast.LENGTH_SHORT).show();
         } else {
             mView.showNetworkError();
         }

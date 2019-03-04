@@ -1,14 +1,20 @@
 package am.bibton.adapters;
+
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import am.bibton.R;
+import am.bibton.view.activities.welcomeActivity.WelcomeActivity;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +38,7 @@ public class NavigationMenuAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     private void setMenuIcons() {
-        navigation_view_icons = new int[]{R.drawable.summery_icon, R.drawable.payment_icon, R.drawable.exchange_icon, R.drawable.statement_icon, R.drawable.settings_icon, R.drawable.help_icon};
+        navigation_view_icons = new int[]{R.drawable.summery_icon, R.drawable.payment_icon, R.drawable.exchange_icon, R.drawable.statement_icon, R.drawable.settings_icon, R.drawable.help_icon, R.drawable.log_out};
     }
 
     @NonNull
@@ -42,13 +48,24 @@ public class NavigationMenuAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         return new ViewHolder(view);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements AdapterView.OnItemClickListener {
         TextView nav_view_names;
         ImageView nav_view_images;
+
         ViewHolder(View itemView) {
             super(itemView);
             nav_view_names = itemView.findViewById(R.id.menu_item_text_view);
             nav_view_images = itemView.findViewById(R.id.menu_item_icon);
+        }
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            if (position == 6) {
+                Intent intent = new Intent(context, WelcomeActivity.class);
+                context.startActivity(intent);
+                intent.putExtra("fragment", "logIn");
+
+            }
         }
     }
 

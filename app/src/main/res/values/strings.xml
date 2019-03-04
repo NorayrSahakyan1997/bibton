@@ -74,6 +74,21 @@
     <string name="chooseacurrency">Choose a currency pair to compare their \n live rates</string>
     <string name="createAPriceAlert">Create a price alert for </string>
     <string name="submit">Submit</string>
+    <string name="usd">USD</string>
+    <string name="pleaseFillAmountField">Please fill the amount field</string>
+    <string name="alertWasAddedSuccessfuly">Alert was added successfully</string>
+    <string name="utility">Utility</string>
+    <string name="recurring">Recurring</string>
+    <string name="paymentLink">Payment Link</string>
+    <string name="payments">Payments</string>
+    <string name="bibtonToBibton">Bibton to Bibton</string>
+    <string name="recent">Recent</string>
+    <string name="findPeopleNearMe">Find people near me</string>
+    <string name="friendsInSpays">Friends in Spays</string>
+    <string name="userName">Name Surname</string>
+    <string name="addANewPayment">Add a new payment</string>
+    <string name="addAccountDetails">Add Account Details</string>
+    <string name="myCurrency">My currency</string>
     <string-array name="menu_names_array">
         <item>Summery</item>
         <item>Payments</item>
@@ -81,6 +96,8 @@
         <item>Rates</item>
         <item>Settings</item>
         <item>Help</item>
+        <item>LogOut</item>
+
     </string-array>
     <string-array name="service_names">
         <item>NFC</item>

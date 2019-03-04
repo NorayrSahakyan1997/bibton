@@ -10,9 +10,9 @@ import android.os.Handler;
 import am.bibton.shared.utils.ChangeFragments;
 import am.bibton.view.activities.BaseActivity;
 import am.bibton.view.activities.homeActivity.HomeActivity;
-import am.bibton.view.activities.ratesActivity.RatesActivity;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.BibtonSignFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.FlexibleTransferringFragment;
+import am.bibton.view.activities.welcomeActivity.welcomeFragments.countrySearchFragment.CountrySearchFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.phoneNumberFragment.PhoneNumberFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,15 +43,17 @@ public class WelcomeActivity extends BaseActivity {
     private PhoneNumberFragment phoneNumberFragment;
     private ChangeFragments changeFragments;
     private View parentView;
+    private String currentExtra = "";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-//
-          loteAnimation();
-        init();
-        //enterHomeActivity();
-        setFragments();
+
+        //loteAnimation();
+        //init();
+        enterHomeActivity();
+        //setFragments();
 
     }
 
@@ -59,18 +61,27 @@ public class WelcomeActivity extends BaseActivity {
     @Nullable
     @Override
     public View onCreateView(@Nullable View parent, @NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
-        parentView=parent;
+        parentView = parent;
         return super.onCreateView(parent, name, context, attrs);
     }
 
     public void init() {
+
+
         frameLayout = (FrameLayout) findViewById(R.id.frameLayoutWelcome);
         phoneNumberFragment = new PhoneNumberFragment();
         handler = new Handler();
-        changeFragments= new ChangeFragments(this,parentView,phoneNumberFragment);
+        changeFragments = new ChangeFragments(this, parentView, phoneNumberFragment);
     }
 
     public void setFragments() {
+        Intent intent = getIntent();
+        if (intent.hasExtra("fragment")) {
+            currentExtra = intent.getStringExtra("fragment");
+        }
+        if (currentExtra.matches("logIn")) {
+            currentFragment = new CountrySearchFragment();
+        }
         fragmentManager = getSupportFragmentManager();
         currentFragment = new BibtonSignFragment();
         // currentFragment = new PhoneNumberFragment();
@@ -79,18 +90,6 @@ public class WelcomeActivity extends BaseActivity {
         fragmentTransaction.commit();
     }
 
-    public void replaceFragment(Fragment fragment, boolean backAnim) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (backAnim) {
-            transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
-        } else {
-            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
-        }
-        transaction.remove(currentFragment);
-        currentFragment = fragment;
-        transaction.replace(R.id.frameLayoutWelcome, currentFragment);
-        transaction.commit();
-    }
 
     public void enterHomeActivity() {
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);

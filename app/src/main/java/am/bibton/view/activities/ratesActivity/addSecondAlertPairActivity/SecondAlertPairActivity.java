@@ -7,6 +7,7 @@ import am.bibton.presenter.SecondAlertActivityPresenter;
 import am.bibton.shared.utils.Constants;
 import am.bibton.shared.utils.KeyboardUtils;
 import am.bibton.view.activities.BaseActivity;
+import am.bibton.view.activities.ratesActivity.RatesActivity;
 import am.bibton.view.activities.ratesActivity.addAlertActivity.AddAlertActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -14,8 +15,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -27,6 +31,7 @@ public class SecondAlertPairActivity extends BaseActivity implements ISecondAler
     private ConstraintLayout parentConstraintSecondAlertActivity;
     private ConstraintLayout constraintSelectSecondCurrency;
     private TextView fromToAlertTextView;
+    private EditText balanceAmountAlert;
     @Inject
     SecondAlertActivityPresenter mPresenter;
 
@@ -40,7 +45,6 @@ public class SecondAlertPairActivity extends BaseActivity implements ISecondAler
         getFirstAlertValue();
         closeKeyBoard();
         goToSelectSecondCurrencyActivity();
-        mPresenter.getExchange(1, 2, 1);
     }
 
     private void init() {
@@ -50,17 +54,22 @@ public class SecondAlertPairActivity extends BaseActivity implements ISecondAler
         parentConstraintSecondAlertActivity = findViewById(R.id.parentConstraintSecondAlertActivity);
         constraintSelectSecondCurrency = findViewById(R.id.constraintSelectSecondCurrency);
         fromToAlertTextView = findViewById(R.id.fromToAlertTextView);
-
+        toAlertIso.setText(getResources().getString(R.string.usd));
+        balanceAmountAlert = findViewById(R.id.balanceAmountAlert);
+        mPresenter.getExchange(Constants.FROM_AIERT_ID, Constants.TO_ALERT_ID, 1);
     }
 
     @SuppressLint("SetTextI18n")
     private void getFirstAlertValue() {
         cratePriceAlertFor.setText(getResources().getString(R.string.createAPriceAlert) + " " + Constants.FromAlertIso);
-        toAlertIso.setText(Constants.ToAlertIso);
+        if (!Constants.ToAlertIso.matches("")) {
+            toAlertIso.setText(Constants.ToAlertIso);
+        } else {
+            toAlertIso.setText(getResources().getString(R.string.usd));
+        }
         Picasso.get()
                 .load(Constants.FromAlertIcon)
                 .into(fromAlertIcon);
-
     }
 
     public void backToAddAlertActivity(View view) {
@@ -79,19 +88,35 @@ public class SecondAlertPairActivity extends BaseActivity implements ISecondAler
             startActivity(backToAddAlertActivity);
             overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
         });
-
-
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void getExchangeRate(ExchangeParentModel exchangeParentModel) {
-        fromToAlertTextView.setText(exchangeParentModel.getCurrency().first_currency.getISO() + "=" + exchangeParentModel.getAmount() + " " + exchangeParentModel.getCurrency().second_currency.getISO());
+        fromToAlertTextView.setText(exchangeParentModel.getCurrency().first_currency.getISO()
+                + "=" + exchangeParentModel.getResult()
+                + " " + exchangeParentModel.getCurrency().second_currency.getISO());
 
     }
 
     public void submitAlert(View view) {
-        mPresenter.addAlert(1, 5, 100);
+        int alertAmount = Integer.parseInt(balanceAmountAlert.getText().toString());
+        if (alertAmount == 0) {
+            Toast.makeText(getBaseContext(), getResources().getString(R.string.pleaseFillAmountField), Toast.LENGTH_SHORT).show();
+        } else {
+            mPresenter.addAlert(Constants.FROM_AIERT_ID, Constants.TO_ALERT_ID, alertAmount);
+            goToRateActivity();
+        }
     }
+
+    public void goToRateActivity() {
+        Intent goToRateActivity = new Intent(this, RatesActivity.class);
+        goToRateActivity.putExtra("fragment", "AddAlertActivity");
+        startActivity(goToRateActivity);
+        Constants.FROM_AIERT_ID = 0;
+        Constants.TO_ALERT_ID = 0;
+        Constants.FromAlertIcon = "";
+    }
+
 
 }

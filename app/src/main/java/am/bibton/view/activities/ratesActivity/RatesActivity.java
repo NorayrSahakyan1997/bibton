@@ -3,12 +3,11 @@ package am.bibton.view.activities.ratesActivity;
 import am.bibton.R;
 import am.bibton.view.activities.BaseActivity;
 import am.bibton.view.activities.homeActivity.HomeActivity;
-import am.bibton.view.activities.ratesActivity.alertFragment.AlertFragment;
+import am.bibton.view.activities.ratesActivity.ratesFragments.alertFragment.AlertFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.convertFragment.ConverterFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.rateFragment.RatesFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -40,7 +39,6 @@ public class RatesActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rates);
-//        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         init();
         setFragments();
         goToHomeActivity();

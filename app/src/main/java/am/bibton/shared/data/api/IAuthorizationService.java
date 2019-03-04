@@ -114,8 +114,12 @@ public interface IAuthorizationService {
     Flowable<ResponseModel<List>> makeCurrencyMain(@Field("currency_id") int currencyId);
 
     @FormUrlEncoded
+    @POST("api/rate/alert/change-status")
+    Flowable<ResponseModel<List>> switchAlert(@Field("alert_id") int currencyId);
+
+    @FormUrlEncoded
     @POST("api/rate/alert/add")
-    Flowable<ResponseModel<List>> addAlert(@Field("from_currency") int fromCurrency,@Field("to_currency") int toCurrency,@Field("amount") float amount);
+    Flowable<ResponseModel<List>> addAlert(@Field("from_currency") int fromCurrency, @Field("to_currency") int toCurrency, @Field("amount") float amount);
 
 
 }
