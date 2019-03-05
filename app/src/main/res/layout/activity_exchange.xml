@@ -19,8 +19,7 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05"
-        />
+        app:layout_constraintVertical_bias="0.05" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -35,8 +34,7 @@
         app:layout_constraintHorizontal_bias=".9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06"
-        />
+        app:layout_constraintVertical_bias="0.06" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,8 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04"
-        />
+        app:layout_constraintVertical_bias="0.04" />
 
 
     <ScrollView
@@ -77,11 +74,11 @@
 
                 <TextView
                     android:id="@+id/text_convert_from"
-                    android:onClick="openCurrencyFrom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/noto_sans_bold"
+                    android:onClick="openCurrencyFrom"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_size_biggest"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -176,11 +173,11 @@
 
                 <TextView
                     android:id="@+id/convert_to"
-                    android:onClick="openCurrencyTo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/noto_sans_bold"
+                    android:onClick="openCurrencyTo"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_size_biggest"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -202,11 +199,11 @@
                     app:layout_constraintVertical_bias="0.4" />
 
                 <TextView
+                    android:id="@+id/text_balance_to"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/noto_sans_regular"
-                    android:id="@+id/text_balance_to"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_size_normal"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -229,7 +226,6 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:textSize="@dimen/text_size_normal"
-
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1"
@@ -350,10 +346,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_balance"
-        android:onClick="close_balance_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/wallet_background_color"
+        android:onClick="close_balance_list"
         android:visibility="gone">
 
         <androidx.recyclerview.widget.RecyclerView

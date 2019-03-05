@@ -28,9 +28,7 @@
     <item name="image_size_normal" format="float" type="dimen">300</item>
     <item name="image_size_big" format="float" type="dimen">500</item>
     <item name="image_size_bigger" format="float" type="dimen">800</item>
-
     <dimen name="cover_photo_height">280dp</dimen>
-
     <dimen name="main_categories_photo_height">130dp</dimen>
     <dimen name="menu_item_margin20">15dp</dimen>
     <dimen name="menu_item_margin10">5dp</dimen>
@@ -44,7 +42,6 @@
     <dimen name="margin_bottom_delete_button">25dp</dimen>
     <dimen name="underline_width">30dp</dimen>
     <dimen name="margin_top_frame_layout">50dp</dimen>
-
     <dimen name="margin_top_text_exchange">40dp</dimen>
     <dimen name="margin_top_scroll_exchange">70dp</dimen>
     <dimen name="details_activity_heigh">350dp</dimen>
@@ -65,9 +62,10 @@
     <dimen name="rates_circle_width_height">55dp</dimen>
     <dimen name="rates_item_row_image_width">160dp</dimen>
     <dimen name="margin_height_rates_frame">170dp</dimen>
-
     <dimen name="paymentConstraintHeight">120dp</dimen>
     <dimen name="paymentConstraintWidth">123dp</dimen>
+    <dimen name="marginTopPayments">13dp</dimen>
+
 
 
 

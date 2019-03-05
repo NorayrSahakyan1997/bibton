@@ -89,7 +89,15 @@
     <string name="addANewPayment">Add a new payment</string>
     <string name="addAccountDetails">Add Account Details</string>
     <string name="myCurrency">My currency</string>
+    <string name="receivedCurrency">Received Currency</string>
+    <string name="amount">Amount</string>
+    <string name="mobilOrIdNumber">Mobile or ID number</string>
+    <string name="amd30000">30000 AMD</string>
+    <string name="phoneNumber091">+37444666616</string>
+    <string name="id">ID: 1234567890</string>
     <string-array name="menu_names_array">
+
+
         <item>Summery</item>
         <item>Payments</item>
         <item>Exchange</item>

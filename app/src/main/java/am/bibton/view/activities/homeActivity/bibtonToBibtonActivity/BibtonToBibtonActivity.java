@@ -1,26 +1,36 @@
-package am.bibton.view.activities.homeActivity;
-
+package am.bibton.view.activities.homeActivity.bibtonToBibtonActivity;
 import am.bibton.R;
-import androidx.appcompat.app.AppCompatActivity;
+import am.bibton.view.activities.BaseActivity;
+import am.bibton.view.activities.addAccountDetailsActivity.AddAccountDetailsActivity;
+import am.bibton.view.activities.homeActivity.HomeActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-public class BibtonToBibtonActivity extends AppCompatActivity {
+public class BibtonToBibtonActivity extends BaseActivity implements IBibtonToBibtonActivity {
     private ConstraintLayout goToAddAccountDetails;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bibton_to_bibton);
-        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         init();
         goToAddAccountDetails();
+
     }
 
     private void init() {
         goToAddAccountDetails = findViewById(R.id.goToAddAccountDetails);
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 
     private void goToAddAccountDetails() {
@@ -29,4 +39,5 @@ public class BibtonToBibtonActivity extends AppCompatActivity {
             startActivity(goToAddAccountDetails);
         });
     }
+
 }

@@ -3,6 +3,7 @@ package am.bibton.shared.di.components;
 import am.bibton.shared.di.components.root.IAppComponent;
 import am.bibton.shared.di.modules.AuthorizationModule;
 import am.bibton.shared.di.scopes.AuthorizationScope;
+import am.bibton.view.activities.addAccountDetailsActivity.AddAccountDetailsActivity;
 import am.bibton.view.activities.exchangeActivity.ExchangeActivity;
 import am.bibton.view.activities.homeActivity.homeFragments.statementFragment.StatementFragment;
 import am.bibton.view.activities.homeActivity.homeFragments.homeFragment.HomeFragment;
@@ -53,6 +54,8 @@ public interface IAuthorizationComponent {
     void inject(AddAlertActivity addAlertActivity);
 
     void inject(SecondAlertPairActivity SecondAlertPairActivity);
+
+    void inject(AddAccountDetailsActivity SecondAlertPairActivity);
 
 
 

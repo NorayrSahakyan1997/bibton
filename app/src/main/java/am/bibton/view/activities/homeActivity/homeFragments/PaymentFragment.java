@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import am.bibton.R;
 import am.bibton.adapters.PaymentsFragmentUserAdapter;
 import am.bibton.view.activities.BaseFragment;
-import am.bibton.view.activities.homeActivity.BibtonToBibtonActivity;
+import am.bibton.view.activities.homeActivity.bibtonToBibtonActivity.BibtonToBibtonActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
