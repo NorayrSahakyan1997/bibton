@@ -109,7 +109,7 @@ public class InputPhoneCodeFragment extends BaseFragment implements IInputCodeFr
     @Override
     public void isValidPassCode(boolean isValid) {
         if (isValid) {
-            changeFragments.replaceFragment(new CreatePassCodeFragment(), false);
+            changeFragments.replaceWelcomeFragments(new CreatePassCodeFragment(), false);
         } else {
             Toast.makeText(context, "Please write a valid passcode", Toast.LENGTH_SHORT).show();
         }

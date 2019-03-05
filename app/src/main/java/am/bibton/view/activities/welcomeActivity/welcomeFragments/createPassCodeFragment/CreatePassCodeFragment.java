@@ -8,11 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.airbnb.lottie.LottieAnimationView;
+
 import javax.inject.Inject;
+
 import am.bibton.Bibton;
 import am.bibton.R;
 import am.bibton.presenter.CreatePassCodePresenter;
+import am.bibton.shared.helpers.SharedPreferencesHelper;
 import am.bibton.shared.utils.ChangeFragments;
 import am.bibton.shared.utils.CheckActivenessOvalIcons;
 import am.bibton.shared.utils.Constants;
@@ -33,6 +37,7 @@ public class CreatePassCodeFragment extends BaseFragment implements ICreatePassC
     private TextView forget_text_view;
     @Inject
     CreatePassCodePresenter mPresenter;
+    private SharedPreferencesHelper sharedPreferencesHelper;
 
 
     @Nullable
@@ -93,6 +98,7 @@ public class CreatePassCodeFragment extends BaseFragment implements ICreatePassC
     }
 
     private void initViews() {
+        sharedPreferencesHelper = new SharedPreferencesHelper(context);
         forget_text_view = mainView.findViewById(R.id.forget_text_view);
         changeFragments = new ChangeFragments(context, mainView, currentFragment);
         mainView.findViewById(R.id.t9_key_1).setOnClickListener(this);
@@ -154,7 +160,8 @@ public class CreatePassCodeFragment extends BaseFragment implements ICreatePassC
     @Override
     public void getUserToken(String token) {
         if (token != null) {
-            changeFragments.replaceFragment(new YouAreDoneFragment(), false);
+            changeFragments.replaceWelcomeFragments(new YouAreDoneFragment(), false);
+            sharedPreferencesHelper.setStringSharedPreferences(Constants.TOKEN, token);
 
         } else {
             Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -162,6 +169,6 @@ public class CreatePassCodeFragment extends BaseFragment implements ICreatePassC
     }
 
     private void goToForgetPassCodeFragment() {
-        forget_text_view.setOnClickListener(v -> changeFragments.replaceFragment(new ForgetPassCodeFragment(), false));
+        forget_text_view.setOnClickListener(v -> changeFragments.replaceWelcomeFragments(new ForgetPassCodeFragment(), false));
     }
 }

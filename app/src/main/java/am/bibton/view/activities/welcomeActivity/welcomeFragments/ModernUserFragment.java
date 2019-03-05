@@ -39,13 +39,12 @@ public class ModernUserFragment extends BaseFragment{
     }
 
     private void init() {
-
         goToSuperSystemFragment = mainVew.findViewById(R.id.goToSuperSystemFragment);
         changeFragments = new ChangeFragments(context, mainVew, this);
     }
 
     private void goToSuperSystemFragment() {
-        goToSuperSystemFragment.setOnClickListener(v -> changeFragments.replaceFragment(new SuperSystemFragment(), false));
+        goToSuperSystemFragment.setOnClickListener(v -> changeFragments.replaceWelcomeFragments(new SuperSystemFragment(), false));
     }
 
     private void setAnimation() {

@@ -105,7 +105,7 @@ public class PhoneNumberFragment extends BaseFragment implements IPhoneNumberFra
     }
 
     private void goToCountrySearchFragment() {
-        country_code_text_view.setOnClickListener(v -> changeFragments.replaceFragment(new CountrySearchFragment(), false));
+        country_code_text_view.setOnClickListener(v -> changeFragments.replaceWelcomeFragments(new CountrySearchFragment(), false));
     }
 
     @Override
@@ -139,7 +139,7 @@ public class PhoneNumberFragment extends BaseFragment implements IPhoneNumberFra
         //private String country_selected_short_name;
         boolean phoneValid = message;
         if (phoneValid) {
-            changeFragments.replaceFragment(new InputPhoneCodeFragment(), false);
+            changeFragments.replaceWelcomeFragments(new InputPhoneCodeFragment(), false);
         } else {
             Toast.makeText(context, "Check phone number", Toast.LENGTH_SHORT).show();
         }

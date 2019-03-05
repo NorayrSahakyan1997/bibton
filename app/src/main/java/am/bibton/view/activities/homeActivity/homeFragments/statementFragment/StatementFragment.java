@@ -1,8 +1,7 @@
 package am.bibton.view.activities.homeActivity.homeFragments.statementFragment;
-
-
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +9,12 @@ import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
+import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
 import am.bibton.Bibton;
 import am.bibton.R;
-import am.bibton.adapters.BalanceHomeAdapter;
+import am.bibton.adapters.CurrencyAdapter;
 import am.bibton.adapters.transactionAdapter.TransactionParentAdapter;
 import am.bibton.model.getTransactionList.TransactionDateResponse;
 import am.bibton.model.getTransactionList.TransactionFilterRequestModel;
@@ -31,8 +31,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class StatementFragment extends BaseFragment implements IStatementFragment {
     private View mainView;
     private ConstraintLayout constraint_from;
-    private ConstraintLayout calendarView;
-    private CalendarView calendar;
+    private ConstraintLayout calendarConstraint;
+    private CalendarView calendarView;
     private ConstraintLayout constraint_to;
     private TextView text_data_from;
     private TextView text_data_to;
@@ -44,6 +44,7 @@ public class StatementFragment extends BaseFragment implements IStatementFragmen
     private TransactionFilterRequestModel transactionFilterRequestModel;
     private ConstraintLayout constraintBalance;
     private TextView currencyName;
+    private Calendar calendar;
 
 
     @Nullable
@@ -68,48 +69,58 @@ public class StatementFragment extends BaseFragment implements IStatementFragmen
         RecyclerView.LayoutManager recycler_view_manager = new LinearLayoutManager(getContext());
         recycler_view_statement_fragment.setLayoutManager(recycler_view_manager);
         constraint_from = mainView.findViewById(R.id.constraint_from);
-        calendarView = mainView.findViewById(R.id.calendar_view_constraint);
-        calendar = mainView.findViewById(R.id.calendar);
+        calendarConstraint = mainView.findViewById(R.id.calendar_view_constraint);
+        calendarView = mainView.findViewById(R.id.calendar);
         constraint_to = mainView.findViewById(R.id.constraint_to);
         text_data_from = mainView.findViewById(R.id.text_view_data_from);
         text_data_to = mainView.findViewById(R.id.text_view_data_to);
         statementFlagIcon = mainView.findViewById(R.id.flag_image_statement);
         constraintBalance = mainView.findViewById(R.id.constraint_balance);
         currencyName = mainView.findViewById(R.id.currency_name);
+        calendar = Calendar.getInstance();
     }
 
     private String starteDate;
     private String endDate;
+    private int startDay;
 
     private void handleClicksFromTO() {
-        calendar.setMaxDate(System.currentTimeMillis() - 5);
 
         constraint_from.setOnClickListener(v -> {
-            calendarView.setVisibility(View.VISIBLE);
 
-            calendar.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-                calendarView.setVisibility(View.GONE);
+            calendarConstraint.setVisibility(View.VISIBLE);
+
+
+            calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+                calendarConstraint.setVisibility(View.GONE);
                 starteDate = year + "-" + month + "-" + dayOfMonth;
                 text_data_from.setText(starteDate);
                 transactionFilterRequestModel.setStart_date(year + "-" + month + "-" + dayOfMonth);
                 mPresenter.getTransactionList(transactionFilterRequestModel);
+                startDay = dayOfMonth;
 
             });
         });
         constraint_to.setOnClickListener(v -> {
-            calendarView.setVisibility(View.VISIBLE);
-            calendar.setMaxDate(System.currentTimeMillis() + 100);
+            calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DATE));
 
-            calendar.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-                calendarView.setVisibility(View.GONE);
+            long endOfMonth = calendar.getTimeInMillis();
+            calendar.set(Calendar.DATE, startDay);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            long startOfMonth = calendar.getTimeInMillis();
+//            calendarView.setMaxDate(endOfMonth);
+//            calendarView.setMinDate(startOfMonth);
+            calendarConstraint.setVisibility(View.VISIBLE);
+            calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+                calendarConstraint.setVisibility(View.GONE);
                 endDate = year + "-" + month + "-" + dayOfMonth;
                 text_data_to.setText(endDate);
                 transactionFilterRequestModel.setEnd_date(year + "-" + month + "-" + dayOfMonth);
                 mPresenter.getTransactionList(transactionFilterRequestModel);
-
+                Log.d("N_Tag","year"+year+"dayOfMonth"+dayOfMonth);
             });
         });
-        calendarView.setOnClickListener(v -> calendarView.setVisibility(View.INVISIBLE));
+        calendarConstraint.setOnClickListener(v -> calendarConstraint.setVisibility(View.INVISIBLE));
 
     }
 
@@ -135,8 +146,7 @@ public class StatementFragment extends BaseFragment implements IStatementFragmen
                 .load(getWalletCurrencyResponse.get(0).getCurrency_icon())
                 .into(statementFlagIcon);
         currencyName.setText(getWalletCurrencyResponse.get(0).getCurrency_iso());
-
-        BalanceHomeAdapter balanceHomeAdapter = new BalanceHomeAdapter(context, getWalletCurrencyResponse, position -> {
+        CurrencyAdapter balanceHomeAdapter = new CurrencyAdapter(context, getWalletCurrencyResponse, position -> {
             constraintBalance.setVisibility(View.GONE);
             currencyName.setText(getWalletCurrencyResponse.get(position).getCurrency_iso());
             Picasso.get()
@@ -145,8 +155,6 @@ public class StatementFragment extends BaseFragment implements IStatementFragmen
             Constants.SYMBOL = getWalletCurrencyResponse.get(position).getSymbol();
             mPresenter.getTransactionListWithCurrency(getWalletCurrencyResponse.get(position).getCurrency_id());
         });
-
-
         RecyclerView recyclerView_balance_list = mainView.findViewById(R.id.recycle_balance_currency_statement);
         recyclerView_balance_list.setLayoutManager(new LinearLayoutManager(context));
         recyclerView_balance_list.setAdapter(balanceHomeAdapter);

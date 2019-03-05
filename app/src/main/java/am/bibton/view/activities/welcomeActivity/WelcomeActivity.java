@@ -2,20 +2,25 @@ package am.bibton.view.activities.welcomeActivity;
 
 
 import android.animation.Animator;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import am.bibton.shared.utils.ChangeFragments;
 import am.bibton.view.activities.BaseActivity;
 import am.bibton.view.activities.homeActivity.HomeActivity;
-import am.bibton.view.activities.ratesActivity.RatesActivity;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.BibtonSignFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.FlexibleTransferringFragment;
+import am.bibton.view.activities.welcomeActivity.welcomeFragments.countrySearchFragment.CountrySearchFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.phoneNumberFragment.PhoneNumberFragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -36,14 +41,16 @@ public class WelcomeActivity extends BaseActivity {
     private FrameLayout frameLayout;
     private ImageButton skip_button;
     private PhoneNumberFragment phoneNumberFragment;
-
+    private ChangeFragments changeFragments;
+    private View parentView;
+    private String currentExtra = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-//
-        //  loteAnimation();
+
+        //loteAnimation();
         //init();
         enterHomeActivity();
         //setFragments();
@@ -51,13 +58,30 @@ public class WelcomeActivity extends BaseActivity {
     }
 
 
+    @Nullable
+    @Override
+    public View onCreateView(@Nullable View parent, @NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+        parentView = parent;
+        return super.onCreateView(parent, name, context, attrs);
+    }
+
     public void init() {
+
+
         frameLayout = (FrameLayout) findViewById(R.id.frameLayoutWelcome);
         phoneNumberFragment = new PhoneNumberFragment();
         handler = new Handler();
+        changeFragments = new ChangeFragments(this, parentView, phoneNumberFragment);
     }
 
     public void setFragments() {
+        Intent intent = getIntent();
+        if (intent.hasExtra("fragment")) {
+            currentExtra = intent.getStringExtra("fragment");
+        }
+        if (currentExtra.matches("logIn")) {
+            currentFragment = new CountrySearchFragment();
+        }
         fragmentManager = getSupportFragmentManager();
         currentFragment = new BibtonSignFragment();
         // currentFragment = new PhoneNumberFragment();
@@ -66,18 +90,6 @@ public class WelcomeActivity extends BaseActivity {
         fragmentTransaction.commit();
     }
 
-    public void replaceFragment(Fragment fragment, boolean backAnim) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (backAnim) {
-            transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
-        } else {
-            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
-        }
-        transaction.remove(currentFragment);
-        currentFragment = fragment;
-        transaction.replace(R.id.frame_layout_home, currentFragment);
-        transaction.commit();
-    }
 
     public void enterHomeActivity() {
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
@@ -95,7 +107,7 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 lottieAnimationView.setVisibility(View.INVISIBLE);
-                replaceFragment(new FlexibleTransferringFragment(), false);
+                changeFragments.replaceWelcomeFragments(new FlexibleTransferringFragment(), false);
             }
 
             @Override

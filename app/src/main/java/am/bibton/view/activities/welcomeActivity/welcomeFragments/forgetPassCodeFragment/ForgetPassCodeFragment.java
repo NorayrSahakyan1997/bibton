@@ -1,4 +1,5 @@
 package am.bibton.view.activities.welcomeActivity.welcomeFragments.forgetPassCodeFragment;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import javax.inject.Inject;
+
 import am.bibton.Bibton;
 import am.bibton.R;
 import am.bibton.presenter.ForgetPassCodePresenter;
+import am.bibton.shared.helpers.SharedPreferencesHelper;
 import am.bibton.shared.utils.ChangeFragments;
 import am.bibton.shared.utils.CheckActivenessOvalIcons;
 import am.bibton.shared.utils.Constants;
@@ -26,6 +30,7 @@ public class ForgetPassCodeFragment extends BaseFragment implements View.OnClick
     private Context context;
     private ImageView backToCreatePassCodeFragment;
     private ChangeFragments changeFragments;
+    private SharedPreferencesHelper sharedPreferencesHelper;
     @Inject
     ForgetPassCodePresenter forgetPassCodePresenter;
 
@@ -42,6 +47,7 @@ public class ForgetPassCodeFragment extends BaseFragment implements View.OnClick
     }
 
     private void init() {
+        sharedPreferencesHelper= new SharedPreferencesHelper(context);
         mainView.findViewById(R.id.t9_key_1).setOnClickListener(this);
         mainView.findViewById(R.id.t9_key_2).setOnClickListener(this);
         mainView.findViewById(R.id.t9_key_3).setOnClickListener(this);
@@ -74,7 +80,7 @@ public class ForgetPassCodeFragment extends BaseFragment implements View.OnClick
 
     private void goToCreatePassCodeFragment() {
         backToCreatePassCodeFragment.setOnClickListener(v ->
-            changeFragments.replaceFragment(new CreatePassCodeFragment(), true));
+                changeFragments.replaceWelcomeFragments(new CreatePassCodeFragment(), true));
     }
 
     @Override
@@ -106,10 +112,11 @@ public class ForgetPassCodeFragment extends BaseFragment implements View.OnClick
 
     @Override
     public void getToken(String token) {
-        Constants.TOKEN = token;
+//        Constants.TOKEN = token;
         if (token != null) {
-            Toast.makeText(context, "Password have changed successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Password has changed successfully", Toast.LENGTH_SHORT).show();
             Intent goToHomeActivityIntent = new Intent(context, HomeActivity.class);
+            sharedPreferencesHelper.setStringSharedPreferences(Constants.TOKEN,token);
             context.startActivity(goToHomeActivityIntent);
         }
     }

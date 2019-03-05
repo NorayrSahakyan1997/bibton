@@ -1,5 +1,6 @@
 package am.bibton.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -7,11 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
 import am.bibton.R;
 import am.bibton.model.countryModel.CountryModel;
 import am.bibton.shared.utils.Constants;
@@ -24,39 +22,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CountryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements RecyclerView.OnItemTouchListener {
 
-    private Context context;
     private List<CountryModel> countryArray;
     private LayoutInflater layoutInflater;
-    private String selected_Country_Code;
     private View view;
-
-
 
     public CountryListAdapter(Context context, List<CountryModel> countryArray) {
         this.countryArray = countryArray;
-        this.context = context;
         layoutInflater = LayoutInflater.from(context);
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         view = layoutInflater.inflate(R.layout.search_view_child, parent, false);
-        RecyclerView.ViewHolder viewHolder = new CountryListAdapter.ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
         CountryListAdapter.ViewHolder viewHolder = (CountryListAdapter.ViewHolder) holder;
         viewHolder.country_names.setText(countryArray.get(position).getName());
         viewHolder.country_code.setText(countryArray.get(position).getPhone_code() + "");
         Picasso.get()
                 .load(countryArray.get(position).getFlag())
-                //.error(R.drawable.user_placeholder_error)
-                .into(viewHolder.country_flags);
+                 .into(viewHolder.country_flags);
     }
-
 
     @Override
     public int getItemCount() {

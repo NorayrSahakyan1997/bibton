@@ -2,12 +2,14 @@ package am.bibton.view.activities.ratesActivity;
 
 import am.bibton.R;
 import am.bibton.view.activities.BaseActivity;
-import am.bibton.view.activities.ratesActivity.ratesFragments.AlertsFragment;
-import am.bibton.view.activities.ratesActivity.ratesFragments.ConverterFragment;
-import am.bibton.view.activities.ratesActivity.ratesFragments.RatesFragment;
+import am.bibton.view.activities.homeActivity.HomeActivity;
+import am.bibton.view.activities.ratesActivity.ratesFragments.alertFragment.AlertFragment;
+import am.bibton.view.activities.ratesActivity.ratesFragments.convertFragment.ConverterFragment;
+import am.bibton.view.activities.ratesActivity.ratesFragments.rateFragment.RatesFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
@@ -30,13 +32,16 @@ public class RatesActivity extends BaseActivity {
     private TextView rateText;
     private TextView convertText;
     private TextView alertText;
+    private ImageView goToHomeActivity;
+    private String currentExtra = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rates);
-        setFragments();
         init();
+        setFragments();
+        goToHomeActivity();
     }
 
     public void init() {
@@ -49,17 +54,16 @@ public class RatesActivity extends BaseActivity {
         alertIcon = findViewById(R.id.alert_Icon);
         rateIcon.getDrawable().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
-
         rateText = findViewById(R.id.text_Rate);
         convertText = findViewById(R.id.text_Convert);
         alertText = findViewById(R.id.text_Alert);
+
+        goToHomeActivity = findViewById(R.id.back_toHomeActivity);
         changeTabBarColors(0);
     }
 
     public void replaceFragment(Fragment fragment, boolean backAnim) {
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
         if (backAnim) {
             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
         } else {
@@ -72,7 +76,21 @@ public class RatesActivity extends BaseActivity {
     }
 
     public void setFragments() {
-        currentFragment = new RatesFragment();
+        Intent intent = getIntent();
+        if (intent.hasExtra("fragment")) {
+            currentExtra = intent.getStringExtra("fragment");
+        }
+        if (currentExtra.matches("")) {
+            currentFragment = new RatesFragment();
+        }
+        if (currentExtra.equals("convertFragment")) {
+            currentFragment = new ConverterFragment();
+            changeTabBarColors(1);
+        }
+        if (currentExtra.equals("AddAlertActivity")) {
+            currentFragment = new AlertFragment();
+            changeTabBarColors(2);
+        }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.frame_layout_rates_activity, currentFragment);
         fragmentTransaction.commit();
@@ -84,7 +102,7 @@ public class RatesActivity extends BaseActivity {
     }
 
     public void openAlertFragment(View view) {
-        replaceFragment(new AlertsFragment(), false);
+        replaceFragment(new AlertFragment(), false);
         changeTabBarColors(2);
     }
 
@@ -139,4 +157,13 @@ public class RatesActivity extends BaseActivity {
 
     }
 
+    public void goToHomeActivity() {
+        goToHomeActivity.setOnClickListener(v -> onBackPressed());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent returnHomeActivity = new Intent(this, HomeActivity.class);
+        startActivity(returnHomeActivity);
+    }
 }

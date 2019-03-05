@@ -1,7 +1,6 @@
 package am.bibton.presenter;
 
 import javax.inject.Inject;
-
 import am.bibton.model.ResponseModel;
 import am.bibton.model.exchangeModel.ExchangeParentModel;
 import am.bibton.model.walletCurrency.WalletCurrencyParentResponse;
@@ -41,6 +40,7 @@ public class ExchangeActivityPresenter extends BasePresenter<IExchangeActivity> 
     private void getExchangeRateResponse(ResponseModel<ExchangeParentModel> responseModel){
         if(responseModel.isSuccess() && responseModel.getData()!=null){
             mView.getExchangeRate(responseModel.getData());
+
         }
         else{
             mView.showNetworkError();

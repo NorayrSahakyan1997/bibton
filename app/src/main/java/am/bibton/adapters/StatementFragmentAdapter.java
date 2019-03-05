@@ -16,13 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class StatementFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private Context context;
     private LayoutInflater layoutInflater;
     private List<TransactionResponse> transactionResponseList;
 
 
     public StatementFragmentAdapter(Context context, List<TransactionResponse> transactionResponses) {
-        this.context = context;
         this.transactionResponseList = transactionResponses;
         layoutInflater = LayoutInflater.from(context);
     }
@@ -31,8 +29,7 @@ public class StatementFragmentAdapter extends RecyclerView.Adapter<RecyclerView.
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view_statement_row = layoutInflater.inflate(R.layout.transaction_list_child_row, parent, false);
-        RecyclerView.ViewHolder viewHolder = new StatementFragmentAdapter.ViewHolder(view_statement_row);
-        return viewHolder;
+        return new ViewHolder(view_statement_row);
     }
 
     @SuppressLint("SetTextI18n")

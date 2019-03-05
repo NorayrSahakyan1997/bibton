@@ -38,7 +38,7 @@ public class SuperSystemFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void goToPhoneNumberFragment() {
-        goToPhoneNumberFragment.setOnClickListener(v -> changeFragments.replaceFragment(new PhoneNumberFragment(), false));
+        goToPhoneNumberFragment.setOnClickListener(v -> changeFragments.replaceWelcomeFragments(new PhoneNumberFragment(), false));
     }
 
     @Override

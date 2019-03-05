@@ -66,6 +66,8 @@
     <dimen name="rates_item_row_image_width">170dp</dimen>
     <dimen name="margin_height_rates_frame">175dp</dimen>
 
+    <dimen name="paymentConstraintHeight">140dp</dimen>
+    <dimen name="paymentConstraintWidth">133dp</dimen>
 
 
 
