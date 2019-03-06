@@ -5,6 +5,7 @@ import android.widget.Toast;
 import javax.inject.Inject;
 
 import am.bibton.model.ResponseModel;
+import am.bibton.model.userInfoForTranferModel.UserInfoForTransferModel;
 import am.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import am.bibton.presenter.root.BasePresenter;
 import am.bibton.shared.data.services.AuthorizationService;
@@ -33,5 +34,24 @@ public class AddAccountDetailsPresenter extends BasePresenter<IAddAccountDetails
             Toast.makeText(mContext, "False", Toast.LENGTH_SHORT).show();
             mView.showNetworkError();
         }
+    }
+
+    public void getUserInfo(int uniqueId) {
+        Disposable disposable = mService.getUserInfoForTransfer(uniqueId).subscribe(this::getUserInfoResponse, this::errorView);
+        addDisposable(disposable);
+    }
+
+    private void getUserInfoResponse(ResponseModel<UserInfoForTransferModel> responseModel) {
+        if (responseModel.isSuccess() && responseModel.getData() != null) {
+
+            mView.getUserInfo(responseModel.getData(),responseModel.isSuccess());
+
+        } else {
+            Toast.makeText(mContext,"User does not exist",Toast.LENGTH_SHORT).show();
+            mView.getUserInfo(responseModel.getData(),responseModel.isSuccess());
+            mView.showNetworkError();
+
+        }
+
     }
 }

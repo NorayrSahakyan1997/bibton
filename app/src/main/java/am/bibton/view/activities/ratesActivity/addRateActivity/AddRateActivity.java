@@ -71,7 +71,7 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
 
             @Override
             public void setPosition(int position) {
-                goToBibtonToBibtonActivity(outputCountries.get(position).getName(), outputCountries.get(position).getFlag());
+                goToBibtonToBibtonActivity(outputCountries.get(position).getIso(), outputCountries.get(position).getFlag());
             }
         });
         addCurrencyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -114,7 +114,7 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
 
             @Override
             public void setPosition(int position) {
-                goToBibtonToBibtonActivity(filteredList.get(position).getName(), filteredList.get(position).getFlag());
+                goToBibtonToBibtonActivity(filteredList.get(position).getIso(), filteredList.get(position).getFlag());
             }
         });
         addCurrencyRecyclerView.setAdapter(addCurrencyPairAdapter);
@@ -133,6 +133,7 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
             startActivity(intent);
             if (Constants.CURRENCY_SUM == 1) {
                 Constants.CURRENCY_ID_FIRST = currency;
+
             }
             if (Constants.CURRENCY_SUM == 2) {
                 Constants.CURRENCY_ID_SECOND = currency;
@@ -154,6 +155,8 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
             returnToBibtonToBibtonActivity.putExtra("currencyId", name);
             returnToBibtonToBibtonActivity.putExtra("currencyFlag", icon);
             startActivity(returnToBibtonToBibtonActivity);
+            Constants.CURRENCY_SUM = 0;
+
         }
     }
 }

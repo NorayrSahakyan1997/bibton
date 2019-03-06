@@ -1,7 +1,6 @@
 package am.bibton.shared.data.api;
 
 import java.util.List;
-
 import am.bibton.model.convertModel.ConvertParentModel;
 import am.bibton.model.ResponseModel;
 import am.bibton.model.alertModel.AlertParentModel;
@@ -16,6 +15,7 @@ import am.bibton.model.getTransactionList.TransactionParentModel;
 import am.bibton.model.phoneNumberCodeModel.CountryCode;
 import am.bibton.model.rateModel.RateParentModel;
 import am.bibton.model.singUpModel.SignUp;
+import am.bibton.model.userInfoForTranferModel.UserInfoForTransferModel;
 import am.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import io.reactivex.Flowable;
 import retrofit2.http.Body;
@@ -120,6 +120,10 @@ public interface IAuthorizationService {
     @FormUrlEncoded
     @POST("api/rate/alert/add")
     Flowable<ResponseModel<List>> addAlert(@Field("from_currency") int fromCurrency, @Field("to_currency") int toCurrency, @Field("amount") float amount);
+
+    @FormUrlEncoded
+    @POST("api/user/user-wallet-exists")
+    Flowable<ResponseModel<UserInfoForTransferModel>> getUserInfoForTransfer(@Field("data") int uniqueId);
 
 
 }

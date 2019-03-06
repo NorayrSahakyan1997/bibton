@@ -69,6 +69,8 @@
     <dimen name="paymentConstraintHeight">160dp</dimen>
     <dimen name="paymentConstraintWidth">153dp</dimen>
     <dimen name="marginTopPayments">20dp</dimen>
+    <dimen name="marginTopPaymentsButton">60dp</dimen>
+
 
 
 

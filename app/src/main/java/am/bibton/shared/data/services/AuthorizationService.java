@@ -16,6 +16,7 @@ import am.bibton.model.getTransactionList.TransactionParentModel;
 import am.bibton.model.phoneNumberCodeModel.CountryCode;
 import am.bibton.model.rateModel.RateParentModel;
 import am.bibton.model.singUpModel.SignUp;
+import am.bibton.model.userInfoForTranferModel.UserInfoForTransferModel;
 import am.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import am.bibton.shared.data.api.IAuthorizationService;
 import am.bibton.shared.data.services.root.BaseService;
@@ -125,5 +126,9 @@ public class AuthorizationService extends BaseService {
     }
     public Flowable<ResponseModel<List>> switchAlert(int id){
         return request(mService.switchAlert(id));
+    }
+
+    public Flowable<ResponseModel<UserInfoForTransferModel>> getUserInfoForTransfer(int uniqueId){
+        return request(mService.getUserInfoForTransfer(uniqueId));
     }
 }

@@ -313,7 +313,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_top_exchange_last_item">
+                android:layout_marginTop="@dimen/margin_top_exchange_last_item"
+                android:layout_marginBottom="20dp">
 
                 <ImageView
                     android:layout_width="match_parent"

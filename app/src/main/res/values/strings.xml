@@ -95,6 +95,7 @@
     <string name="amd30000">30000 AMD</string>
     <string name="phoneNumber091">+37444666616</string>
     <string name="id">ID: 1234567890</string>
+    <string name="findUser">Find User</string>
     <string-array name="menu_names_array">
 
 
