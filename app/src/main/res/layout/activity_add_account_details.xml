@@ -190,11 +190,11 @@
                 android:background="@drawable/shape_phone_number_edittext"
                 android:hint="@string/amd30000"
                 android:inputType="number
-"
-                android:maxLength="15"
+"                android:maxLength="15"
                 android:paddingStart="10dp" />
 
             <TextView
+                android:id="@+id/showConvertTwoCurrencies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -220,7 +220,8 @@
                 android:layout_marginTop="@dimen/marginTopPayments"
                 android:background="@drawable/shape_phone_number_edittext"
                 android:hint="@string/phoneNumber091"
-                android:inputType="number"
+                android:text="570310446"
+                android:inputType="phone"
                 android:paddingStart="10dp"
                 android:textColor="@color/grey" />
 
@@ -311,7 +312,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="@dimen/marginTopPaymentsButton"
                 android:layout_marginBottom="@dimen/marginTopPayments"
-                android:background="@drawable/button_skip"
+                android:background="@drawable/inactive_button_send"
                 android:fontFamily="@font/noto_sans_regular"
                 android:text="@string/findUser"
                 android:textColor="@color/white"

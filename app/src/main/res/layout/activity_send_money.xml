@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.SendMoneyActivity">
+    tools:context=".view.activities.sendMoneyActivity.SendMoneyActivity">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_animation_splash"
@@ -15,7 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:lottie_fileName="finger_print_scan_anim.json"
         />
 
     <TextView
@@ -27,5 +26,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.657"
+        android:textColor="@color/colorBlack"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,5 @@
 package am.bibton.view.activities.ratesActivity.addRateActivity;
+
 import am.bibton.Bibton;
 import am.bibton.R;
 import am.bibton.adapters.AddCurrencyPairAdapter;
@@ -12,12 +13,15 @@ import am.bibton.view.activities.ratesActivity.RatesActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
 
 public class AddRateActivity extends BaseActivity implements IAddRateActivity {
@@ -71,7 +75,7 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
 
             @Override
             public void setPosition(int position) {
-                goToBibtonToBibtonActivity(outputCountries.get(position).getIso(), outputCountries.get(position).getFlag());
+                goToBibtonToBibtonActivity(outputCountries.get(position).getIso(), outputCountries.get(position).getFlag(), outputCountries.get(position).getCurrency_id());
             }
         });
         addCurrencyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -114,7 +118,7 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
 
             @Override
             public void setPosition(int position) {
-                goToBibtonToBibtonActivity(filteredList.get(position).getIso(), filteredList.get(position).getFlag());
+                goToBibtonToBibtonActivity(filteredList.get(position).getIso(), filteredList.get(position).getFlag(), filteredList.get(position).getCurrency_id());
             }
         });
         addCurrencyRecyclerView.setAdapter(addCurrencyPairAdapter);
@@ -147,15 +151,17 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
         }
     }
 
-    private void goToBibtonToBibtonActivity(String name, String icon) {
+    private void goToBibtonToBibtonActivity(String name, String icon, int currencyId) {
         Intent intent = getIntent();
 
         if (intent.hasExtra("addRateActivity")) {
             Intent returnToBibtonToBibtonActivity = new Intent(this, AddAccountDetailsActivity.class);
-            returnToBibtonToBibtonActivity.putExtra("currencyId", name);
+            returnToBibtonToBibtonActivity.putExtra("currencyName", name);
             returnToBibtonToBibtonActivity.putExtra("currencyFlag", icon);
+            returnToBibtonToBibtonActivity.putExtra("currencyId", currencyId);
             startActivity(returnToBibtonToBibtonActivity);
             Constants.CURRENCY_SUM = 0;
+
 
         }
     }

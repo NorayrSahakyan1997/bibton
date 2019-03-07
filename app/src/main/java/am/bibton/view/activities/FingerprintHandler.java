@@ -8,6 +8,7 @@ import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.CancellationSignal;
 import android.widget.Toast;
+
 import androidx.core.app.ActivityCompat;
 
 @TargetApi(Build.VERSION_CODES.M)
@@ -18,9 +19,11 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
     private CancellationSignal cancellationSignal;
     private Context context;
+    private FingerprintHandler.isSuccess isSuccess;
 
-    public FingerprintHandler(Context mContext) {
+    public FingerprintHandler(Context mContext, FingerprintHandler.isSuccess isSuccess) {
         context = mContext;
+        this.isSuccess = isSuccess;
     }
 
     //Implement the startAuth method, which is responsible for starting the fingerprint authentication process//
@@ -56,11 +59,17 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     //so to provide the user with as much feedback as possible I’m incorporating this information into my toast//
     public void onAuthenticationHelp(int helpMsgId, CharSequence helpString) {
         Toast.makeText(context, "Authentication help\n" + helpString, Toast.LENGTH_LONG).show();
-    }@Override
+    }
+
+    @Override
     //onAuthenticationSucceeded is called when a fingerprint has been successfully matched to one of the fingerprints stored on the user’s device//
-    public void onAuthenticationSucceeded(
-            FingerprintManager.AuthenticationResult result) {
-        Toast.makeText(context, "Success!", Toast.LENGTH_LONG).show();
+    public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
+        isSuccess.isSucess(true);
+
+    }
+
+    public interface isSuccess {
+        void isSucess(boolean isSuccess);
     }
 
 }

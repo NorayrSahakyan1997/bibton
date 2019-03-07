@@ -5,6 +5,7 @@ import android.widget.Toast;
 import javax.inject.Inject;
 
 import am.bibton.model.ResponseModel;
+import am.bibton.model.exchangeModel.ExchangeParentModel;
 import am.bibton.model.userInfoForTranferModel.UserInfoForTransferModel;
 import am.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import am.bibton.presenter.root.BasePresenter;
@@ -36,7 +37,7 @@ public class AddAccountDetailsPresenter extends BasePresenter<IAddAccountDetails
         }
     }
 
-    public void getUserInfo(int uniqueId) {
+    public void getUserInfo(String uniqueId) {
         Disposable disposable = mService.getUserInfoForTransfer(uniqueId).subscribe(this::getUserInfoResponse, this::errorView);
         addDisposable(disposable);
     }
@@ -53,5 +54,18 @@ public class AddAccountDetailsPresenter extends BasePresenter<IAddAccountDetails
 
         }
 
+    }
+
+    public void getExchange(int from_currency, int to_currency, int value) {
+        Disposable disposable = mService.changeMoney(from_currency, to_currency, value).subscribe(this::getExchangeRateResponse, this::errorView);
+        addDisposable(disposable);
+    }
+
+    private void getExchangeRateResponse(ResponseModel<ExchangeParentModel> responseModel) {
+        if (responseModel.isSuccess() && responseModel.getData() != null) {
+            mView.getExchangeRate(responseModel.getData());
+        } else {
+            mView.showNetworkError();
+        }
     }
 }

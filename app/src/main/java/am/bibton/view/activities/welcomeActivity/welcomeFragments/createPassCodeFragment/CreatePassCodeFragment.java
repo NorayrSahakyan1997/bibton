@@ -132,7 +132,6 @@ public class CreatePassCodeFragment extends BaseFragment implements ICreatePassC
 
         if (v.getTag() != null && "number_button".equals(v.getTag()) && char_count != 6) {
             char_count++;
-
             goToYouAreDoneFragment(char_count);
             checkActivenessOvalButtons.checkActivenessOvalButtons(char_count);
             return;
@@ -144,6 +143,7 @@ public class CreatePassCodeFragment extends BaseFragment implements ICreatePassC
                     char_count--;
                     checkActivenessOvalButtons.checkActivenessOvalButtons(char_count);
                 }
+
             }
             break;
         }

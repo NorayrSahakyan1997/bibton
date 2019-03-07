@@ -3,11 +3,14 @@ package am.bibton.view.activities.addAccountDetailsActivity;
 import am.bibton.Bibton;
 import am.bibton.R;
 import am.bibton.adapters.CurrencyAdapter;
+import am.bibton.model.exchangeModel.ExchangeParentModel;
 import am.bibton.model.userInfoForTranferModel.UserInfoForTransferModel;
 import am.bibton.model.walletCurrency.WalletCurrencyResponse;
 import am.bibton.presenter.AddAccountDetailsPresenter;
+import am.bibton.shared.utils.Constants;
 import am.bibton.shared.utils.KeyboardUtils;
 import am.bibton.view.activities.BaseActivity;
+import am.bibton.view.activities.sendMoneyActivity.SendMoneyActivity;
 import am.bibton.view.activities.homeActivity.bibtonToBibtonActivity.BibtonToBibtonActivity;
 import am.bibton.view.activities.ratesActivity.addRateActivity.AddRateActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -29,24 +32,31 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class AddAccountDetailsActivity extends BaseActivity implements IAddAccountDetails {
+
     private LinearLayout myCurrencyLinear;
     private LinearLayout receivedCurrencyLinear;
     private ConstraintLayout currencyConstraint;
     private ConstraintLayout constraintCurrencyAddAccountDetails;
-    private TextView currencyFromNameAddAccount;
-    private ImageView iconFromCurrency;
-    private TextView currencyToNameAddAccount;
-    private ImageView toCurrencyIcon;
-    private float balanceAmount;
-    private EditText amountAccountDetails;
-    private Button buttonSend;
     private ConstraintLayout userInfoConstraint;
-    private ImageView closeUserConstraint;
-    private EditText idAddAccountDetails;
-    private TextView mobileOrIdTextView;
-    private int userID;
+
+    private TextView currencyFromNameAddAccount;
     private TextView userNameText;
     private TextView userIDTextView;
+    private TextView showConvertTwoCurrencies;
+    private TextView currencyToNameAddAccount;
+    private TextView mobileOrIdTextView;
+
+    private ImageView iconFromCurrency;
+    private ImageView toCurrencyIcon;
+    private ImageView closeUserConstraint;
+    private Button buttonSend;
+
+    private EditText amountAccountDetails;
+    private EditText idAddAccountDetails;
+
+    private float balanceAmount;
+    private String userID;
+    private int fromCurrencyId;
 
     @Inject
     AddAccountDetailsPresenter mPresenter;
@@ -60,14 +70,15 @@ public class AddAccountDetailsActivity extends BaseActivity implements IAddAccou
         mPresenter.onViewCreated(this);
         mPresenter.getCurrencyList();
         init();
+        getReceivedItem();
         openMyCurrency();
         openReceivedCurrency();
         closeMyCurrencyLayout();
-        getReceivedItem();
         checkBalanceAmount();
         findUser();
         closeUserConstraint();
         getUserIdFromEditText();
+
     }
 
     @SuppressLint("CutPasteId")
@@ -88,6 +99,7 @@ public class AddAccountDetailsActivity extends BaseActivity implements IAddAccou
         userNameText = findViewById(R.id.userNameText);
         mobileOrIdTextView = findViewById(R.id.mobileOrIdTextView);
         userIDTextView = findViewById(R.id.userIDTextView);
+        showConvertTwoCurrencies = findViewById(R.id.showConvertTwoCurrencies);
     }
 
     private void openMyCurrency() {
@@ -109,18 +121,34 @@ public class AddAccountDetailsActivity extends BaseActivity implements IAddAccou
     @SuppressLint("SetTextI18n")
     @Override
     public void getCurrencyWallet(List<WalletCurrencyResponse> getWalletCurrencyList) {
+
         currencyFromNameAddAccount.setText(getWalletCurrencyList.get(0).getCurrency_iso());
         setIconToImageView(iconFromCurrency, getWalletCurrencyList.get(0).getCurrency_icon());
+        fromCurrencyId = getWalletCurrencyList.get(0).getCurrency_id();
+        mPresenter.getExchange(fromCurrencyId,toCurrencyId,1);
+
         CurrencyAdapter balanceHomeAdapter = new CurrencyAdapter(this, getWalletCurrencyList, position -> {
+            Constants.FROM_ALERT_ID_TRANSFER = getWalletCurrencyList.get(position).getCurrency_id();
             currencyConstraint.setVisibility(View.GONE);
             currencyFromNameAddAccount.setText(getWalletCurrencyList.get(position).getCurrency_iso());
             balanceAmount = getWalletCurrencyList.get(position).getBalance();
             setIconToImageView(iconFromCurrency, getWalletCurrencyList.get(position).getCurrency_icon());
+            mPresenter.getExchange(Constants.FROM_ALERT_ID_TRANSFER, toCurrencyId, 1);
+
         });
+
         RecyclerView recyclerView_balance_list = findViewById(R.id.recycle_AddAccountDetails);
         recyclerView_balance_list.setLayoutManager(new LinearLayoutManager(this));
         recyclerView_balance_list.setAdapter(balanceHomeAdapter);
         checkBalanceAmount();
+
+        if (Constants.FROM_ALERT_ID_TRANSFER != 0) {
+            currencyFromNameAddAccount.setText(getWalletCurrencyList.get(Constants.FROM_ALERT_ID_TRANSFER).getCurrency_iso());
+            setIconToImageView(iconFromCurrency, getWalletCurrencyList.get(Constants.FROM_ALERT_ID_TRANSFER).getCurrency_icon());
+            fromCurrencyId = Constants.FROM_ALERT_ID_TRANSFER;
+            mPresenter.getExchange(fromCurrencyId,toCurrencyId,1);
+        }
+
     }
 
 
@@ -134,15 +162,20 @@ public class AddAccountDetailsActivity extends BaseActivity implements IAddAccou
                 .into(imageView);
     }
 
+    int toCurrencyId;
+
     private void getReceivedItem() {
         Intent intent = getIntent();
         String currentExtra;
         String currencyFlag;
+
         if (intent.hasExtra("currencyId") && intent.hasExtra("currencyFlag")) {
-            currentExtra = intent.getStringExtra("currencyId");
+            currentExtra = intent.getStringExtra("currencyName");
             currencyFlag = intent.getStringExtra("currencyFlag");
+            toCurrencyId = intent.getIntExtra("currencyId", 0);
             currencyToNameAddAccount.setText(currentExtra);
             setIconToImageView(toCurrencyIcon, currencyFlag);
+            mPresenter.getExchange(fromCurrencyId, toCurrencyId, 1);
         }
     }
 
@@ -155,16 +188,23 @@ public class AddAccountDetailsActivity extends BaseActivity implements IAddAccou
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (s.length() != 0 && s.length()<15) {
-                    float amount = Integer.parseInt(s.toString());
+                if (s.length() != 0 && s.length() < 15) {
+                    float amount = Float.parseFloat(s.toString());
 
                     if (amount != 0 && amount > balanceAmount) {
                         amountAccountDetails.setBackground(getResources().getDrawable(R.drawable.shape_edittext_wrong));
+                        buttonSend.setBackground(getResources().getDrawable(R.drawable.inactive_button_send));
+                        buttonSend.setClickable(false);
+                        buttonSend.setFocusable(false);
                     } else {
+                        buttonSend.setBackground(getResources().getDrawable(R.drawable.button_skip));
                         amountAccountDetails.setBackground(getResources().getDrawable(R.drawable.shape_phone_number_edittext));
+                        buttonSend.setClickable(true);
+                        buttonSend.setFocusable(true);
                     }
                 }
             }
+
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -182,7 +222,7 @@ public class AddAccountDetailsActivity extends BaseActivity implements IAddAccou
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() != 0) {
-                    userID = Integer.parseInt(s.toString());
+                    userID = s.toString();
                 }
             }
 
@@ -193,17 +233,20 @@ public class AddAccountDetailsActivity extends BaseActivity implements IAddAccou
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, BibtonToBibtonActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
-
-    }
 
     private void findUser() {
         buttonSend.setOnClickListener(v -> {
-            mPresenter.getUserInfo(userID);
+            if (buttonSend.getText().toString().equals(getResources().getString(R.string.findUser))) {
+                mPresenter.getUserInfo(userID);
+            } else {
+                int amount = Integer.parseInt(amountAccountDetails.getText().toString());
+                Intent intent = new Intent(this, SendMoneyActivity.class);
+                intent.putExtra("fromCurrencyId", fromCurrencyId);
+                intent.putExtra("toCurrencyId", toCurrencyId);
+                intent.putExtra("amount", amount);
+                intent.putExtra("uniqueId", userID);
+                startActivity(intent);
+            }
 
         });
     }
@@ -217,12 +260,6 @@ public class AddAccountDetailsActivity extends BaseActivity implements IAddAccou
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        mPresenter.stopSubscriptions();
-        super.onDestroy();
-    }
-
     @SuppressLint("SetTextI18n")
     @Override
     public void getUserInfo(UserInfoForTransferModel userInfoForTransferModel, boolean isUser) {
@@ -233,12 +270,32 @@ public class AddAccountDetailsActivity extends BaseActivity implements IAddAccou
             buttonSend.setText(getResources().getString(R.string.submit));
             userNameText.setText(userInfoForTransferModel.getName() + " " + userInfoForTransferModel.getSurname());
             idAddAccountDetails.setBackground(getResources().getDrawable(R.drawable.shape_phone_number_edittext));
-            userIDTextView.setText("Id "+userInfoForTransferModel.getWallet_id() + "");
-
+            userIDTextView.setText("Id " + userInfoForTransferModel.getWallet_id() + "");
         } else {
             idAddAccountDetails.setBackground(getResources().getDrawable(R.drawable.shape_edittext_wrong));
         }
 
     }
 
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void getExchangeRate(ExchangeParentModel exchangeParentModel) {
+        showConvertTwoCurrencies.setText(exchangeParentModel.getCurrency().first_currency.getISO()
+                + "=" + exchangeParentModel.getResult()
+                + " " + exchangeParentModel.getCurrency().second_currency.getISO());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, BibtonToBibtonActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.stopSubscriptions();
+        super.onDestroy();
+    }
 }

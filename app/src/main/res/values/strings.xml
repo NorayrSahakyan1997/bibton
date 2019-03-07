@@ -96,6 +96,8 @@
     <string name="phoneNumber091">+37444666616</string>
     <string name="id">ID: 1234567890</string>
     <string name="findUser">Find User</string>
+    <string name="fingerPrintScreenAnim">finger_print_scan_anim.json</string>
+    <string name="fingerPrinDoneAnim">finger_print_done.json</string>
     <string-array name="menu_names_array">
 
 

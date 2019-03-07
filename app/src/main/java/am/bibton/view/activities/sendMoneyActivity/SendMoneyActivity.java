@@ -1,6 +1,9 @@
-package am.bibton.view.activities;
+package am.bibton.view.activities.sendMoneyActivity;
 
 import am.bibton.R;
+import am.bibton.view.activities.BaseActivity;
+import am.bibton.view.activities.FingerprintHandler;
+import am.bibton.view.activities.addAccountDetailsActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
@@ -8,6 +11,7 @@ import android.Manifest;
 import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.app.KeyguardManager;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
@@ -28,41 +32,36 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
-@TargetApi(Build.VERSION_CODES.P)
 
+@TargetApi(Build.VERSION_CODES.P)
 public class SendMoneyActivity extends BaseActivity {
     private static final String KEY_NAME = "yourKey";
     private Cipher cipher;
     private KeyStore keyStore;
-    private KeyGenerator keyGenerator;
-    private TextView textView;
-    private FingerprintManager.CryptoObject cryptoObject;
-    private FingerprintManager fingerprintManager;
-    private KeyguardManager keyguardManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_money);
-        setAnimation();
+        setAnimation(getResources().getString(R.string.fingerPrintScreenAnim));
+        TextView textView = findViewById(R.id.textview);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //Get an instance of KeyguardManager and FingerprintManager//
-            keyguardManager =
-                    (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-            fingerprintManager =
-                    (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
+            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+            FingerprintManager fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
 
-            textView = (TextView) findViewById(R.id.textview);
 
             //Check whether the device has a fingerprint sensor//
             if (!fingerprintManager.isHardwareDetected()) {
-                // If a fingerprint sensor isn’t available, then inform the user that they’ll be unable to use your app’s fingerprint functionality//
+                Intent writePasscodeActivity = new Intent(this, WritePassCodeActivity.class);
+                startActivity(writePasscodeActivity);
                 textView.setText("Your device doesn't support fingerprint authentication");
             }
             //Check whether the user has granted your app the USE_FINGERPRINT permission//
@@ -90,11 +89,13 @@ public class SendMoneyActivity extends BaseActivity {
 
                 if (initCipher()) {
                     //If the cipher is initialized successfully, then create a CryptoObject instance//
-                    cryptoObject = new FingerprintManager.CryptoObject(cipher);
-
+                    FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
                     // Here, I’m referencing the FingerprintHandler class that we’ll create in the next section. This class will be responsible
                     // for starting the authentication process (via the startAuth method) and processing the authentication process events//
-                    FingerprintHandler helper = new FingerprintHandler(this);
+                    FingerprintHandler helper = new FingerprintHandler(this, isSuccess -> {
+                        setAnimation(getResources().getString(R.string.fingerPrinDoneAnim));
+
+                    });
                     helper.startAuth(fingerprintManager, cryptoObject);
 
                 }
@@ -102,15 +103,21 @@ public class SendMoneyActivity extends BaseActivity {
         }
     }
 
-    private void setAnimation() {
+    private void setAnimation(String animName) {
         LottieAnimationView lottieAnimationView = findViewById(R.id.lottie_animation_splash);
+        lottieAnimationView.setAnimation(animName);
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
 
             }
+
             @Override
             public void onAnimationEnd(Animator animation) {
+                if(animName.equals(getResources().getString(R.string.fingerPrinDoneAnim))){
+                    Intent writePasscodeActivity = new Intent(getApplicationContext(), WritePassCodeActivity.class);
+                    startActivity(writePasscodeActivity);
+                }
 
             }
 
@@ -131,7 +138,7 @@ public class SendMoneyActivity extends BaseActivity {
             // Obtain a reference to the Keystore using the standard Android keystore container identifier (“AndroidKeystore”)//
             keyStore = KeyStore.getInstance("AndroidKeyStore");
             //Generate the key//
-            keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
+            KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
             //Initialize an empty KeyStore//
             keyStore.load(null);
             //Initialize the KeyGenerator//
@@ -178,7 +185,6 @@ public class SendMoneyActivity extends BaseActivity {
             SecretKey key = (SecretKey) keyStore.getKey(KEY_NAME,
                     null);
             cipher.init(Cipher.ENCRYPT_MODE, key);
-            //Return true if the cipher has been initialized successfully//
             return true;
         } catch (KeyPermanentlyInvalidatedException e) {
 

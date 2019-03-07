@@ -25,6 +25,7 @@ public final class Constants {
     public static int CURRENCY_SUM = 0;
     public static int FROM_AIERT_ID = 0;
     public static int TO_ALERT_ID = 0;
+    public static int FROM_ALERT_ID_TRANSFER=0;
 
     public static String TOKEN = "Token";
     public static String COUNTRY_SHORT_NAME;

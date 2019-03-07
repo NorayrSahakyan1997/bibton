@@ -15,6 +15,7 @@ import am.bibton.model.getTransactionList.TransactionParentModel;
 import am.bibton.model.phoneNumberCodeModel.CountryCode;
 import am.bibton.model.rateModel.RateParentModel;
 import am.bibton.model.singUpModel.SignUp;
+import am.bibton.model.transferMoneyModel.TransferMoneyModel;
 import am.bibton.model.userInfoForTranferModel.UserInfoForTransferModel;
 import am.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import io.reactivex.Flowable;
@@ -123,7 +124,10 @@ public interface IAuthorizationService {
 
     @FormUrlEncoded
     @POST("api/user/user-wallet-exists")
-    Flowable<ResponseModel<UserInfoForTransferModel>> getUserInfoForTransfer(@Field("data") int uniqueId);
+    Flowable<ResponseModel<UserInfoForTransferModel>> getUserInfoForTransfer(@Field("data") String uniqueId);
+
+    @POST("api/pay/transfer/start")
+    Flowable<ResponseModel<List>> transferMoney(@Body TransferMoneyModel transferMoneyModel);
 
 
 }

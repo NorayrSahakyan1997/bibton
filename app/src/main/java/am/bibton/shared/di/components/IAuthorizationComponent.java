@@ -4,6 +4,7 @@ import am.bibton.shared.di.components.root.IAppComponent;
 import am.bibton.shared.di.modules.AuthorizationModule;
 import am.bibton.shared.di.scopes.AuthorizationScope;
 import am.bibton.view.activities.addAccountDetailsActivity.AddAccountDetailsActivity;
+import am.bibton.view.activities.addAccountDetailsActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
 import am.bibton.view.activities.exchangeActivity.ExchangeActivity;
 import am.bibton.view.activities.homeActivity.homeFragments.statementFragment.StatementFragment;
 import am.bibton.view.activities.homeActivity.homeFragments.homeFragment.HomeFragment;
@@ -14,6 +15,7 @@ import am.bibton.view.activities.ratesActivity.addSecondAlertPairActivity.Second
 import am.bibton.view.activities.ratesActivity.ratesFragments.alertFragment.AlertFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.convertFragment.ConverterFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.rateFragment.RatesFragment;
+import am.bibton.view.activities.sendMoneyActivity.SendMoneyActivity;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.forgetPassCodeFragment.ForgetPassCodeFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.countrySearchFragment.CountrySearchFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.createPassCodeFragment.CreatePassCodeFragment;
@@ -56,6 +58,11 @@ public interface IAuthorizationComponent {
     void inject(SecondAlertPairActivity SecondAlertPairActivity);
 
     void inject(AddAccountDetailsActivity SecondAlertPairActivity);
+
+    void inject(SendMoneyActivity sendMoneyActivity);
+
+    void inject(WritePassCodeActivity writePassCodeActivity);
+
 
 
 
