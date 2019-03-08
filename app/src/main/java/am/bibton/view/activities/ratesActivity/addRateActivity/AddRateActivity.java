@@ -75,7 +75,10 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
 
             @Override
             public void setPosition(int position) {
-                goToBibtonToBibtonActivity(outputCountries.get(position).getIso(), outputCountries.get(position).getFlag(), outputCountries.get(position).getCurrency_id());
+                goToBibtonToBibtonActivity(outputCountries.get(position).getIso(),
+                        outputCountries.get(position).getFlag(),
+                        outputCountries.get(position).getCurrency_id(),
+                        getCurrencyList.get(position).getSymbol());
             }
         });
         addCurrencyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -118,7 +121,10 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
 
             @Override
             public void setPosition(int position) {
-                goToBibtonToBibtonActivity(filteredList.get(position).getIso(), filteredList.get(position).getFlag(), filteredList.get(position).getCurrency_id());
+                goToBibtonToBibtonActivity(filteredList.get(position).getIso(),
+                        filteredList.get(position).getFlag(),
+                        filteredList.get(position).getCurrency_id(),
+                        filteredList.get(position).getSymbol());
             }
         });
         addCurrencyRecyclerView.setAdapter(addCurrencyPairAdapter);
@@ -151,7 +157,7 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
         }
     }
 
-    private void goToBibtonToBibtonActivity(String name, String icon, int currencyId) {
+    private void goToBibtonToBibtonActivity(String name, String icon, int currencyId, String symbol) {
         Intent intent = getIntent();
 
         if (intent.hasExtra("addRateActivity")) {
@@ -159,6 +165,7 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
             returnToBibtonToBibtonActivity.putExtra("currencyName", name);
             returnToBibtonToBibtonActivity.putExtra("currencyFlag", icon);
             returnToBibtonToBibtonActivity.putExtra("currencyId", currencyId);
+            returnToBibtonToBibtonActivity.putExtra("symbol", symbol);
             startActivity(returnToBibtonToBibtonActivity);
             Constants.CURRENCY_SUM = 0;
 

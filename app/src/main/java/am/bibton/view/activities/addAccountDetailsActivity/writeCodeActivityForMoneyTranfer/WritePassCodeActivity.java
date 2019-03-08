@@ -9,6 +9,7 @@ import am.bibton.view.activities.BaseActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,6 +27,11 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
     private View mainView;
     private TransferMoneyModel transferMoneyModel;
 
+    private int fromCurrencyPosition;
+    private int toCurrencyId;
+    private float amount;
+    private String uniqueId;
+
     @Inject
     SendMoneyActivityPresenter mPresenter;
 
@@ -33,7 +39,6 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_pass_code);
-        passCodeEditText = findViewById(R.id.passCodeEditText);
         Bibton.getInstance().getAuthorizationComponent().inject(this);
         mPresenter.onViewCreated(this);
         init();
@@ -44,7 +49,9 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
     public void init() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         checkActivenessOvalIcons = new CheckActivenessOvalIcons(getApplicationContext(), mainView);
+        passCodeEditText = findViewById(R.id.passCodeEditText);
         setTextChangeListener();
+        getIntents();
         transferMoneyModel = new TransferMoneyModel();
     }
 
@@ -72,11 +79,11 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
                     if (s.length() != 0) {
                         int passCode = Integer.parseInt(s.toString());
                         if (s.length() == 6) {
-                            transferMoneyModel.setFrom_wallet_currency(153);
-                            transferMoneyModel.to_currency(1);
-                            transferMoneyModel.setAmount(750);
+                            transferMoneyModel.setFrom_wallet_currency(fromCurrencyPosition);
+                            transferMoneyModel.to_currency(toCurrencyId);
+                            transferMoneyModel.setAmount(amount);
                             transferMoneyModel.setFingerprint(0);
-                            transferMoneyModel.setTo_user_unique("+37491106116");
+                            transferMoneyModel.setTo_user_unique(uniqueId);
                             transferMoneyModel.setPasscode(passCode);
                             mPresenter.sendMoney(transferMoneyModel);
                         }
@@ -89,6 +96,21 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
 
             }
         });
+    }
+
+
+
+    private void getIntents() {
+        Intent intent = getIntent();
+        if (intent.hasExtra("fromCurrencyPosition")) {
+            fromCurrencyPosition = intent.getIntExtra("fromCurrencyPosition", 0);
+            toCurrencyId = intent.getIntExtra("toCurrencyId", 0);
+            amount = intent.getFloatExtra("amount", 0);
+            uniqueId = intent.getStringExtra("uniqueId");
+            Toast.makeText(getApplicationContext(),amount+"",Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
     @Override

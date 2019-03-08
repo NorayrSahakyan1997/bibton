@@ -31,6 +31,7 @@ public class SendMoneyActivityPresenter extends BasePresenter<IWritePassCodeActi
             Toast.makeText(mContext, "Money was sent successfully", Toast.LENGTH_SHORT).show();
         } else
             mView.getMessage(responseModel.getMessage());
+
         mView.showServerError();
     }
 
