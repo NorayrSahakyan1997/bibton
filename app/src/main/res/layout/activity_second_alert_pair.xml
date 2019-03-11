@@ -59,7 +59,7 @@
         android:background="@drawable/shape_phone_number_edittext"
         android:fontFamily="@font/noto_sans_bold"
         android:gravity="center"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:maxLength="10"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/text_size_normal"

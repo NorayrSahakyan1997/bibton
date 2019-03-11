@@ -3,6 +3,9 @@ package am.bibton.shared.di.components;
 import am.bibton.shared.di.components.root.IAppComponent;
 import am.bibton.shared.di.modules.AuthorizationModule;
 import am.bibton.shared.di.scopes.AuthorizationScope;
+import am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibton.BibtonToBibtonActivity;
+import am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibtonList.BibtonToBibtonListActivity;
+import am.bibton.view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
 import am.bibton.view.activities.exchangeActivity.ExchangeActivity;
 import am.bibton.view.activities.homeActivity.homeFragments.statementFragment.StatementFragment;
 import am.bibton.view.activities.homeActivity.homeFragments.homeFragment.HomeFragment;
@@ -13,6 +16,7 @@ import am.bibton.view.activities.ratesActivity.addSecondAlertPairActivity.Second
 import am.bibton.view.activities.ratesActivity.ratesFragments.alertFragment.AlertFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.convertFragment.ConverterFragment;
 import am.bibton.view.activities.ratesActivity.ratesFragments.rateFragment.RatesFragment;
+import am.bibton.view.activities.bibtnToBibtonActivity.sendMoneyActivityViaFingerprint.SendMoneyActivityViaFingerprint;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.forgetPassCodeFragment.ForgetPassCodeFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.countrySearchFragment.CountrySearchFragment;
 import am.bibton.view.activities.welcomeActivity.welcomeFragments.createPassCodeFragment.CreatePassCodeFragment;
@@ -53,6 +57,18 @@ public interface IAuthorizationComponent {
     void inject(AddAlertActivity addAlertActivity);
 
     void inject(SecondAlertPairActivity SecondAlertPairActivity);
+
+    void inject(BibtonToBibtonActivity SecondAlertPairActivity);
+
+    void inject(SendMoneyActivityViaFingerprint sendMoneyActivity);
+
+    void inject(WritePassCodeActivity writePassCodeActivity);
+
+    void inject(BibtonToBibtonListActivity bibtonToBibtonListActivity);
+
+
+
+
 
 
 

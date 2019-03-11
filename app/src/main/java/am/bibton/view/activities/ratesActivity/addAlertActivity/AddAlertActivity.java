@@ -56,7 +56,6 @@ public class AddAlertActivity extends BaseActivity implements IAddAlertActivity 
                 return false;
             }
         });
-        Log.d("N_TAG", Constants.FROM_AIERT_ID + "");
     }
 
 

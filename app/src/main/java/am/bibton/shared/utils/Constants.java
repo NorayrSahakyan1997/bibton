@@ -1,5 +1,7 @@
 package am.bibton.shared.utils;
 
+import android.support.v4.app.INotificationSideChannel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,9 @@ public final class Constants {
     public static int CURRENCY_SUM = 0;
     public static int FROM_AIERT_ID = 0;
     public static int TO_ALERT_ID = 0;
+    public static Integer FROM_ALERT_ID_TRANSFER;
+    public static Integer FROM_CURRENCY_POSITION;
+    public static int FROM_CURRENCY_LONG_ID;
 
     public static String TOKEN = "Token";
     public static String COUNTRY_SHORT_NAME;

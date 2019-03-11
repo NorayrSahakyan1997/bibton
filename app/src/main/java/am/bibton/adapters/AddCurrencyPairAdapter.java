@@ -7,9 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import am.bibton.R;
 import am.bibton.model.currencyModel.CurrencyResponse;
 import am.bibton.shared.utils.Constants;
@@ -54,7 +57,9 @@ public class AddCurrencyPairAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
     public interface OnItemClickListener {
-        void onClick(final int position);
+        void onClick(final int id);
+
+        void setPosition(final int position);
     }
 
     @Override
@@ -82,7 +87,9 @@ public class AddCurrencyPairAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                         if (Constants.CURRENCY_SUM == 0) {
                             Constants.CURRENCY_ID_FIRST = currencyResponse.get(position).getCurrency_id();
                         }
+                        mListener.setPosition(position);
                     }
+
             );
         }
     }

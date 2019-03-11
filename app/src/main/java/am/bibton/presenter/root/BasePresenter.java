@@ -1,9 +1,7 @@
 package am.bibton.presenter.root;
 
 import android.content.Context;
-
 import javax.inject.Inject;
-
 import am.bibton.shared.helpers.SharedPreferencesHelper;
 import am.bibton.shared.networking.NetworkError;
 import am.bibton.view.activities.IBaseView;

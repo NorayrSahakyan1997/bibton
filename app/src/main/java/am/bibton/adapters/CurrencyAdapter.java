@@ -2,6 +2,7 @@ package am.bibton.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,8 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 .load(walletCurrencyResponses.get(position).getCurrency_icon())
                 .into(viewHolder.country_flags);
         viewHolder.onClick(holder.itemView, position);
+        Log.d("N_CURRENCY",walletCurrencyResponses.get(position).getWallet_currency_id()+"");
+
     }
 
     @Override

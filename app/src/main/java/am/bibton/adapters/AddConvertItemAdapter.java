@@ -51,7 +51,7 @@ public class AddConvertItemAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     }
 
-    public interface OnItemClickListener {
+    public interface OnItemClickListener{
         void onClick(final int position);
 
     }

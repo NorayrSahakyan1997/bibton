@@ -7,6 +7,11 @@ public class WalletCurrencyResponse {
     private String symbol;
     private String currency_name;
     private float balance;
+    private int wallet_currency_id;
+
+    public int getWallet_currency_id() {
+        return wallet_currency_id;
+    }
 
     public float getBalance() {
         return balance;
