@@ -1,6 +1,8 @@
 package am.bibton.shared.data.api;
 
 import java.util.List;
+
+import am.bibton.model.bibtonToBibtonList.BibtonToBibtonParentModel;
 import am.bibton.model.convertModel.ConvertParentModel;
 import am.bibton.model.ResponseModel;
 import am.bibton.model.alertModel.AlertParentModel;
@@ -12,6 +14,7 @@ import am.bibton.model.countryModel.CountryParentModel;
 import am.bibton.model.createAccountModel.CreateAccountModel;
 import am.bibton.model.forgetPassCodeModel.ForgetPassCodeModel;
 import am.bibton.model.getTransactionList.TransactionParentModel;
+import am.bibton.model.getUniqueIdForFingerPrint.GetUniqueIdFingerPrintModel;
 import am.bibton.model.phoneNumberCodeModel.CountryCode;
 import am.bibton.model.rateModel.RateParentModel;
 import am.bibton.model.singUpModel.SignUp;
@@ -128,6 +131,12 @@ public interface IAuthorizationService {
 
     @POST("api/pay/transfer/start")
     Flowable<ResponseModel<List>> transferMoney(@Body TransferMoneyModel transferMoneyModel);
+
+    @POST("api/pay/transfer/get-unique-id-for-fingerprint")
+    Flowable<ResponseModel<GetUniqueIdFingerPrintModel>> getUniqueIdFingerprint();
+
+    @GET("api/transactions/get-b2b-list")
+    Flowable<ResponseModel<BibtonToBibtonParentModel>> getBibtonToBibtonList();
 
 
 }

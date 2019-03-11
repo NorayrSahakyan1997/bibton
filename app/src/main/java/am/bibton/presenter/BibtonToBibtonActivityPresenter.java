@@ -11,14 +11,14 @@ import am.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import am.bibton.presenter.root.BasePresenter;
 import am.bibton.shared.data.services.AuthorizationService;
 import am.bibton.shared.utils.Constants;
-import am.bibton.view.activities.addAccountDetailsActivity.IAddAccountDetails;
+import am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibton.IBibtonToBibtonActivity;
 import io.reactivex.disposables.Disposable;
 
-public class AddAccountDetailsPresenter extends BasePresenter<IAddAccountDetails> {
+public class BibtonToBibtonActivityPresenter extends BasePresenter<IBibtonToBibtonActivity> {
     private final AuthorizationService mService;
 
     @Inject
-    AddAccountDetailsPresenter(AuthorizationService service) {
+    BibtonToBibtonActivityPresenter(AuthorizationService service) {
         mService = service;
     }
 
@@ -44,14 +44,11 @@ public class AddAccountDetailsPresenter extends BasePresenter<IAddAccountDetails
 
     private void getUserInfoResponse(ResponseModel<UserInfoForTransferModel> responseModel) {
         if (responseModel.isSuccess() && responseModel.getData() != null) {
-
-            mView.getUserInfo(responseModel.getData(),responseModel.isSuccess());
-
+            mView.getUserInfo(responseModel.getData(), responseModel.isSuccess());
         } else {
-            Toast.makeText(mContext,"User does not exist",Toast.LENGTH_SHORT).show();
-            mView.getUserInfo(responseModel.getData(),responseModel.isSuccess());
+            Toast.makeText(mContext, "User does not exist", Toast.LENGTH_SHORT).show();
+            mView.getUserInfo(responseModel.getData(), responseModel.isSuccess());
             mView.showNetworkError();
-
         }
 
     }
@@ -65,6 +62,7 @@ public class AddAccountDetailsPresenter extends BasePresenter<IAddAccountDetails
         if (responseModel.isSuccess() && responseModel.getData() != null) {
             mView.getExchangeRate(responseModel.getData());
         } else {
+            Toast.makeText(mContext, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
             mView.showNetworkError();
         }
     }

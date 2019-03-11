@@ -16,13 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activities.addAccountDetailsActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity"></activity>
-        <activity android:name=".view.activities.sendMoneyActivity.SendMoneyActivity" />
+        <activity android:name=".view.activities.bibtnToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity"></activity>
+        <activity android:name=".view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity" />
+        <activity android:name=".view.activities.bibtnToBibtonActivity.sendMoneyActivityViaFingerprint.SendMoneyActivityViaFingerprint" />
         <activity
-            android:name=".view.activities.addAccountDetailsActivity.AddAccountDetailsActivity"
+            android:name=".view.activities.bibtnToBibtonActivity.bibtonToBibton.BibtonToBibtonActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activities.homeActivity.bibtonToBibtonActivity.BibtonToBibtonActivity"
+            android:name=".view.activities.bibtnToBibtonActivity.bibtonToBibtonList.BibtonToBibtonListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.activities.ratesActivity.addSecondAlertPairActivity.SecondAlertPairActivity"

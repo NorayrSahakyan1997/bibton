@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import am.bibton.R;
 import am.bibton.adapters.PaymentsFragmentUserAdapter;
 import am.bibton.view.activities.BaseFragment;
-import am.bibton.view.activities.homeActivity.bibtonToBibtonActivity.BibtonToBibtonActivity;
+import am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibtonList.BibtonToBibtonListActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -48,7 +48,7 @@ public class PaymentFragment extends BaseFragment {
 
     private void goToBibtonToBibonActivity() {
         constraintBibtonToBibton.setOnClickListener(v -> {
-            Intent bibtonToBibtonActivity = new Intent(context, BibtonToBibtonActivity.class);
+            Intent bibtonToBibtonActivity = new Intent(context, BibtonToBibtonListActivity.class);
             context.startActivity(bibtonToBibtonActivity);
 
         });

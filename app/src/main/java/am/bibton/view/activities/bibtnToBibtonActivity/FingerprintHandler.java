@@ -1,4 +1,4 @@
-package am.bibton.view.activities;
+package am.bibton.view.activities.bibtnToBibtonActivity;
 
 import android.Manifest;
 import android.annotation.TargetApi;

@@ -1,4 +1,4 @@
-package am.bibton.view.activities.addAccountDetailsActivity.writeCodeActivityForMoneyTranfer;
+package am.bibton.view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer;
 
 import am.bibton.Bibton;
 import am.bibton.R;
@@ -6,19 +6,21 @@ import am.bibton.model.transferMoneyModel.TransferMoneyModel;
 import am.bibton.presenter.SendMoneyActivityPresenter;
 import am.bibton.shared.utils.CheckActivenessOvalIcons;
 import am.bibton.view.activities.BaseActivity;
+import am.bibton.view.activities.bibtnToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import javax.inject.Inject;
 
 public class WritePassCodeActivity extends BaseActivity implements IWritePassCodeActivity {
@@ -99,7 +101,6 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
     }
 
 
-
     private void getIntents() {
         Intent intent = getIntent();
         if (intent.hasExtra("fromCurrencyPosition")) {
@@ -107,14 +108,21 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
             toCurrencyId = intent.getIntExtra("toCurrencyId", 0);
             amount = intent.getFloatExtra("amount", 0);
             uniqueId = intent.getStringExtra("uniqueId");
-            Toast.makeText(getApplicationContext(),amount+"",Toast.LENGTH_SHORT).show();
+            Log.d("N_TAG",fromCurrencyPosition+toCurrencyId+amount+uniqueId);
 
         }
 
     }
 
     @Override
-    public void getMessage(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    public void getMessage(boolean success) {
+        if (success) {
+            Intent intent = new Intent(this, TransferWasDoneActivity.class);
+            intent.putExtra("userId", uniqueId);
+            startActivity(intent);
+
+        } else {
+            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
+        }
     }
 }

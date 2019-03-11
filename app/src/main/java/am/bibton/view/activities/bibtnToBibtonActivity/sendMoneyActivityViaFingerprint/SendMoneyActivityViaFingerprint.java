@@ -1,12 +1,16 @@
-package am.bibton.view.activities.sendMoneyActivity;
+package am.bibton.view.activities.bibtnToBibtonActivity.sendMoneyActivityViaFingerprint;
 
+import am.bibton.Bibton;
 import am.bibton.R;
+import am.bibton.model.transferMoneyModel.TransferMoneyModel;
+import am.bibton.presenter.SendMoneyViaFingerptintPresenter;
+import am.bibton.shared.utils.Constants;
 import am.bibton.view.activities.BaseActivity;
-import am.bibton.view.activities.FingerprintHandler;
-import am.bibton.view.activities.addAccountDetailsActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
+import am.bibton.view.activities.bibtnToBibtonActivity.FingerprintHandler;
+import am.bibton.view.activities.bibtnToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity;
+import am.bibton.view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.animation.Animator;
 import android.annotation.TargetApi;
@@ -19,10 +23,10 @@ import android.os.Bundle;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
+import android.view.View;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
-
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -32,23 +36,37 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
-
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import javax.inject.Inject;
 
 
 @TargetApi(Build.VERSION_CODES.P)
-public class SendMoneyActivity extends BaseActivity {
+public class SendMoneyActivityViaFingerprint extends BaseActivity implements ISendMoneyActivityViaFingerprint {
     private static final String KEY_NAME = "yourKey";
     private Cipher cipher;
     private KeyStore keyStore;
+    private int fromCurrencyPosition;
+    private int toCurrencyId;
+    private float amount;
+    private String receivedUnique;
+    private String toUserUniqueId;
+    TransferMoneyModel transferMoneyModel;
+
+
+    @Inject
+    SendMoneyViaFingerptintPresenter mPresenter;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_money);
+        Bibton.getInstance().getAuthorizationComponent().inject(this);
+        mPresenter.onViewCreated(this);
+        mPresenter.getUniqueIdForIngerPrint();
         setAnimation(getResources().getString(R.string.fingerPrintScreenAnim));
         TextView textView = findViewById(R.id.textview);
 
@@ -79,7 +97,6 @@ public class SendMoneyActivity extends BaseActivity {
             //Check that the lockscreen is secured//
             if (!keyguardManager.isKeyguardSecure()) {
                 // If the user hasn’t secured their lockscreen with a PIN password or pattern, then display the following text//
-                textView.setText("Please enable lockscreen security in your device's Settings");
             } else {
                 try {
                     generateKey();
@@ -90,10 +107,12 @@ public class SendMoneyActivity extends BaseActivity {
                 if (initCipher()) {
                     //If the cipher is initialized successfully, then create a CryptoObject instance//
                     FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
-                    // Here, I’m referencing the FingerprintHandler class that we’ll create in the next section. This class will be responsible
-                    // for starting the authentication process (via the startAuth method) and processing the authentication process events//
+
                     FingerprintHandler helper = new FingerprintHandler(this, isSuccess -> {
+                        mPresenter.sendMoneyViaFringerprint(transferMoneyModel);
+
                         setAnimation(getResources().getString(R.string.fingerPrinDoneAnim));
+
 
                     });
                     helper.startAuth(fingerprintManager, cryptoObject);
@@ -114,9 +133,9 @@ public class SendMoneyActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                if(animName.equals(getResources().getString(R.string.fingerPrinDoneAnim))){
-                    Intent writePasscodeActivity = new Intent(getApplicationContext(), WritePassCodeActivity.class);
-                    startActivity(writePasscodeActivity);
+                if (animName.equals(getResources().getString(R.string.fingerPrinDoneAnim))) {
+//                    Intent writePasscodeActivity = new Intent(getApplicationContext(), WritePassCodeActivity.class);
+//                    startActivity(writePasscodeActivity);
                 }
 
             }
@@ -148,7 +167,6 @@ public class SendMoneyActivity extends BaseActivity {
                     KeyProperties.PURPOSE_ENCRYPT |
                             KeyProperties.PURPOSE_DECRYPT)
                     .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
-                    //Configure this key so that the user has to confirm their identity with a fingerprint each time they want to use it//
                     .setUserAuthenticationRequired(true)
                     .setEncryptionPaddings(
                             KeyProperties.ENCRYPTION_PADDING_PKCS7)
@@ -197,10 +215,53 @@ public class SendMoneyActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void getMessage(boolean message) {
+        if (message) {
+            Intent intent = new Intent(this, TransferWasDoneActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Something went Wrong", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void getUniqueId(String uniqueId) {
+        receivedUnique = uniqueId;
+        receiveIntentValues();
+    }
+
     private class FingerprintException extends Exception {
         public FingerprintException(Exception e) {
             super(e);
         }
+    }
+
+    public void receiveIntentValues() {
+        Intent intent = getIntent();
+        if (intent.hasExtra("fromCurrencyPosition")) {
+            transferMoneyModel = new TransferMoneyModel();
+            fromCurrencyPosition = intent.getIntExtra("fromCurrencyPosition", 0);
+            toCurrencyId = intent.getIntExtra("toCurrencyId", 0);
+            amount = intent.getFloatExtra("amount", 0);
+            toUserUniqueId = intent.getStringExtra("uniqueId");
+            transferMoneyModel.setAmount(amount);
+            transferMoneyModel.setTo_user_unique("+37491106116");
+            transferMoneyModel.setUnique_id(receivedUnique);
+            transferMoneyModel.setFrom_wallet_currency(fromCurrencyPosition);
+            transferMoneyModel.setFingerprint(1);
+            transferMoneyModel.setPasscode(0);
+            transferMoneyModel.to_currency(toCurrencyId);
+        }
+    }
+
+    public void goToPassCodeActivity(View view) {
+        Intent goToPassCodeActivity = new Intent(this, WritePassCodeActivity.class);
+        goToPassCodeActivity.putExtra("fromCurrencyPosition", Constants.FROM_CURRENCY_LONG_ID);
+        goToPassCodeActivity.putExtra("toCurrencyId", toCurrencyId);
+        goToPassCodeActivity.putExtra("amount", amount);
+        goToPassCodeActivity.putExtra("uniqueId", toUserUniqueId);
+        startActivity(goToPassCodeActivity);
     }
 }
 

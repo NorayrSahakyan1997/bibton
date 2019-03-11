@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.sendMoneyActivity.SendMoneyActivity">
+    tools:context=".view.activities.bibtnToBibtonActivity.sendMoneyActivityViaFingerprint.SendMoneyActivityViaFingerprint">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_animation_splash"
@@ -14,18 +14,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657"
-        android:textColor="@color/colorBlack"/>
+        app:layout_constraintVertical_bias="0.657" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_bold"
+        android:onClick="goToPassCodeActivity"
+        android:gravity="center"
+        android:text="@string/usePassCodeInstead"
+        android:textColor="@color/pass_code_active"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/lottie_animation_splash" />
 </androidx.constraintlayout.widget.ConstraintLayout>

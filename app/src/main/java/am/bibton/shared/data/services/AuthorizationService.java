@@ -2,6 +2,7 @@ package am.bibton.shared.data.services;
 
 import java.util.List;
 
+import am.bibton.model.bibtonToBibtonList.BibtonToBibtonParentModel;
 import am.bibton.model.convertModel.ConvertParentModel;
 import am.bibton.model.ResponseModel;
 import am.bibton.model.alertModel.AlertParentModel;
@@ -13,6 +14,7 @@ import am.bibton.model.countryModel.CountryParentModel;
 import am.bibton.model.createAccountModel.CreateAccountModel;
 import am.bibton.model.forgetPassCodeModel.ForgetPassCodeModel;
 import am.bibton.model.getTransactionList.TransactionParentModel;
+import am.bibton.model.getUniqueIdForFingerPrint.GetUniqueIdFingerPrintModel;
 import am.bibton.model.phoneNumberCodeModel.CountryCode;
 import am.bibton.model.rateModel.RateParentModel;
 import am.bibton.model.singUpModel.SignUp;
@@ -113,26 +115,39 @@ public class AuthorizationService extends BaseService {
         return request(mService.addConvertItem(currency_id));
     }
 
-    public Flowable<ResponseModel<AlertParentModel>> getAlertList(){
+    public Flowable<ResponseModel<AlertParentModel>> getAlertList() {
         return request(mService.getAlertList());
     }
-    public Flowable<ResponseModel<List>> deleteAlertItem(int alert_id){
+
+    public Flowable<ResponseModel<List>> deleteAlertItem(int alert_id) {
         return request(mService.deleteAlertItem(alert_id));
     }
-    public Flowable<ResponseModel<List>> makeCurrencyMain(int currencyId){
+
+    public Flowable<ResponseModel<List>> makeCurrencyMain(int currencyId) {
         return request(mService.makeCurrencyMain(currencyId));
     }
-    public Flowable<ResponseModel<List>> addAlert(int fromCurrency,int toCurrency,float amount){
-        return request(mService.addAlert(fromCurrency,toCurrency,amount));
+
+    public Flowable<ResponseModel<List>> addAlert(int fromCurrency, int toCurrency, float amount) {
+        return request(mService.addAlert(fromCurrency, toCurrency, amount));
     }
-    public Flowable<ResponseModel<List>> switchAlert(int id){
+
+    public Flowable<ResponseModel<List>> switchAlert(int id) {
         return request(mService.switchAlert(id));
     }
 
-    public Flowable<ResponseModel<UserInfoForTransferModel>> getUserInfoForTransfer(String uniqueId){
+    public Flowable<ResponseModel<UserInfoForTransferModel>> getUserInfoForTransfer(String uniqueId) {
         return request(mService.getUserInfoForTransfer(uniqueId));
     }
-    public Flowable<ResponseModel<List>> transferMoney(TransferMoneyModel transferMoneyModel){
+
+    public Flowable<ResponseModel<List>> transferMoney(TransferMoneyModel transferMoneyModel) {
         return request(mService.transferMoney(transferMoneyModel));
+    }
+
+    public Flowable<ResponseModel<GetUniqueIdFingerPrintModel>> getUniqueIdForFingerPrint() {
+        return request(mService.getUniqueIdFingerprint());
+    }
+
+    public Flowable<ResponseModel<BibtonToBibtonParentModel>> getBibtonToBibtonList() {
+        return request(mService.getBibtonToBibtonList());
     }
 }

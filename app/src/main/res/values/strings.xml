@@ -92,12 +92,16 @@
     <string name="receivedCurrency">Received Currency</string>
     <string name="amount">Amount</string>
     <string name="mobilOrIdNumber">Mobile or ID number</string>
-    <string name="amd30000">30000 AMD</string>
+    <string name="amd30000">30000</string>
     <string name="phoneNumber091">+37444666616</string>
     <string name="id">ID: 1234567890</string>
     <string name="findUser">Find User</string>
     <string name="fingerPrintScreenAnim">finger_print_scan_anim.json</string>
     <string name="fingerPrinDoneAnim">finger_print_done.json</string>
+    <string name="usePassCodeInstead">Use Passcode Instead of Fingerprint ? </string>
+    <string name="done">Done</string>
+    <string name="transactionWasCreatedSuccessfully">Transaction Was Created Successfully</string>
+    <string name="addANewBeneficiary">Add a new beneficiary</string>
     <string-array name="menu_names_array">
 
 

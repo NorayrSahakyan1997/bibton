@@ -8,7 +8,7 @@ import am.bibton.presenter.AddRateListPresenter;
 import am.bibton.shared.utils.Constants;
 import am.bibton.shared.utils.KeyboardUtils;
 import am.bibton.view.activities.BaseActivity;
-import am.bibton.view.activities.addAccountDetailsActivity.AddAccountDetailsActivity;
+import am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibton.BibtonToBibtonActivity;
 import am.bibton.view.activities.ratesActivity.RatesActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -161,7 +161,7 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
         Intent intent = getIntent();
 
         if (intent.hasExtra("addRateActivity")) {
-            Intent returnToBibtonToBibtonActivity = new Intent(this, AddAccountDetailsActivity.class);
+            Intent returnToBibtonToBibtonActivity = new Intent(this, BibtonToBibtonActivity.class);
             returnToBibtonToBibtonActivity.putExtra("currencyName", name);
             returnToBibtonToBibtonActivity.putExtra("currencyFlag", icon);
             returnToBibtonToBibtonActivity.putExtra("currencyId", currencyId);
