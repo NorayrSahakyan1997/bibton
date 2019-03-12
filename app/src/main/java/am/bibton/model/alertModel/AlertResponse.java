@@ -1,69 +1,35 @@
 package am.bibton.model.alertModel;
 
+import lombok.Getter;
+
 public class AlertResponse {
+
+    @Getter
     private int id;
+    @Getter
     private int from_id;
+    @Getter
     private String from_iso;
+    @Getter
     private String from_name;
+    @Getter
     private String from_icon;
+    @Getter
     private String to_id;
+    @Getter
     private String to_iso;
+    @Getter
     private String to_name;
+    @Getter
     private String to_icon;
+    @Getter
     private float amount;
+    @Getter
     private String created_at;
+    @Getter
     private float current_rate;
+    @Getter
     private int status;
 
-    public int getId() {
-        return id;
-    }
 
-    public int getFrom_id() {
-        return from_id;
-    }
-
-    public String getFrom_iso() {
-        return from_iso;
-    }
-
-    public String getFrom_name() {
-        return from_name;
-    }
-
-    public String getFrom_icon() {
-        return from_icon;
-    }
-
-    public String getTo_id() {
-        return to_id;
-    }
-
-    public String getTo_iso() {
-        return to_iso;
-    }
-
-    public String getTo_name() {
-        return to_name;
-    }
-
-    public String getTo_icon() {
-        return to_icon;
-    }
-
-    public float getAmount() {
-        return amount;
-    }
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public float getCurrent_rate() {
-        return current_rate;
-    }
-
-    public int getStatus() {
-        return status;
-    }
 }

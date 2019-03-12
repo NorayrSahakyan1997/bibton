@@ -2,10 +2,9 @@ package am.bibton.model.addAlertModel;
 
 import java.util.List;
 
-public class AddAlertListParentModel {
-    private List<AddAlertListResponse> list;
+import lombok.Getter;
 
-    public List<AddAlertListResponse> getList() {
-        return list;
-    }
+public class AddAlertListParentModel {
+    @Getter  private List<AddAlertListResponse> list;
+
 }

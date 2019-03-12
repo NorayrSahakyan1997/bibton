@@ -1,14 +1,12 @@
 package am.bibton.model.exchangeModel;
 
+import lombok.Getter;
+
 public class FirstCurrencyResponse {
-   private String ISO;
-   private float difference;
+    @Getter
+    private String ISO;
+    @Getter
+    private float difference;
 
-    public String getISO() {
-        return ISO;
-    }
 
-    public float getDifference() {
-        return difference;
-    }
 }

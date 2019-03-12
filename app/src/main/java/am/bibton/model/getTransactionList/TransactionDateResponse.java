@@ -2,15 +2,13 @@ package am.bibton.model.getTransactionList;
 
 import java.util.List;
 
+import lombok.Getter;
+
 public class TransactionDateResponse {
+    @Getter
     private String date;
+    @Getter
     private List<TransactionResponse> list;
 
-    public List<TransactionResponse> getList() {
-        return list;
-    }
 
-    public String getDate() {
-        return date;
-    }
 }

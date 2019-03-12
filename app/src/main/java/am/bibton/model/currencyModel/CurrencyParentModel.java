@@ -2,11 +2,10 @@ package am.bibton.model.currencyModel;
 
 import java.util.List;
 
-public class CurrencyParentModel {
+import lombok.Getter;
 
+public class CurrencyParentModel {
+    @Getter
     private List<CurrencyResponse> list;
 
-    public List<CurrencyResponse> getCurrencyResponseList() {
-        return list;
-    }
 }

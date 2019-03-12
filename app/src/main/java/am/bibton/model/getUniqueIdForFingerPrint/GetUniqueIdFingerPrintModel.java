@@ -1,9 +1,10 @@
 package am.bibton.model.getUniqueIdForFingerPrint;
 
+import lombok.Getter;
+
 public class GetUniqueIdFingerPrintModel {
+    @Getter
     private String unique_id;
 
-    public String getUnique_id() {
-        return unique_id;
-    }
+
 }

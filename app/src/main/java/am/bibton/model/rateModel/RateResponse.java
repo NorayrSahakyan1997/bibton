@@ -1,46 +1,25 @@
 package am.bibton.model.rateModel;
 
 
-public class RateResponse {
+import lombok.Getter;
 
+public class RateResponse {
+    @Getter
     private int pair_id;
+    @Getter
     private int from_id;
+    @Getter
     private String from_iso;
+    @Getter
     private String from_name;
+    @Getter
     private int to_id;
+    @Getter
     private String to_iso;
+    @Getter
     private String to_name;
+    @Getter
     private float to_rate;
 
-    public int getPair_id() {
-        return pair_id;
-    }
 
-    public int getFrom_id() {
-        return from_id;
-    }
-
-    public String getFrom_iso() {
-        return from_iso;
-    }
-
-    public String getFrom_name() {
-        return from_name;
-    }
-
-    public int getTo_id() {
-        return to_id;
-    }
-
-    public String getTo_iso() {
-        return to_iso;
-    }
-
-    public String getTo_name() {
-        return to_name;
-    }
-
-    public float getTo_rate() {
-        return to_rate;
-    }
 }

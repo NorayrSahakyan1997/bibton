@@ -1,22 +1,12 @@
 package am.bibton.model.phoneNumberCodeModel;
 
+import lombok.Getter;
+
 public class CountryCode {
+    @Getter
     private String phone_code;
+    @Getter
     private String short_name;
 
-    public String getPhone_code() {
-        return phone_code;
-    }
 
-    public void setPhone_code(String phone_code) {
-        this.phone_code = phone_code;
-    }
-
-    public String getShort_name() {
-        return short_name;
-    }
-
-    public void setShort_name(String short_name) {
-        this.short_name = short_name;
-    }
 }

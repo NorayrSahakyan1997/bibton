@@ -82,7 +82,7 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
                         int passCode = Integer.parseInt(s.toString());
                         if (s.length() == 6) {
                             transferMoneyModel.setFrom_wallet_currency(fromCurrencyPosition);
-                            transferMoneyModel.to_currency(toCurrencyId);
+                            transferMoneyModel.setTo_currency(toCurrencyId);
                             transferMoneyModel.setAmount(amount);
                             transferMoneyModel.setFingerprint(0);
                             transferMoneyModel.setTo_user_unique(uniqueId);

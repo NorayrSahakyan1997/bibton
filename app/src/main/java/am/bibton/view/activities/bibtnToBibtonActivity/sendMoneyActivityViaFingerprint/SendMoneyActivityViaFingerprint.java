@@ -251,7 +251,7 @@ public class SendMoneyActivityViaFingerprint extends BaseActivity implements ISe
             transferMoneyModel.setFrom_wallet_currency(fromCurrencyPosition);
             transferMoneyModel.setFingerprint(1);
             transferMoneyModel.setPasscode(0);
-            transferMoneyModel.to_currency(toCurrencyId);
+            transferMoneyModel.setTo_currency(toCurrencyId);
         }
     }
 

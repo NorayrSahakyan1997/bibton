@@ -400,8 +400,8 @@ public class BibtonToBibtonActivity extends BaseActivity implements IBibtonToBib
             userName = intent.getStringExtra("userName");
             userSurName = intent.getStringExtra("userSurname");
 
-            if (userName != null && userSurName != null) {
-                userNameText.setText(userName.concat(" ").concat(userName));
+            if (userName != null) {
+                userNameText.setText(userName.concat(" ").concat(userSurName));
             } else {
                 userNameText.setText(phoneNumber);
             }

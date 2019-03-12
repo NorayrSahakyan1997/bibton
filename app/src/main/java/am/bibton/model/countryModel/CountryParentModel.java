@@ -2,14 +2,11 @@ package am.bibton.model.countryModel;
 
 import java.util.List;
 
+import lombok.Getter;
+
 public class CountryParentModel {
+    @Getter
     private List<CountryModel> list;
 
-    public List<CountryModel> getList() {
-        return list;
-    }
 
-    public void setList(List<CountryModel> list) {
-        this.list = list;
-    }
 }

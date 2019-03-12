@@ -1,34 +1,20 @@
 package am.bibton.model.currencyModel;
 
+import lombok.Getter;
+
 public class CurrencyResponse {
+    @Getter
     private String iso;
+    @Getter
     private String name;
+    @Getter
     private String flag;
+    @Getter
     private String symbol;
+    @Getter
     private String numeric_code;
+    @Getter
     private int currency_id;
 
-    public int getCurrency_id() {
-        return currency_id;
-    }
 
-    public String getIso() {
-        return iso;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getFlag() {
-        return flag;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public String getNumeric_code() {
-        return numeric_code;
-    }
 }

@@ -30,8 +30,8 @@ public class RatePresenter extends BasePresenter<IRateFragment> {
 
     private void response(ResponseModel<RateParentModel> responseModel) {
         if (responseModel.isSuccess() && responseModel.getData() != null) {
-            mView.getRateList(responseModel.getData().getRateList());
-            Constants.RATELIST=responseModel.getData().getRateList();
+            mView.getRateList(responseModel.getData().getList());
+            Constants.RATELIST=responseModel.getData().getList();
         } else
             mView.showServerError();
     }

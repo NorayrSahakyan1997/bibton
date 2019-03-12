@@ -44,7 +44,7 @@ public class PhoneNumberPresenter extends BasePresenter<IPhoneNumberFragment> {
     private void checkValidation(ResponseModel <SignUp> responseModel) {
           mView.checkPhoneNumberValidation(responseModel.isSuccess());
           mView.showUniqueID(responseModel.getData().getUnique_id());
-          Constants.IS_REGISTERED=responseModel.getData().isIs_registred();
+          Constants.IS_REGISTERED=responseModel.getData().is_registred();
     }
 
 

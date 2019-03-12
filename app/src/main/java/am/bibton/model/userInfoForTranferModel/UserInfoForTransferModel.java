@@ -1,29 +1,18 @@
 package am.bibton.model.userInfoForTranferModel;
 
+import lombok.Getter;
+
 public class UserInfoForTransferModel {
+    @Getter
     private int user_id;
+    @Getter
     private int wallet_id;
+    @Getter
     private String name;
+    @Getter
     private String surname;
+    @Getter
     private String phone_number;
 
-    public int getUser_id() {
-        return user_id;
-    }
 
-    public int getWallet_id() {
-        return wallet_id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getPhone_number() {
-        return phone_number;
-    }
 }

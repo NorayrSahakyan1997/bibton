@@ -2,10 +2,10 @@ package am.bibton.model.convertModel;
 
 import java.util.List;
 
-public class ConvertParentModel {
-    private List<ConvertResponse> list;
+import lombok.Getter;
 
-    public List<ConvertResponse> getList() {
-        return list;
-    }
+public class ConvertParentModel {
+   @Getter
+   private List<ConvertResponse> list;
+
 }

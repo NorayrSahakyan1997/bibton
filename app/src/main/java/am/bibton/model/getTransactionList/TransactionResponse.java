@@ -1,40 +1,22 @@
 package am.bibton.model.getTransactionList;
 
+import lombok.Getter;
+
 public class TransactionResponse {
+    @Getter
     private int transaction_number;
+    @Getter
     private String text;
+    @Getter
     private String image;
+    @Getter
     private String created_at;
+    @Getter
     private float total_amount;
+    @Getter
     private int transfer_type;
+    @Getter
     private int transaction_id;
 
-    public int getTransaction_id() {
-        return transaction_id;
-    }
 
-    public int getTransfer_type() {
-        return transfer_type;
-    }
-
-    public String getCreated_at() {
-
-        return created_at;
-    }
-
-    public float getTotal_amount() {
-        return total_amount;
-    }
-
-    public int getTransaction_number() {
-        return transaction_number;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public String getImage() {
-        return image;
-    }
 }

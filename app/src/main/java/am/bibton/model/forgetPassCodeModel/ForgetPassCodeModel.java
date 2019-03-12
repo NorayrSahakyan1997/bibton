@@ -1,9 +1,8 @@
 package am.bibton.model.forgetPassCodeModel;
 
-public class ForgetPassCodeModel {
-    private String token;
+import lombok.Getter;
 
-    public String getToken() {
-        return token;
-    }
+public class ForgetPassCodeModel {
+    @Getter
+    private String token;
 }
