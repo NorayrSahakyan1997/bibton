@@ -1,5 +1,7 @@
 package am.bibton.model.alertModel;
 
+import lombok.Getter;
+@Getter
 public class AlertResponse {
     private int id;
     private int from_id;
@@ -14,56 +16,4 @@ public class AlertResponse {
     private String created_at;
     private float current_rate;
     private int status;
-
-    public int getId() {
-        return id;
-    }
-
-    public int getFrom_id() {
-        return from_id;
-    }
-
-    public String getFrom_iso() {
-        return from_iso;
-    }
-
-    public String getFrom_name() {
-        return from_name;
-    }
-
-    public String getFrom_icon() {
-        return from_icon;
-    }
-
-    public String getTo_id() {
-        return to_id;
-    }
-
-    public String getTo_iso() {
-        return to_iso;
-    }
-
-    public String getTo_name() {
-        return to_name;
-    }
-
-    public String getTo_icon() {
-        return to_icon;
-    }
-
-    public float getAmount() {
-        return amount;
-    }
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public float getCurrent_rate() {
-        return current_rate;
-    }
-
-    public int getStatus() {
-        return status;
-    }
 }

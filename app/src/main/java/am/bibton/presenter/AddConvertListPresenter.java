@@ -29,8 +29,8 @@ public class AddConvertListPresenter extends BasePresenter<IAddConvertActivity> 
 
     private void currencyResponse(ResponseModel<CurrencyParentModel> responseModel) {
         if (responseModel.isSuccess() && responseModel.getData() != null) {
-            mView.getCurrencyList(responseModel.getData().getCurrencyResponseList());
-            Constants.SYMBOL = responseModel.getData().getCurrencyResponseList().get(0).getSymbol();
+            mView.getCurrencyList(responseModel.getData().getList());
+            Constants.SYMBOL = responseModel.getData().getList().get(0).getSymbol();
         } else {
             Toast.makeText(mContext, "False", Toast.LENGTH_SHORT).show();
             mView.showNetworkError();

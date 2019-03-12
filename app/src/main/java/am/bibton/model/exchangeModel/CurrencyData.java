@@ -10,5 +10,4 @@ public class CurrencyData {
     @Expose
     @SerializedName("second_currency")
     public SecondCurrencyResponse second_currency;
-
 }

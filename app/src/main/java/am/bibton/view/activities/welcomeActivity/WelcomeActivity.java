@@ -50,10 +50,10 @@ public class WelcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        //loteAnimation();
-        //init();
-        enterHomeActivity();
-        //setFragments();
+        loteAnimation();
+        init();
+        setFragments();
+//        enterHomeActivity();
 
     }
 

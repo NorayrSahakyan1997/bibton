@@ -1,18 +1,10 @@
 package am.bibton.model.singUpModel;
 
+import lombok.Getter;
+import lombok.Setter;
+@Getter @Setter
+
 public class SignUp {
     private String unique_id;
     private boolean is_registred;
-
-    public String getUnique_id() {
-        return unique_id;
-    }
-
-    public void setUnique_id(String unique_id) {
-        this.unique_id = unique_id;
-    }
-
-    public boolean isIs_registred() {
-        return is_registred;
-    }
 }

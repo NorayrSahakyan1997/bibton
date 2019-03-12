@@ -1,5 +1,8 @@
 package am.bibton.model.walletCurrency;
 
+import lombok.Getter;
+@Getter
+
 public class WalletCurrencyResponse {
     private int currency_id;
     private String currency_icon;
@@ -9,31 +12,5 @@ public class WalletCurrencyResponse {
     private float balance;
     private int wallet_currency_id;
 
-    public int getWallet_currency_id() {
-        return wallet_currency_id;
-    }
 
-    public float getBalance() {
-        return balance;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public String getCurrency_name() {
-        return currency_name;
-    }
-
-    public int getCurrency_id() {
-        return currency_id;
-    }
-
-    public String getCurrency_icon() {
-        return currency_icon;
-    }
-
-    public String getCurrency_iso() {
-        return currency_iso;
-    }
 }

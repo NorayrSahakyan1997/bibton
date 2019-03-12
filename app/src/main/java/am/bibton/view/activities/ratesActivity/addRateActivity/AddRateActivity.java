@@ -94,12 +94,15 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
     private void closeKeyBoard() {
         constraintParent.setOnClickListener(v -> KeyboardUtils.hideSoftInput(AddRateActivity.this));
     }
+//
+//    @Override
+//    public void onBackPressed() {
+//        Intent goToRateActivity = new Intent(this, RatesActivity.class);
+//        startActivity(goToRateActivity);
+//    }
 
-    @Override
-    public void onBackPressed() {
-        Intent goToRateActivity = new Intent(this, RatesActivity.class);
-        startActivity(goToRateActivity);
-    }
+
+
 
     List<CurrencyResponse> filteredList;
 
@@ -169,7 +172,13 @@ public class AddRateActivity extends BaseActivity implements IAddRateActivity {
             startActivity(returnToBibtonToBibtonActivity);
             Constants.CURRENCY_SUM = 0;
 
+            onBackPressed();
+
 
         }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

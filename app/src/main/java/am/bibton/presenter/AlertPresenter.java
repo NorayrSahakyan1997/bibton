@@ -29,7 +29,7 @@ public class AlertPresenter extends BasePresenter<IAlertFragment> {
 
     private void response(ResponseModel<AlertParentModel> responseModel) {
         if (responseModel.isSuccess() && responseModel.getData() != null) {
-            mView.getAlertList(responseModel.getData().getGetAlertList());
+            mView.getAlertList(responseModel.getData().getList());
         } else
             mView.showServerError();
     }

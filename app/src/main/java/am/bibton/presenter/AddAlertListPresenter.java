@@ -30,8 +30,8 @@ public class AddAlertListPresenter extends BasePresenter<IAddAlertActivity> {
 
     private void currencyResponse(ResponseModel<CurrencyParentModel> responseModel) {
         if (responseModel.isSuccess() && responseModel.getData() != null) {
-            mView.getAlertList(responseModel.getData().getCurrencyResponseList());
-            Constants.SYMBOL = responseModel.getData().getCurrencyResponseList().get(0).getSymbol();
+            mView.getAlertList(responseModel.getData().getList());
+            Constants.SYMBOL = responseModel.getData().getList().get(0).getSymbol();
         } else {
             Toast.makeText(mContext, "False", Toast.LENGTH_SHORT).show();
             mView.showNetworkError();

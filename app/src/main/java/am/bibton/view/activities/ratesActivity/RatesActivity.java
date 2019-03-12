@@ -157,13 +157,12 @@ public class RatesActivity extends BaseActivity {
 
     }
 
-    public void goToHomeActivity() {
-        goToHomeActivity.setOnClickListener(v -> onBackPressed());
-    }
-
     @Override
     public void onBackPressed() {
-        Intent returnHomeActivity = new Intent(this, HomeActivity.class);
-        startActivity(returnHomeActivity);
+        super.onBackPressed();
+    }
+
+    public void goToHomeActivity() {
+        goToHomeActivity.setOnClickListener(v -> onBackPressed());
     }
 }
