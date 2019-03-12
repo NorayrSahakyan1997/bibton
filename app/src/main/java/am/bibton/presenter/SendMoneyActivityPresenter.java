@@ -3,7 +3,6 @@ package am.bibton.presenter;
 import java.util.List;
 
 import javax.inject.Inject;
-
 import am.bibton.model.ResponseModel;
 import am.bibton.model.transferMoneyModel.TransferMoneyModel;
 import am.bibton.presenter.root.BasePresenter;
@@ -32,8 +31,4 @@ public class SendMoneyActivityPresenter extends BasePresenter<IWritePassCodeActi
             mView.showServerError();
         }
     }
-
-
-
-
 }

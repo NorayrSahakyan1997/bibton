@@ -1,9 +1,7 @@
 package am.bibton.model.createAccountModel;
 
 import lombok.Getter;
-
+@Getter
 public class CreateAccountModel {
-    @Getter
     private String token;
-
 }

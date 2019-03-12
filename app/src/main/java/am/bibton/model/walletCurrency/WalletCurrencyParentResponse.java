@@ -3,9 +3,9 @@ package am.bibton.model.walletCurrency;
 import java.util.List;
 
 import lombok.Getter;
+@Getter
 
 public class WalletCurrencyParentResponse {
-    @Getter
 
     private List<WalletCurrencyResponse> list;
 

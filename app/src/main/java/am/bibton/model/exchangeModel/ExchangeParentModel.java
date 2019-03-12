@@ -5,16 +5,12 @@ import com.google.gson.annotations.SerializedName;
 
 import lombok.Getter;
 import lombok.Setter;
+@Getter
 
 public class ExchangeParentModel<T> {
-    @Getter
     @Expose
     @SerializedName("currency")
     private CurrencyData currency;
-    @Getter
     private float result;
-    @Getter
     private int amount;
-
-
 }
