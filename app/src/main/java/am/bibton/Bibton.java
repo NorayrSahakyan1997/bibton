@@ -2,6 +2,12 @@ package am.bibton;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import am.bibton.shared.di.components.DaggerIAuthorizationComponent;
 import am.bibton.shared.di.components.IAuthorizationComponent;
@@ -28,8 +34,8 @@ public class Bibton extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-
-/*        List<Locale> supportedLocales = new ArrayList<>();
+/*
+        List<Locale> supportedLocales = new ArrayList<>();
         supportedLocales.add(new Locale(getResources().getString(R.string.armenian_lang_code), getResources().getString(R.string.armenian_lang_country)));
         supportedLocales.add(new Locale(getResources().getString(R.string.english_lang_code), getResources().getString(R.string.english_lang_country)));
         supportedLocales.add(new Locale(getResources().getString(R.string.russian_lang_code), getResources().getString(R.string.russian_lang_country)));

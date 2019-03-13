@@ -98,7 +98,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void open_more_fragment(View view) {
-        changeFragments.replaceHomeFragments(new MoreFragment(), true);
+        changeFragments.replaceHomeFragments(new MoreFragment(), false);
         ChangeColorsTabBar.changeColorsOfTabs(this, home_icon, analytics_icon, card_icon, transfers_icon, more_icon, 4);
     }
 

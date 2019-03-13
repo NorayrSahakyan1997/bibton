@@ -68,7 +68,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.6'
     annotationProcessor 'org.projectlombok:lombok:1.18.6'
 
-
 //    implementation "android.arch.navigation:navigation-ui:28.0.0"
 //    implementation "android.arch.navigation:navigation"
 

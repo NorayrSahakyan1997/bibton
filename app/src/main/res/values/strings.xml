@@ -102,6 +102,35 @@
     <string name="done">Done</string>
     <string name="transactionWasCreatedSuccessfully">Transaction Was Created Successfully</string>
     <string name="addANewBeneficiary">Add a new beneficiary</string>
+    <string name="invite">Invite</string>
+    <string name="help">Help</string>
+    <string name="profile">Profile</string>
+    <string name="samnvelNazaryan">Samvel Nazaryan</string>
+    <string name="personaDetails">Personal details</string>
+    <string name="accountDetails">Account details</string>
+    <string name="rateUsOnGooglePlay">Rate us on Google Play</string>
+    <string name="pricePlan">Price plan - Standart</string>
+    <string name="changePasscode">Change passcode</string>
+    <string name="privacy">Privacy</string>
+    <string name="signInWithFingerPrint">Sign in with fingerprint</string>
+    <string name="followUsOnTwitter">Follow us on Twitter</string>
+    <string name="likeUsFacebook">Like us on Facebook</string>
+    <string name="privacyPolicy">Privacy Policy</string>
+    <string name="termsConditions">Terms &amp; conditions</string>
+    <string name="fullNameAndDate">Full name and date of birth</string>
+    <string name="nameSurnameBirth">Name Surname, Jul 31, 1996</string>
+    <string name="address">Address</string>
+    <string name="armeniaYerevan">Armenia, Yerevan, Adonts street 1, Flat 135, 0037</string>
+    <string name="email">Email</string>
+    <string name="emailExample">example@gmail.com</string>
+    <string name="whatIsYourHomeAddress">What\'s your home \n  address? </string>
+    <string name="postalCode">Postal code</string>
+    <string name="basedOnPostCode">Based on postcode</string>
+    <string name="addressLine1">Address line 1</string>
+    <string name="addressLine2">Address line 2 (optional)</string>
+    <string name="townCity">Town/City</string>
+    <string name="changeNumber">Change Number</string>
+    <string name="receiveCode">Receive Code</string>
     <string-array name="menu_names_array">
 
 

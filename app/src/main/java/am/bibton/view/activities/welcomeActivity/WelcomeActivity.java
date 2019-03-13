@@ -49,14 +49,11 @@ public class WelcomeActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-
-        loteAnimation();
-        init();
-        setFragments();
-//        enterHomeActivity();
-
+//        loteAnimation();
+//        init();
+//        setFragments();
+        enterHomeActivity();
     }
-
 
     @Nullable
     @Override
@@ -66,8 +63,6 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     public void init() {
-
-
         frameLayout = (FrameLayout) findViewById(R.id.frameLayoutWelcome);
         phoneNumberFragment = new PhoneNumberFragment();
         handler = new Handler();

@@ -9,6 +9,8 @@ import am.bibton.view.activities.bibtnToBibtonActivity.writeCodeActivityForMoney
 import am.bibton.view.activities.exchangeActivity.ExchangeActivity;
 import am.bibton.view.activities.homeActivity.homeFragments.statementFragment.StatementFragment;
 import am.bibton.view.activities.homeActivity.homeFragments.homeFragment.HomeFragment;
+import am.bibton.view.activities.profileActivity.editPersonalInfoActivities.changePhoneNumberActivity.ChangePhoneNumberActivity;
+import am.bibton.view.activities.profileActivity.editPersonalInfoActivities.changePhoneNumberActivity.counrtySearchActivity.CountrySearchActivity;
 import am.bibton.view.activities.ratesActivity.addAlertActivity.AddAlertActivity;
 import am.bibton.view.activities.ratesActivity.addConvertActivity.AddConvertActivity;
 import am.bibton.view.activities.ratesActivity.addRateActivity.AddRateActivity;
@@ -65,6 +67,11 @@ public interface IAuthorizationComponent {
     void inject(WritePassCodeActivity writePassCodeActivity);
 
     void inject(BibtonToBibtonListActivity bibtonToBibtonListActivity);
+
+    void inject(ChangePhoneNumberActivity changePhoneNumberActivity);
+
+    void inject (CountrySearchActivity countrySearchActivity);
+
 
 
 

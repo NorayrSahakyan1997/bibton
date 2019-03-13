@@ -7,6 +7,7 @@
     tools:context=".view.activities.bibtnToBibtonActivity.bibtonToBibtonList.BibtonToBibtonListActivity">
 
     <ImageView
+        android:onClick="backToHomeActivity"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="20dp"

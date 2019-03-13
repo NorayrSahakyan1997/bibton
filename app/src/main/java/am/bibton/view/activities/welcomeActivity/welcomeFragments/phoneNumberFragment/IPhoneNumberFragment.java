@@ -5,7 +5,6 @@ package am.bibton.view.activities.welcomeActivity.welcomeFragments.phoneNumberFr
 import am.bibton.view.activities.IBaseView;
 
 public interface IPhoneNumberFragment extends IBaseView {
-    //void showBalanceList(List<CountryModel> list);
     void showCountryCode(String countryCode);
     void checkPhoneNumberValidation(Boolean message);
     void showUniqueID(String uniqueId);

@@ -45,10 +45,8 @@ public class BibtonToBibtonListActivity extends BaseActivity implements IBibtonT
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
+        super.onBackPressed();
     }
-
 
     @Override
     public void getBibtonToBibtonList(List<BibtonToBibtonListChild> getBibtonList) {
@@ -101,6 +99,9 @@ public class BibtonToBibtonListActivity extends BaseActivity implements IBibtonT
 
         }
         startActivity(intent);
+    }
+    public void backToHomeActivity(View view){
+        onBackPressed();
     }
 
 }

@@ -65,6 +65,7 @@
     <dimen name="paymentConstraintHeight">160dp</dimen>
     <dimen name="paymentConstraintWidth">173dp</dimen>
     <dimen name="marginTopPayments">25dp</dimen>
+    <dimen name="marginTopChangePhone">350dp</dimen>
 
 
 

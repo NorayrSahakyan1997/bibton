@@ -16,7 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activities.bibtnToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity"></activity>
+        <activity android:name=".view.activities.profileActivity.editPersonalInfoActivities.changePhoneNumberActivity.counrtySearchActivity.CountrySearchActivity">
+
+        </activity>
+        <activity android:name=".view.activities.profileActivity.editPersonalInfoActivities.changePhoneNumberActivity.ChangePhoneNumberActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity android:name=".view.activities.profileActivity.editPersonalInfoActivities.EditCountryActivity" />
+        <activity android:name=".view.activities.profileActivity.PersonalDetailsActivity" />
+        <activity android:name=".view.activities.profileActivity.UserProfileActivity" />
+        <activity android:name=".view.activities.bibtnToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity" />
         <activity android:name=".view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity" />
         <activity android:name=".view.activities.bibtnToBibtonActivity.sendMoneyActivityViaFingerprint.SendMoneyActivityViaFingerprint" />
         <activity
