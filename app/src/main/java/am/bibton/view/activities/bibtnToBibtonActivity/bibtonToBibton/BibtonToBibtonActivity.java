@@ -74,7 +74,7 @@ public class BibtonToBibtonActivity extends BaseActivity implements IBibtonToBib
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_account_details);
+        setContentView(R.layout.activity_bibton_to_bibton);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         Bibton.getInstance().getAuthorizationComponent().inject(this);
         mPresenter.onViewCreated(this);

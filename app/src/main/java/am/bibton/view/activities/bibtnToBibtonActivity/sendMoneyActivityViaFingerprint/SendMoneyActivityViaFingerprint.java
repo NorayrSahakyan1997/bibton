@@ -11,6 +11,7 @@ import am.bibton.view.activities.bibtnToBibtonActivity.transferWasDoneActivity.T
 import am.bibton.view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
+
 import android.Manifest;
 import android.animation.Animator;
 import android.annotation.TargetApi;
@@ -26,7 +27,9 @@ import android.security.keystore.KeyProperties;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.airbnb.lottie.LottieAnimationView;
+
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -36,6 +39,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
@@ -110,7 +114,6 @@ public class SendMoneyActivityViaFingerprint extends BaseActivity implements ISe
 
                     FingerprintHandler helper = new FingerprintHandler(this, isSuccess -> {
                         mPresenter.sendMoneyViaFringerprint(transferMoneyModel);
-
                         setAnimation(getResources().getString(R.string.fingerPrinDoneAnim));
 
 
@@ -252,6 +255,9 @@ public class SendMoneyActivityViaFingerprint extends BaseActivity implements ISe
             transferMoneyModel.setFingerprint(1);
             transferMoneyModel.setPasscode(0);
             transferMoneyModel.setTo_currency(toCurrencyId);
+        }
+        if (intent.hasExtra("activityChangePhoneNumber")) {
+            Toast.makeText(this, "Change", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -2,12 +2,7 @@ package am.bibton;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 import am.bibton.shared.di.components.DaggerIAuthorizationComponent;
 import am.bibton.shared.di.components.IAuthorizationComponent;

@@ -7,7 +7,6 @@ import am.bibton.model.bibtonToBibtonList.BibtonToBibtonListChild;
 import am.bibton.presenter.BibtonToBibtonListPresenter;
 import am.bibton.view.activities.BaseActivity;
 import am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibton.BibtonToBibtonActivity;
-import am.bibton.view.activities.homeActivity.HomeActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +27,7 @@ public class BibtonToBibtonListActivity extends BaseActivity implements IBibtonT
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bibton_to_bibton);
+        setContentView(R.layout.activity_bibton_to_bibton_list);
         Bibton.getInstance().getAuthorizationComponent().inject(this);
         mPresenter.onViewCreated(this);
         mPresenter.getBibtontoBibtonList();

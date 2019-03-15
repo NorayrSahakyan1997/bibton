@@ -7,6 +7,7 @@ import am.bibton.presenter.SendMoneyActivityPresenter;
 import am.bibton.shared.utils.CheckActivenessOvalIcons;
 import am.bibton.view.activities.BaseActivity;
 import am.bibton.view.activities.bibtnToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity;
+import am.bibton.view.activities.profileActivity.editPersonalInfoActivities.changePhoneNumberActivity.ChangePhoneNumberActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -21,6 +22,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import javax.inject.Inject;
 
 public class WritePassCodeActivity extends BaseActivity implements IWritePassCodeActivity {
@@ -80,7 +82,7 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
                     checkActivenessOvalIcons.checkActivenessOvalButtons(length);
                     if (s.length() != 0) {
                         int passCode = Integer.parseInt(s.toString());
-                        if (s.length() == 6) {
+                        if (s.length() == 6 && intent.hasExtra("fromCurrencyPosition")) {
                             transferMoneyModel.setFrom_wallet_currency(fromCurrencyPosition);
                             transferMoneyModel.setTo_currency(toCurrencyId);
                             transferMoneyModel.setAmount(amount);
@@ -88,7 +90,13 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
                             transferMoneyModel.setTo_user_unique(uniqueId);
                             transferMoneyModel.setPasscode(passCode);
                             mPresenter.sendMoney(transferMoneyModel);
+                        } else if (s.length() == 6 && intent.hasExtra("activityChangePhoneNumber")) {
+                            Intent intent = new Intent(getApplicationContext(), ChangePhoneNumberActivity.class);
+                            intent.putExtra("isSuccess",true);
+                            startActivity(intent);
+
                         }
+
                     }
                 }
             }
@@ -100,16 +108,24 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    Intent intent;
 
     private void getIntents() {
-        Intent intent = getIntent();
+        intent = getIntent();
         if (intent.hasExtra("fromCurrencyPosition")) {
             fromCurrencyPosition = intent.getIntExtra("fromCurrencyPosition", 0);
             toCurrencyId = intent.getIntExtra("toCurrencyId", 0);
             amount = intent.getFloatExtra("amount", 0);
             uniqueId = intent.getStringExtra("uniqueId");
-            Log.d("N_TAG",fromCurrencyPosition+toCurrencyId+amount+uniqueId);
+            Log.d("N_TAG", fromCurrencyPosition + toCurrencyId + amount + uniqueId);
 
+        }
+        if (intent.hasExtra("activityChangePhoneNumber")) {
         }
 
     }

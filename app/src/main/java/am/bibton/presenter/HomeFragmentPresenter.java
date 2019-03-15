@@ -1,8 +1,6 @@
 package am.bibton.presenter;
 
-import android.util.Log;
 import android.widget.Toast;
-
 
 import javax.inject.Inject;
 
@@ -55,10 +53,7 @@ public class HomeFragmentPresenter extends BasePresenter<IHomeFragment> {
         if (responseModel.isSuccess() && responseModel.getData() != null) {
             mView.getTransactionList(responseModel.getData().getData());
 
-
-
         } else
-
             mView.showServerError();
     }
 
@@ -71,7 +66,7 @@ public class HomeFragmentPresenter extends BasePresenter<IHomeFragment> {
     private void currencyResponse(ResponseModel<WalletCurrencyParentResponse> responseModel) {
         if (responseModel.isSuccess() && responseModel.getData() != null) {
             mView.getCurrencyWallet(responseModel.getData().getList());
-            Constants.SYMBOL=responseModel.getData().getList().get(0).getSymbol();
+            Constants.SYMBOL = responseModel.getData().getList().get(0).getSymbol();
 
         } else {
             Toast.makeText(mContext, "False", Toast.LENGTH_SHORT).show();

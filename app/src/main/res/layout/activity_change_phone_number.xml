@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true"
     tools:context=".view.activities.profileActivity.editPersonalInfoActivities.changePhoneNumberActivity.ChangePhoneNumberActivity">
 
     <ScrollView
@@ -15,6 +13,7 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/parentLayoutChangePhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -24,13 +23,13 @@
                 android:layout_height="50dp">
 
                 <ImageView
-                    android:onClick="backToPersonalDetailsActivity"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/close_icon"
                     android:backgroundTint="@color/colorBlack"
+                    android:onClick="backToPersonalDetailsActivity"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0"
@@ -54,20 +53,22 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
+                android:id="@+id/writePhoneNumberLayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="100dp"
                 android:orientation="horizontal"
                 android:weightSum="4">
 
+
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:onClick="goToChooseCountryActivity"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_phone_number_edittext"
                     android:gravity="center"
+                    android:onClick="goToChooseCountryActivity"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/text_size_normal"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -88,112 +89,73 @@
                         app:layout_constraintHorizontal_bias="1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                     <TextView
                         android:id="@+id/countryShortPhoneCodeButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
                         android:textSize="@dimen/text_size_normal"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0"
-                        android:layout_marginStart="20dp"
-                        />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <EditText
+                    android:id="@+id/phoneNumberInput"
                     android:layout_width="200dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_weight="3"
                     android:background="@drawable/shape_phone_number_edittext"
+                    android:focusable="true"
                     android:gravity="center"
                     android:hint="@string/_00_00_00"
+                    android:inputType="phone"
+                    android:singleLine="true"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/text_size_big"
-                    android:inputType="phone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0"
-                    android:singleLine="true"/>
-
+                    app:layout_constraintVertical_bias="0" />
 
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/passCodeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
                 android:layout_marginTop="80dp"
                 android:orientation="horizontal"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp">
+                android:visibility="invisible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
                     android:layout_marginEnd="20dp"
-                    >
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/textViewPassCode1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_biggest"
-                        android:hint="0"
-                        android:gravity="center"
                         android:layout_gravity="center"
-                        />
+                        android:gravity="center"
+                        android:hint="0"
+                        android:textSize="@dimen/text_size_biggest" />
 
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/grey"
-                        ></View>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="20dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_biggest"
-                        android:hint="0"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/grey"
-                        ></View>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="20dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_biggest"
-                        android:hint="0"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        />
-
-                    <View
+                        android:id="@+id/highlighter1"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/grey" />
@@ -202,20 +164,68 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
                     android:layout_marginEnd="20dp"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/textViewPassCode2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_biggest"
-                        android:hint="0"
-                        android:gravity="center"
                         android:layout_gravity="center"
-                        />
+                        android:gravity="center"
+                        android:hint="0"
+                        android:textSize="@dimen/text_size_biggest" />
 
                     <View
+                        android:id="@+id/highlighter2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+
+                        android:id="@+id/textViewPassCode3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:textSize="@dimen/text_size_biggest" />
+
+                    <View
+                        android:id="@+id/highlighter3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewPassCode4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:textSize="@dimen/text_size_biggest" />
+
+                    <View
+                        android:id="@+id/highlighter4"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/grey" />
@@ -225,70 +235,87 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
                     android:layout_marginEnd="20dp"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <TextView
+
+                        android:id="@+id/textViewPassCode5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_biggest"
-                        android:hint="0"
-                        android:gravity="center"
                         android:layout_gravity="center"
-                        />
+                        android:gravity="center"
+                        android:hint="0"
+                        android:textSize="@dimen/text_size_biggest" />
 
                     <View
+                        android:id="@+id/highlighter5"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/grey" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_marginEnd="20dp"
-                    >
+                    android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/textViewPassCode6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_biggest"
-                        android:hint="0"
-                        android:gravity="center"
                         android:layout_gravity="center"
-                        />
+                        android:gravity="center"
+                        android:hint="0"
+                        android:textSize="@dimen/text_size_biggest" />
 
                     <View
+                        android:id="@+id/highlighter6"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/grey" />
                 </LinearLayout>
 
             </LinearLayout>
+
+            <EditText
+                android:id="@+id/passCodeEditTextChangePhone"
+                android:layout_width="0dp"
+                android:textColor="@color/pass_code_active"
+                android:layout_height="0dp"
+                android:windowSoftInputMode="stateAlwaysVisible"
+                android:inputType="numberPassword"
+                android:visibility="visible" />
+
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginTop="15dp" >
+                android:layout_marginTop="15dp"
+                android:visibility="visible">
 
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:gravity="center_horizontal|bottom"
-                     >
+                    android:gravity="center_horizontal|bottom">
 
                     <Button
+                        android:id="@+id/receivePassCodeButton"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:background="@drawable/button_skip"
-                        android:layout_marginEnd="20dp"
                         android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/inactive_button_send"
+                        android:fontFamily="@font/noto_sans_regular"
                         android:text="@string/receiveCode"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_big"
-                        android:fontFamily="@font/noto_sans_regular"
-                        android:layout_marginBottom="10dp"/>
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:textSize="@dimen/text_size_big" />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
@@ -296,15 +323,75 @@
 
     </ScrollView>
 
-    <EditText
-        android:id="@+id/passCodeEditText"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="2"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/userPhoneNumberConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:inputType="numberPassword"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shadow_bibton_to_bibton_list" />
+
+        <ImageView
+            android:id="@+id/cellPhoneIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/call_icon"
+            android:backgroundTint="@color/pass_code_active"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/phoneNumber091"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/cellPhoneIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/circle_shadow_shape"
+            android:backgroundTint="@color/transparentGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/closeUserConstraintIcon"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/close_icon"
+                android:backgroundTint="@color/grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.45" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
