@@ -1,4 +1,4 @@
-package am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibton;
+package am.bibton.view.activities.bibtonToBibtonActivity.bibtonToBibton;
 
 import am.bibton.Bibton;
 import am.bibton.R;
@@ -10,9 +10,9 @@ import am.bibton.presenter.BibtonToBibtonActivityPresenter;
 import am.bibton.shared.utils.Constants;
 import am.bibton.shared.utils.KeyboardUtils;
 import am.bibton.view.activities.BaseActivity;
-import am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibtonList.BibtonToBibtonListActivity;
-import am.bibton.view.activities.bibtnToBibtonActivity.sendMoneyActivityViaFingerprint.SendMoneyActivityViaFingerprint;
-import am.bibton.view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
+import am.bibton.view.activities.bibtonToBibtonActivity.bibtonToBibtonList.BibtonToBibtonListActivity;
+import am.bibton.view.activities.bibtonToBibtonActivity.sendMoneyActivityViaFingerprint.SendMoneyActivityViaFingerprint;
+import am.bibton.view.activities.bibtonToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
 import am.bibton.view.activities.ratesActivity.addRateActivity.AddRateActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;

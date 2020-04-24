@@ -1,4 +1,4 @@
-package am.bibton.view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer;
+package am.bibton.view.activities.bibtonToBibtonActivity.writeCodeActivityForMoneyTranfer;
 
 import am.bibton.view.activities.IBaseView;
 

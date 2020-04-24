@@ -1,4 +1,4 @@
-package am.bibton.view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer;
+package am.bibton.view.activities.bibtonToBibtonActivity.writeCodeActivityForMoneyTranfer;
 
 import am.bibton.Bibton;
 import am.bibton.R;
@@ -6,7 +6,7 @@ import am.bibton.model.transferMoneyModel.TransferMoneyModel;
 import am.bibton.presenter.SendMoneyActivityPresenter;
 import am.bibton.shared.utils.CheckActivenessOvalIcons;
 import am.bibton.view.activities.BaseActivity;
-import am.bibton.view.activities.bibtnToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity;
+import am.bibton.view.activities.bibtonToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity;
 import am.bibton.view.activities.profileActivity.editPersonalInfoActivities.changePhoneNumberActivity.ChangePhoneNumberActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,14 +46,13 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
         Bibton.getInstance().getAuthorizationComponent().inject(this);
         mPresenter.onViewCreated(this);
         init();
-
-
     }
 
     public void init() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         checkActivenessOvalIcons = new CheckActivenessOvalIcons(getApplicationContext(), mainView);
         passCodeEditText = findViewById(R.id.passCodeEditText);
+        passCodeEditText.requestFocus();
         setTextChangeListener();
         getIntents();
         transferMoneyModel = new TransferMoneyModel();
@@ -92,7 +91,7 @@ public class WritePassCodeActivity extends BaseActivity implements IWritePassCod
                             mPresenter.sendMoney(transferMoneyModel);
                         } else if (s.length() == 6 && intent.hasExtra("activityChangePhoneNumber")) {
                             Intent intent = new Intent(getApplicationContext(), ChangePhoneNumberActivity.class);
-                            intent.putExtra("isSuccess",true);
+                            intent.putExtra("isSuccess", true);
                             startActivity(intent);
 
                         }

@@ -5,8 +5,8 @@ import am.bibton.R;
 import am.bibton.presenter.ChangePhoneNumberPresenter;
 import am.bibton.shared.utils.KeyboardUtils;
 import am.bibton.view.activities.BaseActivity;
-import am.bibton.view.activities.bibtnToBibtonActivity.sendMoneyActivityViaFingerprint.SendMoneyActivityViaFingerprint;
-import am.bibton.view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
+import am.bibton.view.activities.bibtonToBibtonActivity.sendMoneyActivityViaFingerprint.SendMoneyActivityViaFingerprint;
+import am.bibton.view.activities.bibtonToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
 import am.bibton.view.activities.profileActivity.PersonalDetailsActivity;
 import am.bibton.view.activities.profileActivity.editPersonalInfoActivities.changePhoneNumberActivity.counrtySearchActivity.CountrySearchActivity;
 import androidx.annotation.NonNull;
@@ -24,7 +24,6 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -88,6 +87,7 @@ public class ChangePhoneNumberActivity extends BaseActivity implements IChangePh
         inputReceivedCode = findViewById(R.id.passCodeEditTextChangePhone);
         inputPhoneNumber = findViewById(R.id.phoneNumberInput);
         parentLayoutChangePhone = findViewById(R.id.parentLayoutChangePhone);
+
     }
 
 
@@ -225,7 +225,8 @@ public class ChangePhoneNumberActivity extends BaseActivity implements IChangePh
             inputReceivedCode.setEnabled(true);
             receivePassCodeButton.setText(getResources().getString(R.string.submit));
 
-            KeyboardUtils.showKeyboard(this);
+//            KeyboardUtils.showKeyboard(this);
+            inputReceivedCode.requestFocus();
             Toast.makeText(this, "Change", Toast.LENGTH_SHORT).show();
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);

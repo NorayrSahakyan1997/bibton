@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity">
+    tools:context=".view.activities.bibtonToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity">
 
     <ImageView
         android:id="@+id/code_oval_1"
@@ -92,6 +92,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:inputType="numberPassword"/>
+        android:inputType="numberPassword"
+        >
+        <requestFocus />
+    </EditText>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

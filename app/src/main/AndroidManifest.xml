@@ -16,27 +16,38 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-
-
-
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".view.activities.profileActivity.editPersonalInfoActivities.changePhoneNumberActivity.counrtySearchActivity.CountrySearchActivity">
 
         </activity>
-        <activity android:name=".view.activities.profileActivity.editPersonalInfoActivities.changePhoneNumberActivity.ChangePhoneNumberActivity"
-            android:windowSoftInputMode="adjustPan"
-            />
-        <activity android:name=".view.activities.profileActivity.editPersonalInfoActivities.EditCountryActivity" />
-        <activity android:name=".view.activities.profileActivity.PersonalDetailsActivity" />
-        <activity android:name=".view.activities.profileActivity.UserProfileActivity" />
-        <activity android:name=".view.activities.bibtnToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity" />
-        <activity android:name=".view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity" />
-        <activity android:name=".view.activities.bibtnToBibtonActivity.sendMoneyActivityViaFingerprint.SendMoneyActivityViaFingerprint" />
         <activity
-            android:name=".view.activities.bibtnToBibtonActivity.bibtonToBibton.BibtonToBibtonActivity"
+            android:name=".view.activities.profileActivity.editPersonalInfoActivities.changePhoneNumberActivity.ChangePhoneNumberActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".view.activities.profileActivity.editPersonalInfoActivities.EditCountryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activities.bibtnToBibtonActivity.bibtonToBibtonList.BibtonToBibtonListActivity"
+            android:name=".view.activities.profileActivity.PersonalDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activities.profileActivity.UserProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activities.bibtonToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activities.bibtonToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity"
+            android:screenOrientation="portrait"
+
+            />
+        <activity
+            android:name=".view.activities.bibtonToBibtonActivity.sendMoneyActivityViaFingerprint.SendMoneyActivityViaFingerprint"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activities.bibtonToBibtonActivity.bibtonToBibton.BibtonToBibtonActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activities.bibtonToBibtonActivity.bibtonToBibtonList.BibtonToBibtonListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.activities.ratesActivity.addSecondAlertPairActivity.SecondAlertPairActivity"
@@ -79,6 +90,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

@@ -7,7 +7,7 @@ import am.bibton.model.ResponseModel;
 import am.bibton.model.transferMoneyModel.TransferMoneyModel;
 import am.bibton.presenter.root.BasePresenter;
 import am.bibton.shared.data.services.AuthorizationService;
-import am.bibton.view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer.IWritePassCodeActivity;
+import am.bibton.view.activities.bibtonToBibtonActivity.writeCodeActivityForMoneyTranfer.IWritePassCodeActivity;
 import io.reactivex.disposables.Disposable;
 
 public class SendMoneyActivityPresenter extends BasePresenter<IWritePassCodeActivity> {

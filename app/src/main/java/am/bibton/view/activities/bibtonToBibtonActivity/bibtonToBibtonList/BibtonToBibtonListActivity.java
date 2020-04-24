@@ -1,4 +1,4 @@
-package am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibtonList;
+package am.bibton.view.activities.bibtonToBibtonActivity.bibtonToBibtonList;
 
 import am.bibton.Bibton;
 import am.bibton.R;
@@ -6,7 +6,7 @@ import am.bibton.adapters.BibtonToBibtonListAdapter;
 import am.bibton.model.bibtonToBibtonList.BibtonToBibtonListChild;
 import am.bibton.presenter.BibtonToBibtonListPresenter;
 import am.bibton.view.activities.BaseActivity;
-import am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibton.BibtonToBibtonActivity;
+import am.bibton.view.activities.bibtonToBibtonActivity.bibtonToBibton.BibtonToBibtonActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;

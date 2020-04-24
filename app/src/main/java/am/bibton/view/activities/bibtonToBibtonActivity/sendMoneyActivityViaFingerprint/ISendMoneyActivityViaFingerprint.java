@@ -1,4 +1,4 @@
-package am.bibton.view.activities.bibtnToBibtonActivity.sendMoneyActivityViaFingerprint;
+package am.bibton.view.activities.bibtonToBibtonActivity.sendMoneyActivityViaFingerprint;
 
 import am.bibton.view.activities.IBaseView;
 

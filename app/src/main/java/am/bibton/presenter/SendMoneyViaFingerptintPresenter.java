@@ -1,7 +1,5 @@
 package am.bibton.presenter;
 
-import android.widget.Toast;
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,7 +9,7 @@ import am.bibton.model.getUniqueIdForFingerPrint.GetUniqueIdFingerPrintModel;
 import am.bibton.model.transferMoneyModel.TransferMoneyModel;
 import am.bibton.presenter.root.BasePresenter;
 import am.bibton.shared.data.services.AuthorizationService;
-import am.bibton.view.activities.bibtnToBibtonActivity.sendMoneyActivityViaFingerprint.ISendMoneyActivityViaFingerprint;
+import am.bibton.view.activities.bibtonToBibtonActivity.sendMoneyActivityViaFingerprint.ISendMoneyActivityViaFingerprint;
 import io.reactivex.disposables.Disposable;
 
 public class SendMoneyViaFingerptintPresenter extends BasePresenter<ISendMoneyActivityViaFingerprint> {

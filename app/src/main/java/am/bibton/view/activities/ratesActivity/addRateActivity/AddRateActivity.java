@@ -8,7 +8,7 @@ import am.bibton.presenter.AddRateListPresenter;
 import am.bibton.shared.utils.Constants;
 import am.bibton.shared.utils.KeyboardUtils;
 import am.bibton.view.activities.BaseActivity;
-import am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibton.BibtonToBibtonActivity;
+import am.bibton.view.activities.bibtonToBibtonActivity.bibtonToBibton.BibtonToBibtonActivity;
 import am.bibton.view.activities.ratesActivity.RatesActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;

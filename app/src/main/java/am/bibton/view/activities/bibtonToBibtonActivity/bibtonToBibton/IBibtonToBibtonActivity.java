@@ -1,4 +1,4 @@
-package am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibton;
+package am.bibton.view.activities.bibtonToBibtonActivity.bibtonToBibton;
 
 import java.util.List;
 

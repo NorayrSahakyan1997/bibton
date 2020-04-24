@@ -1,4 +1,4 @@
-package am.bibton.view.activities.bibtnToBibtonActivity.transferWasDoneActivity;
+package am.bibton.view.activities.bibtonToBibtonActivity.transferWasDoneActivity;
 
 import am.bibton.R;
 import am.bibton.view.activities.homeActivity.HomeActivity;

@@ -1,4 +1,4 @@
-package am.bibton.view.activities.bibtnToBibtonActivity.sendMoneyActivityViaFingerprint;
+package am.bibton.view.activities.bibtonToBibtonActivity.sendMoneyActivityViaFingerprint;
 
 import am.bibton.Bibton;
 import am.bibton.R;
@@ -6,9 +6,9 @@ import am.bibton.model.transferMoneyModel.TransferMoneyModel;
 import am.bibton.presenter.SendMoneyViaFingerptintPresenter;
 import am.bibton.shared.utils.Constants;
 import am.bibton.view.activities.BaseActivity;
-import am.bibton.view.activities.bibtnToBibtonActivity.FingerprintHandler;
-import am.bibton.view.activities.bibtnToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity;
-import am.bibton.view.activities.bibtnToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
+import am.bibton.view.activities.bibtonToBibtonActivity.FingerprintHandler;
+import am.bibton.view.activities.bibtonToBibtonActivity.transferWasDoneActivity.TransferWasDoneActivity;
+import am.bibton.view.activities.bibtonToBibtonActivity.writeCodeActivityForMoneyTranfer.WritePassCodeActivity;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 

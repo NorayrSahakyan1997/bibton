@@ -11,7 +11,7 @@ import am.bibton.model.walletCurrency.WalletCurrencyParentResponse;
 import am.bibton.presenter.root.BasePresenter;
 import am.bibton.shared.data.services.AuthorizationService;
 import am.bibton.shared.utils.Constants;
-import am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibton.IBibtonToBibtonActivity;
+import am.bibton.view.activities.bibtonToBibtonActivity.bibtonToBibton.IBibtonToBibtonActivity;
 import io.reactivex.disposables.Disposable;
 
 public class BibtonToBibtonActivityPresenter extends BasePresenter<IBibtonToBibtonActivity> {

@@ -4,7 +4,7 @@ import am.bibton.model.ResponseModel;
 import am.bibton.model.bibtonToBibtonList.BibtonToBibtonParentModel;
 import am.bibton.presenter.root.BasePresenter;
 import am.bibton.shared.data.services.AuthorizationService;
-import am.bibton.view.activities.bibtnToBibtonActivity.bibtonToBibtonList.IBibtonToBibtonListActivity;
+import am.bibton.view.activities.bibtonToBibtonActivity.bibtonToBibtonList.IBibtonToBibtonListActivity;
 import io.reactivex.disposables.Disposable;
 
 public class BibtonToBibtonListPresenter extends BasePresenter<IBibtonToBibtonListActivity> {
